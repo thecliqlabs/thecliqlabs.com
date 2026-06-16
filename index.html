@@ -136,20 +136,24 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 
 
 /* THEME PREVIEW */
-.theme-showcase{margin-top:56px}
-.theme-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.theme-tabs{display:flex;gap:10px;justify-content:center;margin:36px 0 40px;flex-wrap:wrap}
 .theme-tab{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:10px 22px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:8px}
-.theme-tab.active{color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.08)}
+.theme-tab.active{color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)}
 .tab-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.preview-window{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#1e1e1e;box-shadow:0 40px 100px rgba(0,0,0,0.6);max-width:1000px;margin:0 auto}
-.pw-bar{background:#2a2a2a;padding:10px 16px;display:flex;align-items:center;gap:12px}
-.pw-dots{display:flex;gap:6px}
-.pw-dots span{width:12px;height:12px;border-radius:50%;display:block}
-.pw-url{background:#1a1a1a;border-radius:6px;padding:4px 20px;font-size:12px;color:rgba(255,255,255,0.25);flex:1;max-width:300px;text-align:center;margin:0 auto}
-.pw-screen{position:relative;height:420px;overflow:hidden}
-.pw-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .6s ease;border-radius:0}
-.pw-img.active{opacity:1}
-.theme-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.img-frame{position:relative;max-width:1000px;margin:0 auto;padding:0 16px}
+.img-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:75%;height:40%;background:radial-gradient(ellipse,rgba(31,185,230,0.25) 0%,transparent 70%);filter:blur(40px);pointer-events:none;animation:glowPulse 3s ease-in-out infinite;z-index:0}
+@keyframes glowPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.05)}}
+.img-wrapper{position:relative;border-radius:16px;padding:3px;background:rgba(255,255,255,0.05);box-shadow:0 0 0 1px rgba(255,255,255,0.08);overflow:hidden;z-index:1}
+.border-beam{position:absolute;inset:0;border-radius:16px;pointer-events:none;z-index:10}
+.border-beam::after{content:'';position:absolute;width:120px;height:120px;background:conic-gradient(from 0deg,transparent,#1fb9e6,#8de1ff,transparent);border-radius:50%;filter:blur(4px);animation:beamTravel 3s linear infinite;offset-path:rect(0 100% 100% 0 round 16px)}
+@keyframes beamTravel{0%{offset-distance:0%}100%{offset-distance:100%}}
+.img-inner{position:relative;border-radius:14px;overflow:hidden;background:#111}
+.ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .7s ease}
+.ss:first-child{position:relative}
+.ss.active{opacity:1;position:relative}
+.ss:not(.active){position:absolute}
+.img-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#02121d 0%,transparent 100%);pointer-events:none;z-index:5;border-radius:0 0 14px 14px}
+.theme-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
 .tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all .3s;display:inline-block}
 .tdot.active{width:28px;background:#1fb9e6}
 .theme-showcase{margin-top:60px}
@@ -364,38 +368,30 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
     <h2 class="section-title">Transform Your GHL Platform<br/>in One Click</h2>
     <p class="section-sub">Watch your entire HighLevel dashboard transform with professionally designed themes — live, in real time.</p>
   </div>
-  <div class="theme-showcase reveal">
-    <div class="theme-tabs">
-      <button class="theme-tab active" data-idx="0">
-        <span class="tab-dot" style="background:#cc1a00"></span> Dark Cherry
-      </button>
-      <button class="theme-tab" data-idx="1">
-        <span class="tab-dot" style="background:#1a1a1a"></span> Obsidian
-      </button>
-      <button class="theme-tab" data-idx="2">
-        <span class="tab-dot" style="background:#4A90D9"></span> Columbia Blue
-      </button>
-    </div>
-    <div class="preview-window">
-      <div class="pw-bar">
-        <div class="pw-dots">
-          <span style="background:#ff5f57"></span>
-          <span style="background:#febc2e"></span>
-          <span style="background:#28c840"></span>
-        </div>
-        <div class="pw-url">app.youragency.com</div>
+
+  <div class="theme-tabs reveal">
+    <button class="theme-tab active" data-idx="0"><span class="tab-dot" style="background:#cc1a00"></span>Dark Cherry</button>
+    <button class="theme-tab" data-idx="1"><span class="tab-dot" style="background:#6366f1"></span>Obsidian</button>
+    <button class="theme-tab" data-idx="2"><span class="tab-dot" style="background:#4A90D9"></span>Columbia Blue</button>
+  </div>
+
+  <div class="img-frame reveal">
+    <div class="img-glow"></div>
+    <div class="img-wrapper">
+      <div class="border-beam"></div>
+      <div class="img-inner">
+        <img src="screenshots/theme-dark-cherry.png" class="ss active" id="ss-0" alt="Dark Cherry Theme"/>
+        <img src="screenshots/theme-obsidian.png" class="ss" id="ss-1" alt="Obsidian Theme"/>
+        <img src="screenshots/theme-columbia-blue.png" class="ss" id="ss-2" alt="Columbia Blue Theme"/>
       </div>
-      <div class="pw-screen">
-        <img src="screenshots/theme-dark-cherry.png" class="pw-img active" id="img-0" alt="Dark Cherry Theme"/>
-        <img src="screenshots/theme-obsidian.png" class="pw-img" id="img-1" alt="Obsidian Theme"/>
-        <img src="screenshots/theme-columbia-blue.png" class="pw-img" id="img-2" alt="Columbia Blue Theme"/>
-      </div>
+      <div class="img-fade-bottom"></div>
     </div>
-    <div class="theme-dots">
-      <span class="tdot active" data-idx="0"></span>
-      <span class="tdot" data-idx="1"></span>
-      <span class="tdot" data-idx="2"></span>
-    </div>
+  </div>
+
+  <div class="theme-dots reveal">
+    <span class="tdot active" data-idx="0"></span>
+    <span class="tdot" data-idx="1"></span>
+    <span class="tdot" data-idx="2"></span>
   </div>
 </section>
 <!-- REVIEWS -->="en">
@@ -986,23 +982,28 @@ const statsEl = document.querySelector('.stats');
 if (statsEl) statsObserver.observe(statsEl);
 
 // THEME SWITCHER
-const themeImages = document.querySelectorAll('.pw-img');
-const themeTabs2 = document.querySelectorAll('.theme-tab');
-const themeDots2 = document.querySelectorAll('.tdot');
-let activeTheme = 0;
+const ssImgs = document.querySelectorAll('.ss');
+const ssTabs = document.querySelectorAll('.theme-tab');
+const ssDots = document.querySelectorAll('.tdot');
+let ssActive = 0;
 
-function switchTheme(idx) {
-  themeImages.forEach((img, i) => img.classList.toggle('active', i === idx));
-  themeTabs2.forEach((tab, i) => tab.classList.toggle('active', i === idx));
-  themeDots2.forEach((dot, i) => dot.classList.toggle('active', i === idx));
-  activeTheme = idx;
+function switchSS(idx) {
+  ssImgs.forEach((img, i) => img.classList.toggle('active', i === idx));
+  ssTabs.forEach((tab, i) => tab.classList.toggle('active', i === idx));
+  ssDots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+  ssActive = idx;
 }
 
-let themeTimer = setInterval(() => switchTheme((activeTheme + 1) % 3), 3000);
+let ssTimer = setInterval(() => switchSS((ssActive + 1) % 3), 3000);
 
-themeTabs2.forEach((tab, i) => {
-  tab.addEventListener('click', () => { clearInterval(themeTimer); switchTheme(i); themeTimer = setInterval(() => switchTheme((activeTheme + 1) % 3), 3000); });
-});
+ssTabs.forEach((tab, i) => tab.addEventListener('click', () => {
+  clearInterval(ssTimer); switchSS(i);
+  ssTimer = setInterval(() => switchSS((ssActive + 1) % 3), 3000);
+}));
+ssDots.forEach((dot, i) => dot.addEventListener('click', () => {
+  clearInterval(ssTimer); switchSS(i);
+  ssTimer = setInterval(() => switchSS((ssActive + 1) % 3), 3000);
+}));
 themeDots2.forEach((dot, i) => {
   dot.addEventListener('click', () => { clearInterval(themeTimer); switchTheme(i); themeTimer = setInterval(() => switchTheme((activeTheme + 1) % 3), 3000); });
 });
