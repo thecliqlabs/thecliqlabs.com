@@ -157,7 +157,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 /* beam overlay — absolute, covers img-ring, mask clips to border only */
 .beam-overlay{
   position:absolute;inset:0;border-radius:16px;
-  border:1.5px solid transparent;
+  border:3px solid transparent;
   mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
   -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
   mask-clip:padding-box,border-box;
@@ -167,7 +167,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
   pointer-events:none;z-index:10}
 .beam-overlay::after{
   content:'';position:absolute;
-  width:300px;aspect-ratio:1;
+  width:400px;aspect-ratio:2/1;
   background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);
   offset-path:rect(0 auto auto 0 round 16px);
   offset-anchor:90% 50%;offset-distance:0%;
