@@ -17,22 +17,20 @@ a{text-decoration:none;color:inherit}
 #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 6%;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(2,18,29,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(31,185,230,0.12)}
-.nav-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-0.3px}
-.nav-logo svg{animation:spin 12s linear infinite}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:76px;display:flex;align-items:center;justify-content:space-between;background:rgba(2,18,29,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.5px}
+.nav-logo svg{animation:spin 12s linear infinite;width:44px;height:44px}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.nav-links{display:flex;gap:32px}
-.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,0.6);transition:color .2s}
-.nav-links a:hover{color:#1fb9e6}
-.nav-actions{display:flex;gap:12px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;border:none;font-family:'Poppins',sans-serif}
-.btn-ghost{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.1)}
-.btn-ghost:hover{background:rgba(255,255,255,0.1)}
-.btn-primary{background:#1fb9e6;color:#02121d;font-weight:700}
-.btn-primary:hover{background:#8de1ff;transform:translateY(-1px)}
-.btn-lg{padding:14px 36px;font-size:16px;border-radius:12px}
-.btn-outline{background:transparent;color:#1fb9e6;border:1.5px solid #1fb9e6}
-.btn-outline:hover{background:rgba(31,185,230,0.1)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,0.7);padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);transition:all .2s;text-decoration:none}
+.nav-links a:hover{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#fff;border-color:rgba(31,185,230,0.5);background:rgba(31,185,230,0.1)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-nav-secondary{font-size:14px;font-weight:600;color:rgba(255,255,255,0.7);padding:9px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;text-decoration:none}
+.btn-nav-secondary:hover{color:#fff;border-color:rgba(255,255,255,0.3)}
+.btn-nav-primary{font-size:14px;font-weight:700;color:#fff;padding:10px 26px;border-radius:999px;border:none;background:linear-gradient(135deg,#1fb9e6,#0d8ab0);cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;box-shadow:0 4px 20px rgba(31,185,230,0.35);text-decoration:none}
+.btn-nav-primary:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(31,185,230,0.45);background:linear-gradient(135deg,#2dd0ff,#1fb9e6)}
+
 
 
 /* SPARK BADGE */
@@ -220,8 +218,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
   <h1>Scale Your HighLevel<br/>Agency <span>Without</span><br/>Burning Out</h1>
   <p>White-label support, done-for-you onboarding, a powerful theme builder, and premium snapshots — everything your GHL agency needs, in one place.</p>
   <div class="hero-actions">
-    <a href="#pricing" class="btn btn-primary btn-lg">Start Free Trial</a>
-    <a href="#features" class="btn btn-outline btn-lg">See What's Inside</a>
+    <a href="/pricing.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 36px;border-radius:999px;font-weight:700;font-size:16px;background:linear-gradient(135deg,#1fb9e6,#0d8ab0);color:#fff;text-decoration:none;box-shadow:0 4px 24px rgba(31,185,230,0.35);transition:all .2s">Start Free Trial →</a>
+    <a href="/#features" style="display:inline-flex;align-items:center;gap:8px;padding:14px 36px;border-radius:999px;font-weight:600;font-size:16px;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:all .2s">See What's Inside</a>
   </div>
 </section>
 
@@ -306,7 +304,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
   <h2 class="section-title">Stop Running Your Agency.<br/>Start Growing It.</h2>
   <p class="section-sub">Join 500+ GHL agencies that use CliqLabs to deliver a world-class client experience — without burning out their team.</p>
   <div class="cta-actions">
-    <a href="#pricing" class="btn btn-primary btn-lg">Start Free Trial</a>
+    <a href="/pricing.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 36px;border-radius:999px;font-weight:700;font-size:16px;background:linear-gradient(135deg,#1fb9e6,#0d8ab0);color:#fff;text-decoration:none;box-shadow:0 4px 24px rgba(31,185,230,0.35);transition:all .2s">Start Free Trial →</a>
     <a href="#" class="btn btn-outline btn-lg">Book a Demo</a>
   </div>
 </section>
