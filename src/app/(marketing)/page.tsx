@@ -8,14 +8,14 @@ import MagicBadge from "@/components/ui/magic-badge";
 import MagicCard from "@/components/ui/magic-card";
 import { COMPANIES, PROCESS } from "@/utils";
 import { REVIEWS } from "@/utils/constants/misc";
-import { currentUser } from "@clerk/nextjs/server";
+
 import { ArrowRightIcon, CreditCardIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const HomePage = async () => {
 
-    const user = await currentUser();
+    
 
     return (
         <div className="overflow-x-hidden scrollbar-hide size-full">
@@ -30,24 +30,24 @@ const HomePage = async () => {
                             <span className="backdrop absolute inset-[1px] rounded-full bg-neutral-950 transition-colors duration-200 group-hover:bg-neutral-900" />
                             <span className="h-full w-full blur-md absolute bottom-0 inset-x-0 bg-gradient-to-tr from-primary/20"></span>
                             <span className="z-10 py-0.5 text-sm text-neutral-100 flex items-center justify-center gap-1">
-                                ✨ Manage links smarter
+                                ⚡ The GHL Agency Operating System
                                 <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
                             </span>
                         </button>
                         <h1 className="text-foreground text-center py-6 text-5xl font-medium tracking-normal text-balance sm:text-6xl md:text-7xl lg:text-8xl !leading-[1.15] w-full font-heading">
-                            Smart Links with <span className="text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text inline-bloc">
-                                Precision
+                            Scale Your HighLevel Agency <span className="text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text inline-bloc">
+                                Without Burning Out
                             </span>
                         </h1>
                         <p className="mb-12 text-lg tracking-tight text-muted-foreground md:text-xl text-balance">
-                            Effortlessly streamline your link management with Linkify.
+                            White-label support, done-for-you onboarding, a powerful theme builder, and premium snapshots —
                             <br className="hidden md:block" />
-                            <span className="hidden md:block">Shorten, track, and organize all your links in one place.</span>
+                            <span className="hidden md:block">everything your GHL agency needs to scale, in one place.</span>
                         </p>
                         <div className="flex items-center justify-center whitespace-nowrap gap-4 z-50">
                             <Button asChild>
-                                <Link href={user ? "/dashboard" : "/auth/sign-in"} className="flex items-center">
-                                    Start creating for free
+                                <Link href="/auth/sign-in" className="flex items-center">
+                                    Get Started Free
                                     <ArrowRightIcon className="w-4 h-4 ml-2" />
                                 </Link>
                             </Button>
@@ -83,7 +83,7 @@ const HomePage = async () => {
                     <div className="py-14">
                         <div className="mx-auto px-4 md:px-8">
                             <h2 className="text-center text-sm font-medium font-heading text-neutral-400 uppercase">
-                                Trusted by the best in the industry
+                                Trusted by HighLevel agencies worldwide
                             </h2>
                             <div className="mt-8">
                                 <ul className="flex flex-wrap items-center gap-x-6 gap-y-6 md:gap-x-16 justify-center">
@@ -112,10 +112,10 @@ const HomePage = async () => {
                     <div className="flex flex-col w-full items-center lg:items-center justify-center py-8">
                         <MagicBadge title="Features" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            Manage Links Like a Pro
+                            Everything Your GHL Agency Needs to Scale
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Linkify is a powerful link management tool that helps you shorten, track, and organize all your links in one place.
+                            CliqLabs gives your agency one operating system — support, onboarding, themes, snapshots, and coaching in one place.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -134,10 +134,10 @@ const HomePage = async () => {
                     <div className="flex flex-col items-center lg:items-center justify-center w-full py-8 max-w-xl mx-auto">
                         <MagicBadge title="The Process" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            Effortless link management in 3 steps
+                            Up and Running in Under 10 Minutes
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Follow these simple steps to optimize, organize, and share your links with ease.
+                            No long setup. No technical headache. You'll be live and serving clients before lunch.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -171,10 +171,10 @@ const HomePage = async () => {
                     <div className="flex flex-col items-center lg:items-center justify-center w-full py-8 max-w-xl mx-auto">
                         <MagicBadge title="Simple Pricing" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            Choose a plan that works for you
+                            Simple, Transparent Pricing
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Get started with Linkify today and enjoy more features with our pro plans.
+                            No contracts. No surprises. Cancel anytime. Scale when you're ready.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -199,10 +199,10 @@ const HomePage = async () => {
                     <div className="flex flex-col items-center lg:items-center justify-center w-full py-8 max-w-xl mx-auto">
                         <MagicBadge title="Our Customers" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            What our users are saying
+                            What GHL Agencies Say About CliqLabs
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Here&apos;s what some of our users have to say about Linkify.
+                            HereHere&apos;s what some of our users have to say about Linkify.apos;s what agencies building on HighLevel say about scaling with CliqLabs.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -300,14 +300,14 @@ const HomePage = async () => {
                     <LampContainer>
                         <div className="flex flex-col items-center justify-center relative w-full text-center">
                             <h2 className="bg-gradient-to-b from-neutral-200 to-neutral-400 py-4 bg-clip-text text-center text-4xl md:text-7xl !leading-[1.15] font-medium font-heading tracking-tight text-transparent mt-8">
-                                Step into the future of link management
+                                Stop Running Your Agency. Start Growing It.
                             </h2>
                             <p className="text-muted-foreground mt-6 max-w-md mx-auto">
-                                Experience the cutting-edge solution that transforms how you handle your links. Elevate your online presence with our next-gen platform.
+                                Join 500+ GHL agencies that use CliqLabs to deliver a world-class client experience — without burning out their team.
                             </p>
                             <div className="mt-6">
                                 <Button>
-                                    Get started for free
+                                    Start Free Trial
                                     <ArrowRightIcon className="w-4 h-4 ml-2" />
                                 </Button>
                             </div>

@@ -1,4 +1,4 @@
-import { HelpCircleIcon, LineChartIcon, Link2Icon, LockIcon, NewspaperIcon, QrCodeIcon } from "lucide-react";
+import { HeadphonesIcon, LayoutTemplateIcon, LineChartIcon, PaletteIcon, SparklesIcon, UsersIcon } from "lucide-react";
 
 export const NAV_LINKS = [
     {
@@ -6,28 +6,28 @@ export const NAV_LINKS = [
         href: "/features",
         menu: [
             {
-                title: "Link Shortening",
-                tagline: "Shorten links and track their performance.",
-                href: "/features/link-shortening",
-                icon: Link2Icon,
+                title: "Theme Builder",
+                tagline: "Brand your GHL platform in one click.",
+                href: "/features/theme-builder",
+                icon: PaletteIcon,
             },
             {
-                title: "Password Protection",
-                tagline: "Secure your links with a password.",
-                href: "/features/password-protection",
-                icon: LockIcon,
+                title: "24/7 Support",
+                tagline: "White-label support for your clients.",
+                href: "/features/support",
+                icon: HeadphonesIcon,
             },
             {
-                title: "Advanced Analytics",
-                tagline: "Gain insights into who is clicking your links.",
-                href: "/features/analytics",
-                icon: LineChartIcon,
+                title: "Client Onboarding",
+                tagline: "Done-for-you onboarding under your brand.",
+                href: "/features/onboarding",
+                icon: UsersIcon,
             },
             {
-                title: "Custom QR Codes",
-                tagline: "Use QR codes to reach your audience.",
-                href: "/features/qr-codes",
-                icon: QrCodeIcon,
+                title: "Snapshots",
+                tagline: "Industry-ready GHL builds, plug and play.",
+                href: "/features/snapshots",
+                icon: LayoutTemplateIcon,
             },
         ],
     },
@@ -36,8 +36,8 @@ export const NAV_LINKS = [
         href: "/pricing",
     },
     {
-        title: "Enterprise",
-        href: "/enterprise",
+        title: "Theme Builder",
+        href: "/theme-builder",
     },
     {
         title: "Resources",
@@ -45,15 +45,15 @@ export const NAV_LINKS = [
         menu: [
             {
                 title: "Blog",
-                tagline: "Read articles on the latest trends in tech.",
+                tagline: "GHL tips, growth strategies, and guides.",
                 href: "/resources/blog",
-                icon: NewspaperIcon,
+                icon: SparklesIcon,
             },
             {
                 title: "Help",
                 tagline: "Get answers to your questions.",
                 href: "/resources/help",
-                icon: HelpCircleIcon,
+                icon: HeadphonesIcon,
             },
         ]
     },

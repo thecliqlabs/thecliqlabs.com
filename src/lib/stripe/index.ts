@@ -1,1 +1,1 @@
-// stripe configuration
+export {};

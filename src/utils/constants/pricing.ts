@@ -1,200 +1,57 @@
-// export const PLANS = [
-//     {
-//         name: "Free",
-//         info: "For most individuals",
-//         price: {
-//             monthly: 0,
-//             yearly: 0,
-//         },
-//         features: [
-//             { text: "Shorten links" },
-//             { text: "Up to 100 tags", limit: "100 tags" },
-//             { text: "Customizable branded links" },
-//             { text: "Track clicks", tooltip: "1K clicks/month" },
-//             { text: "Community support", tooltip: "Get answers your questions on discord" },
-//             { text: "AI powered suggestions", tooltip: "Get up to 100 AI powered suggestions" },
-//         ],
-//         btn: {
-//             text: "Start for free",
-//             href: "/auth/sign-up?plan=free",
-//             variant: "default",
-//         }
-//     },
-//     {
-//         name: "Pro",
-//         info: "For small businesses",
-//         price: {
-//             monthly: 9,
-//             yearly: 90,
-//         },
-//         features: [
-//             { text: "Shorten links" },
-//             { text: "Up to 500 tags", limit: "500 tags" },
-//             { text: "Customizable branded links" },
-//             { text: "Track clicks", tooltip: "20K clicks/month" },
-//             { text: "Export click data", tooltip: "Upto 1K links" },
-//             { text: "Priority support", tooltip: "Get 24/7 chat support" },
-//             { text: "AI powered suggestions", tooltip: "Get up to 500 AI powered suggestions" },
-//         ],
-//         btn: {
-//             text: "Get started",
-//             href: "/auth/sign-up?plan=pro",
-//             variant: "purple",
-//         }
-//     },
-//     {
-//         name: "Business",
-//         info: "For large organizations",
-//         price: {
-//             monthly: 49,
-//             yearly: 490,
-//         },
-//         features: [
-//             { text: "Shorten links" },
-//             { text: "Unlimited tags" },
-//             { text: "Customizable branded links"},
-//             { text: "Track clicks", tooltip: "Unlimited clicks" },
-//             { text: "Export click data", tooltip: "Unlimited clicks" },
-//             { text: "Dedicated manager", tooltip: "Get priority support from our team" },
-//             { text: "AI powered suggestions", tooltip: "Get unlimited AI powered suggestions" },
-//         ],
-//         btn: {
-//             text: "Contact team",
-//             href: "/auth/sign-up?plan=business",
-//             variant: "default",
-//         }
-//     }
-// ];
+export const WORKSPACE_LIMIT = 2;
 
-// export const PRICING_FEATURES = [
-//     {
-//         text: "Shorten links",
-//         tooltip: "Create shortened links",
-//     },
-//     {
-//         text: "Track clicks",
-//         tooltip: "Track clicks on your links",
-//     },
-//     {
-//         text: "See top countries",
-//         tooltip: "See top countries where your links are clicked",
-//     },
-//     {
-//         text: "Upto 10 tags",
-//         tooltip: "Add upto 10 tags to your links",
-//     },
-//     {
-//         text: "Community support",
-//         tooltip: "Community support is available for free users",
-//     },
-//     {
-//         text: "Priority support",
-//         tooltip: "Get priority support from our team",
-//     },
-//     {
-//         text: "AI powered suggestions",
-//         tooltip: "Get AI powered suggestions for your links",
-//     },
-// ];
-
-// export const WORKSPACE_LIMIT = 2;
 export const PLANS = [
     {
-        name: "Free",
-        info: "For most individuals",
-        price: {
-            monthly: 0,
-            yearly: 0,
-        },
+        name: "Core",
+        info: "Launch and brand your GHL agency",
+        price: { monthly: 197, yearly: Math.round(197 * 12 * 0.85) },
         features: [
-            { text: "Shorten links" },
-            { text: "Up to 100 tags", limit: "100 tags" },
-            { text: "Customizable branded links" },
-            { text: "Track clicks", tooltip: "1K clicks/month" },
-            { text: "Community support", tooltip: "Get answers your questions on discord" },
-            { text: "AI powered suggestions", tooltip: "Get up to 100 AI powered suggestions" },
+            { text: "GHL Theme Builder — unlimited themes", tooltip: "" },
+            { text: "White-label knowledge base (1,000+ articles)", tooltip: undefined },
+            { text: "Interactive guided tours", tooltip: undefined },
+            { text: "OG SaaS Snapshot + Demo Snapshot", tooltip: undefined },
+            { text: "Brandable demo video & slide deck", tooltip: undefined },
+            { text: "10+ weekly coaching calls", tooltip: undefined },
+            { text: "A2P 10DLC compliance training", tooltip: undefined },
         ],
-        btn: {
-            text: "Start for free",
-            href: "/auth/sign-up?plan=free",
-            variant: "default",
-        }
+        btn: { text: "Get started", href: "/auth/sign-up?plan=core", variant: "default" }
     },
     {
-        name: "Pro",
-        info: "For small businesses",
-        price: {
-            monthly: 9,
-            yearly: Math.round(9 * 12 * (1 - 0.12)),
-        },
+        name: "VIP",
+        info: "Add real 24/7 human support",
+        price: { monthly: 397, yearly: Math.round(397 * 12 * 0.85) },
         features: [
-            { text: "Shorten links" },
-            { text: "Up to 500 tags", limit: "500 tags" },
-            { text: "Customizable branded links" },
-            { text: "Track clicks", tooltip: "20K clicks/month" },
-            { text: "Export click data", tooltip: "Upto 1K links" },
-            { text: "Priority support", tooltip: "Get 24/7 chat support" },
-            { text: "AI powered suggestions", tooltip: "Get up to 500 AI powered suggestions" },
+            { text: "Everything in Core", tooltip: undefined },
+            { text: "24/7 branded support for up to 10 clients", tooltip: undefined },
+            { text: "Chat, phone & video support", tooltip: undefined },
+            { text: "Unlimited group onboarding (13-week)", tooltip: undefined },
+            { text: "On-demand A2P support & DFY registration", tooltip: undefined },
+            { text: "Support via Zoom & tickets", tooltip: undefined },
         ],
-        btn: {
-            text: "Get started",
-            href: "/auth/sign-up?plan=pro",
-            variant: "purple",
-        }
+        btn: { text: "Get started", href: "/auth/sign-up?plan=vip", variant: "purple" }
     },
     {
-        name: "Business",
-        info: "For large organizations",
-        price: {
-            monthly: 49,
-            yearly: Math.round(49 * 12 * (1 - 0.12)),
-        },
+        name: "Elite",
+        info: "Scale to 100+ clients",
+        price: { monthly: 997, yearly: Math.round(997 * 12 * 0.85) },
         features: [
-            { text: "Shorten links" },
-            { text: "Unlimited tags" },
-            { text: "Customizable branded links" },
-            { text: "Track clicks", tooltip: "Unlimited clicks" },
-            { text: "Export click data", tooltip: "Unlimited clicks" },
-            { text: "Dedicated manager", tooltip: "Get priority support from our team" },
-            { text: "AI powered suggestions", tooltip: "Get unlimited AI powered suggestions" },
+            { text: "Everything in VIP", tooltip: undefined },
+            { text: "24/7 support for UNLIMITED clients", tooltip: undefined },
+            { text: "5 free client onboarding calls/month", tooltip: undefined },
+            { text: "4 DFY A2P registrations monthly", tooltip: undefined },
+            { text: "Access to GHL University", tooltip: undefined },
+            { text: "40+ niche-specific snapshots", tooltip: undefined },
         ],
-        btn: {
-            text: "Contact team",
-            href: "/auth/sign-up?plan=business",
-            variant: "default",
-        }
+        btn: { text: "Get started", href: "/auth/sign-up?plan=elite", variant: "default" }
     }
 ];
 
 export const PRICING_FEATURES = [
-    {
-        text: "Shorten links",
-        tooltip: "Create shortened links",
-    },
-    {
-        text: "Track clicks",
-        tooltip: "Track clicks on your links",
-    },
-    {
-        text: "See top countries",
-        tooltip: "See top countries where your links are clicked",
-    },
-    {
-        text: "Upto 10 tags",
-        tooltip: "Add upto 10 tags to your links",
-    },
-    {
-        text: "Community support",
-        tooltip: "Community support is available for free users",
-    },
-    {
-        text: "Priority support",
-        tooltip: "Get priority support from our team",
-    },
-    {
-        text: "AI powered suggestions",
-        tooltip: "Get AI powered suggestions for your links",
-    },
+    { text: "Theme Builder", tooltip: "One-click GHL themes" },
+    { text: "White-label support", tooltip: "Your brand, our team" },
+    { text: "Client onboarding", tooltip: "Done-for-you under your brand" },
+    { text: "Knowledge base", tooltip: "1,000+ articles always updated" },
+    { text: "Coaching calls", tooltip: "10+ weekly calls with GHL experts" },
+    { text: "Niche snapshots", tooltip: "Plug-and-play GHL builds" },
+    { text: "A2P compliance", tooltip: "DFY registration and support" },
 ];
-
-export const WORKSPACE_LIMIT = 2;
