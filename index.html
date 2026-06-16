@@ -141,45 +141,49 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .theme-tab.active{color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)}
 .tab-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 
-.img-frame{position:relative;max-width:1200px;width:100%;margin:0 auto;padding:0 8px}
+.img-frame{position:relative;max-width:1100px;width:100%;margin:0 auto;padding:0 8px}
 
-/* glow behind — conic gradient fading in */
-.img-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:75%;height:50%;background:conic-gradient(from 230deg at 51% 52%,rgb(36,0,255) 0deg,rgb(0,135,255) 67deg,rgb(108,39,157) 198deg,rgb(24,38,163) 251deg,rgb(54,103,196) 301deg,rgb(105,30,255) 360deg);filter:blur(80px);opacity:0;pointer-events:none;animation:imageGlow 4s ease-out 0.3s forwards;z-index:0}
-@keyframes imageGlow{0%{opacity:0}10%{opacity:0.4}100%{opacity:0.65}}
+.img-glow{position:absolute;top:-5%;left:50%;transform:translateX(-50%);width:70%;height:45%;
+  background:conic-gradient(from 230deg at 51% 52%,rgb(36,0,255) 0deg,rgb(0,135,255) 67deg,rgb(108,39,157) 198deg,rgb(24,38,163) 251deg,rgb(54,103,196) 301deg,rgb(105,30,255) 360deg);
+  filter:blur(80px);opacity:0;pointer-events:none;animation:imgGlow 4s ease-out 0.3s forwards;z-index:0}
+@keyframes imgGlow{0%{opacity:0}10%{opacity:0.45}100%{opacity:0.7}}
 
-/* OUTER ring — always visible subtle static border */
-.img-outer-ring{position:relative;border-radius:22px;padding:1px;background:rgba(255,255,255,0.08);z-index:1}
+/* outer ring — padding=8px, ring-1 ring-foreground/20 like Linkify */
+.img-ring{position:relative;border-radius:16px;padding:8px;
+  background:rgba(255,255,255,0.03);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15);
+  z-index:1}
 
-/* INNER beam wrapper — transparent border + traveling light */
-.img-wrapper{position:relative;border-radius:21px;overflow:hidden;background:#0a0a0a}
-
-/* traveling light overlay — sits on top of image, uses mask to show only on border */
-.border-beam-el{
-  position:absolute;inset:0;border-radius:21px;
-  border:3px solid transparent;
-  mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
-  -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
-  mask-clip:padding-box,border-box;
-  -webkit-mask-clip:padding-box,border-box;
-  mask-composite:intersect;
-  -webkit-mask-composite:destination-in;
-  pointer-events:none;z-index:10}
-.border-beam-el::after{
+/* beam overlay — absolute, covers img-ring, mask clips to border only */
+.beam-overlay{
+  position:absolute;inset:0;border-radius:16px;
+  border:1.5px solid transparent;
+  mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+  -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+  mask-composite:xor;
+  -webkit-mask-composite:xor;
+  pointer-events:none;z-index:10;overflow:hidden}
+.beam-overlay::after{
   content:'';position:absolute;
-  aspect-ratio:1/1;width:200px;
+  width:150px;aspect-ratio:1;
   background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);
-  offset-path:rect(0 auto auto 0 round 21px);
+  offset-path:rect(0 auto auto 0 round 16px);
   offset-anchor:90% 50%;offset-distance:0%;
-  animation:beamMove 6s linear infinite}
-@keyframes beamMove{0%{offset-distance:0%}100%{offset-distance:100%}}
+  animation:beamRun 5s linear infinite}
+@keyframes beamRun{to{offset-distance:100%}}
 
-.img-inner{position:relative;border-radius:0;overflow:hidden;background:#0a0a0a}
+/* inner image box */
+.img-inner{position:relative;border-radius:10px;overflow:hidden;background:#0a0a0a;line-height:0}
 .ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .8s ease}
 .ss:first-child{position:relative}
 .ss.active{opacity:1;position:relative}
-.ss:not(.active){position:absolute}
-.img-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#02121d 0%,transparent 100%);pointer-events:none;z-index:5;border-radius:0 0 19px 19px}
-.theme-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
+.ss:not(.active){position:absolute;top:0;left:0}
+/* bottom fade inside image */
+.img-fade{position:absolute;bottom:0;left:0;right:0;height:40%;
+  background:linear-gradient(to top,#02121d 0%,rgba(2,18,29,0) 100%);
+  pointer-events:none;z-index:5}
+
+.theme-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
 .tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all .3s;display:inline-block}
 .tdot.active{width:28px;background:#1fb9e6}
 .theme-showcase{margin-top:60px}
@@ -402,17 +406,19 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
   </div>
 
   <div class="img-frame reveal">
+    <!-- glow behind -->
     <div class="img-glow"></div>
-    <div class="img-outer-ring">
-    <div class="img-wrapper">
-      <div class="border-beam-el"></div>
+    <!-- outer padding ring — the border-beam travels on this -->
+    <div class="img-ring">
+      <div class="beam-overlay"></div>
+      <!-- inner image area -->
       <div class="img-inner">
-        <img src="screenshots/theme-dark-cherry.png" class="ss active" id="ss-0" alt="Dark Cherry Theme"/>
-        <img src="screenshots/theme-obsidian.png" class="ss" id="ss-1" alt="Obsidian Theme"/>
-        <img src="screenshots/theme-columbia-blue.png" class="ss" id="ss-2" alt="Columbia Blue Theme"/>
+        <img src="screenshots/theme-dark-cherry.png" class="ss active" alt="Dark Cherry"/>
+        <img src="screenshots/theme-obsidian.png" class="ss" alt="Obsidian"/>
+        <img src="screenshots/theme-columbia-blue.png" class="ss" alt="Columbia Blue"/>
+        <!-- bottom fade INSIDE the image, not outside -->
+        <div class="img-fade"></div>
       </div>
-      <div class="img-fade-bottom"></div>
-    </div>
     </div>
   </div>
 
@@ -1014,27 +1020,15 @@ const ssImgs = document.querySelectorAll('.ss');
 const ssTabs = document.querySelectorAll('.theme-tab');
 const ssDots = document.querySelectorAll('.tdot');
 let ssActive = 0;
-
 function switchSS(idx) {
-  ssImgs.forEach((img, i) => img.classList.toggle('active', i === idx));
-  ssTabs.forEach((tab, i) => tab.classList.toggle('active', i === idx));
-  ssDots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+  ssImgs.forEach((img,i) => img.classList.toggle('active', i===idx));
+  ssTabs.forEach((tab,i) => tab.classList.toggle('active', i===idx));
+  ssDots.forEach((dot,i) => dot.classList.toggle('active', i===idx));
   ssActive = idx;
 }
-
-let ssTimer = setInterval(() => switchSS((ssActive + 1) % 3), 3000);
-
-ssTabs.forEach((tab, i) => tab.addEventListener('click', () => {
-  clearInterval(ssTimer); switchSS(i);
-  ssTimer = setInterval(() => switchSS((ssActive + 1) % 3), 3000);
-}));
-ssDots.forEach((dot, i) => dot.addEventListener('click', () => {
-  clearInterval(ssTimer); switchSS(i);
-  ssTimer = setInterval(() => switchSS((ssActive + 1) % 3), 3000);
-}));
-themeDots2.forEach((dot, i) => {
-  dot.addEventListener('click', () => { clearInterval(themeTimer); switchTheme(i); themeTimer = setInterval(() => switchTheme((activeTheme + 1) % 3), 3000); });
-});
+let ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000);
+ssTabs.forEach((tab,i) => tab.addEventListener('click', () => { clearInterval(ssTimer); switchSS(i); ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000); }));
+ssDots.forEach((dot,i) => dot.addEventListener('click', () => { clearInterval(ssTimer); switchSS(i); ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000); }));
 
 document.querySelectorAll('.ti-dot').forEach((dot, i) => {
   dot.addEventListener('click', () => {
