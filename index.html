@@ -17,19 +17,24 @@ a{text-decoration:none;color:inherit}
 #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 4%;background:rgba(2,12,22,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);gap:20px}
-.nav-logo{display:flex;align-items:center;gap:12px;font-size:26px;font-weight:900;color:#fff;letter-spacing:-0.5px;text-decoration:none;flex-shrink:0}
-.nav-logo svg{animation:spin 12s linear infinite;width:42px;height:42px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 6%;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(2,18,29,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(31,185,230,0.12)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-0.3px}
+.nav-logo svg{animation:spin 12s linear infinite}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.nav-center{display:flex;gap:8px;align-items:center}
-.nav-center a{font-size:14px;font-weight:500;color:rgba(255,255,255,0.7);padding:9px 20px;border-radius:999px;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);white-space:nowrap}
-.nav-center a:hover{color:#fff;background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
-.nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0}
-.btn-nav-ghost{font-size:14px;font-weight:500;color:rgba(255,255,255,0.7);padding:9px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;text-decoration:none;white-space:nowrap}
-.btn-nav-ghost:hover{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.1)}
-.btn-nav-cta{font-size:14px;font-weight:700;color:#fff;padding:10px 24px;border-radius:999px;border:none;background:linear-gradient(135deg,#1fb9e6,#0a7fa3);cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;box-shadow:0 4px 16px rgba(31,185,230,0.35);text-decoration:none;white-space:nowrap}
-.btn-nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(31,185,230,0.5)}
-@media(max-width:900px){.nav-center{display:none}}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,0.6);transition:color .2s}
+.nav-links a:hover{color:#1fb9e6}
+.nav-actions{display:flex;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;border:none;font-family:'Poppins',sans-serif}
+.btn-ghost{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.1)}
+.btn-ghost:hover{background:rgba(255,255,255,0.1)}
+.btn-primary{background:#1fb9e6;color:#02121d;font-weight:700}
+.btn-primary:hover{background:#8de1ff;transform:translateY(-1px)}
+.btn-lg{padding:14px 36px;font-size:16px;border-radius:12px}
+.btn-outline{background:transparent;color:#1fb9e6;border:1.5px solid #1fb9e6}
+.btn-outline:hover{background:rgba(31,185,230,0.1)}
+
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 /* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 6% 80px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(31,185,230,0.1);border:1px solid rgba(31,185,230,0.3);color:#8de1ff;font-size:13px;font-weight:600;padding:6px 18px;border-radius:999px;margin-bottom:32px;animation:fadeUp .8s ease forwards}
@@ -164,28 +169,32 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 </style>
 </head>
 <body>
+<canvas id="particles-canvas"></canvas>
 
 <canvas id="particles-canvas"></canvas>
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <div class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="36" height="36">
       <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#4A90D9" stroke-width="2.5"/>
       <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#2ECC71" stroke-width="2.5" transform="rotate(60 36 36)"/>
       <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#F5C518" stroke-width="2.5" transform="rotate(120 36 36)"/>
       <circle cx="36" cy="36" r="5.5" fill="#F5C518"/>
       <circle cx="64" cy="36" r="4" fill="#4A90D9"/>
       <circle cx="22" cy="12" r="4" fill="#2ECC71"/>
-    </svg>CliqLabs</a>
-  <div class="nav-center">
-    <a href="/">Home</a>
-    <a href="/#features">Features</a>
-    <a href="/#how">How It Works</a>
-    <a href="/#reviews">Reviews</a>
+    </svg>
+    CliqLabs
   </div>
-  <div class="nav-right">
-    <a href="/pricing.html" class="btn-nav-ghost">View Pricing</a>
-    <a href="/pricing.html" class="btn-nav-cta">Get Started →</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="#reviews">Reviews</a>
+  </div>
+  <div class="nav-actions">
+    <a href="#" class="btn btn-ghost">Login</a>
+    <a href="#pricing" class="btn btn-primary">Get Started</a>
   </div>
 </nav>
 
@@ -257,96 +266,6 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
     <div class="step reveal"><div class="step-num">2</div><h4>Install the Script</h4><p>Paste one line of code into your GHL white-label settings. Your theme builder and support widget appear instantly.</p></div>
     <div class="step reveal"><div class="step-num">3</div><h4>Brand Everything</h4><p>Use the Theme Builder to apply your colors, fonts, and style across your entire GHL platform in seconds.</p></div>
     <div class="step reveal"><div class="step-num">4</div><h4>We Handle Your Clients</h4><p>Onboarding, support, knowledge base — all white-labeled under your brand. Your clients think you built it all.</p></div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="text-center reveal">
-    <span class="section-label">Pricing</span>
-    <h2 class="section-title">Simple, Transparent Pricing</h2>
-    <p class="section-sub">No contracts. No surprises. Cancel anytime. Scale when you are ready.</p>
-  </div>
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <div class="pricing-name">Core</div>
-      <div class="pricing-price"><sup>$</sup>197<sub>/mo</sub></div>
-      <p class="pricing-desc">Everything you need to launch and brand your GHL agency professionally.</p>
-      <hr class="pricing-divider"/>
-      <ul class="pricing-features">
-        <li>GHL Theme Builder — unlimited themes</li>
-        <li>White-label knowledge base (1,000+ articles)</li>
-        <li>Interactive guided tours</li>
-        <li>OG SaaS Snapshot + Demo Snapshot</li>
-        <li>Brandable demo video and slide deck</li>
-        <li>10+ weekly coaching calls</li>
-        <li>A2P 10DLC compliance training</li>
-      </ul>
-      <a href="#" class="btn btn-outline" style="width:100%;justify-content:center">Get Started</a>
-    </div>
-    <div class="pricing-card featured reveal">
-      <div class="featured-tag">Most Popular</div>
-      <div class="pricing-name">VIP</div>
-      <div class="pricing-price"><sup>$</sup>397<sub>/mo</sub></div>
-      <p class="pricing-desc">Add real 24/7 human support for your clients — fully white-labeled under your brand.</p>
-      <hr class="pricing-divider"/>
-      <ul class="pricing-features">
-        <li>Everything in Core</li>
-        <li>24/7 branded support for up to 10 clients</li>
-        <li>Chat, phone and video support</li>
-        <li>Unlimited group onboarding (13-week)</li>
-        <li>On-demand A2P support and DFY registration</li>
-        <li>Support via Zoom and tickets</li>
-      </ul>
-      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a>
-    </div>
-    <div class="pricing-card reveal">
-      <div class="pricing-name">Elite</div>
-      <div class="pricing-price"><sup>$</sup>997<sub>/mo</sub></div>
-      <p class="pricing-desc">Unlimited support and onboarding — built for agencies scaling to 100+ clients.</p>
-      <hr class="pricing-divider"/>
-      <ul class="pricing-features">
-        <li>Everything in VIP</li>
-        <li>24/7 support for UNLIMITED clients</li>
-        <li>5 free client onboarding calls per month</li>
-        <li>4 DFY A2P registrations monthly</li>
-        <li>Access to GHL University</li>
-        <li>40+ niche-specific snapshots</li>
-      </ul>
-      <a href="#" class="btn btn-outline" style="width:100%;justify-content:center">Get Started</a>
-    </div>
-  </div>
-  <p style="text-align:center;margin-top:32px;font-size:14px;color:rgba(255,255,255,0.35)">Need custom 1-on-1 coaching and unlimited everything? <a href="#" style="color:#1fb9e6;font-weight:600">Talk to us about Platinum →</a></p>
-</section>
-
-<!-- THEME PREVIEW -->
-<section id="theme-preview" style="background:rgba(255,255,255,0.01)">
-  <div class="text-center reveal">
-    <span class="section-label">Theme Builder</span>
-    <h2 class="section-title">Transform Your GHL Platform<br/>in One Click</h2>
-    <p class="section-sub">Watch your entire HighLevel dashboard transform with professionally designed themes — live, in real time.</p>
-  </div>
-  <div class="theme-tabs reveal">
-    <button class="theme-tab active" data-idx="0"><span class="tab-dot" style="background:#cc1a00"></span>Dark Cherry</button>
-    <button class="theme-tab" data-idx="1"><span class="tab-dot" style="background:#6366f1"></span>Obsidian</button>
-    <button class="theme-tab" data-idx="2"><span class="tab-dot" style="background:#4A90D9"></span>Columbia Blue</button>
-  </div>
-  <div class="img-frame reveal">
-    <div class="img-glow"></div>
-    <div class="img-ring">
-      <div class="beam-overlay"></div>
-      <div class="img-inner">
-        <img src="screenshots/theme-dark-cherry.png" class="ss active" alt="Dark Cherry"/>
-        <img src="screenshots/theme-obsidian.png" class="ss" alt="Obsidian"/>
-        <img src="screenshots/theme-columbia-blue.png" class="ss" alt="Columbia Blue"/>
-        <div class="img-fade"></div>
-      </div>
-    </div>
-  </div>
-  <div class="theme-dots reveal">
-    <span class="tdot active" data-idx="0"></span>
-    <span class="tdot" data-idx="1"></span>
-    <span class="tdot" data-idx="2"></span>
   </div>
 </section>
 
@@ -522,6 +441,35 @@ function switchSS(idx) {
 let ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000);
 ssTabs.forEach((tab,i) => tab.addEventListener('click', () => { clearInterval(ssTimer); switchSS(i); ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000); }));
 ssDots.forEach((dot,i) => dot.addEventListener('click', () => { clearInterval(ssTimer); switchSS(i); ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000); }));
+
+// PARTICLES
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [], W, H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();
+window.addEventListener('resize',resize);
+function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.5+0.3;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.a=Math.random()*.4+.1;}
+for(let i=0;i<120;i++)particles.push(new P());
+let mouse={x:-9999,y:-9999};
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{
+    let dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<120){p.x+=dx/d*.5;p.y+=dy/d*.5;}
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(31,185,230,${p.a})`;ctx.fill();
+  });
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+    let dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(31,185,230,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}
+  }
+  requestAnimationFrame(draw);
+}
+draw();
 </script>
 </body>
 </html>
