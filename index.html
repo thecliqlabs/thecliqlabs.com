@@ -156,10 +156,12 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 
 /* beam overlay — absolute, covers img-ring, mask clips to border only */
 .beam-overlay{
-  position:absolute;inset:-2px;border-radius:18px;
-  border:4px solid transparent;
-  background:linear-gradient(#000,#000) padding-box,
-    conic-gradient(from var(--beam-angle,0deg),transparent 20%,#ffaa40,#9c40ff,transparent 80%) border-box;
+  position:absolute;inset:-4px;border-radius:20px;
+  padding:4px;
+  background:conic-gradient(from var(--beam-angle,0deg),transparent 20%,#ffaa40 40%,#9c40ff 60%,transparent 80%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
   pointer-events:none;z-index:10;
   animation:beamSpin 8s linear infinite}
 @keyframes beamSpin{to{--beam-angle:360deg}}
