@@ -149,7 +149,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 @keyframes imgGlow{0%{opacity:0}10%{opacity:0.45}100%{opacity:0.7}}
 
 /* outer ring — padding=8px, ring-1 ring-foreground/20 like Linkify */
-.img-ring{position:relative;border-radius:16px;padding:8px;
+.img-ring{position:relative;border-radius:16px;padding:10px;
   background:rgba(255,255,255,0.03);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15);
   z-index:1}
@@ -158,14 +158,16 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .beam-overlay{
   position:absolute;inset:0;border-radius:16px;
   border:1.5px solid transparent;
-  mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
-  -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
-  mask-composite:xor;
-  -webkit-mask-composite:xor;
-  pointer-events:none;z-index:10;overflow:hidden}
+  mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
+  -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
+  mask-clip:padding-box,border-box;
+  -webkit-mask-clip:padding-box,border-box;
+  mask-composite:intersect;
+  -webkit-mask-composite:destination-in;
+  pointer-events:none;z-index:10}
 .beam-overlay::after{
   content:'';position:absolute;
-  width:150px;aspect-ratio:1;
+  width:200px;aspect-ratio:1;
   background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);
   offset-path:rect(0 auto auto 0 round 16px);
   offset-anchor:90% 50%;offset-distance:0%;
@@ -174,7 +176,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 
 /* inner image box */
 .img-inner{position:relative;border-radius:10px;overflow:hidden;background:#0a0a0a;line-height:0}
-.ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .8s ease}
+.ss{display:block;width:100%;height:680px;object-fit:cover;object-position:top;opacity:0;position:absolute;top:0;left:0;transition:opacity .8s ease}
 .ss:first-child{position:relative}
 .ss.active{opacity:1;position:relative}
 .ss:not(.active){position:absolute;top:0;left:0}
