@@ -141,12 +141,11 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .theme-tab.active{color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)}
 .tab-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .img-frame{position:relative;max-width:1000px;margin:0 auto;padding:0 16px}
-.img-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:75%;height:40%;background:radial-gradient(ellipse,rgba(31,185,230,0.25) 0%,transparent 70%);filter:blur(40px);pointer-events:none;animation:glowPulse 3s ease-in-out infinite;z-index:0}
-@keyframes glowPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.05)}}
-.img-wrapper{position:relative;border-radius:16px;padding:3px;background:rgba(255,255,255,0.05);box-shadow:0 0 0 1px rgba(255,255,255,0.08);overflow:hidden;z-index:1}
-.border-beam{position:absolute;inset:0;border-radius:16px;pointer-events:none;z-index:10}
-.border-beam::after{content:'';position:absolute;width:120px;height:120px;background:conic-gradient(from 0deg,transparent,#1fb9e6,#8de1ff,transparent);border-radius:50%;filter:blur(4px);animation:beamTravel 3s linear infinite;offset-path:rect(0 100% 100% 0 round 16px)}
-@keyframes beamTravel{0%{offset-distance:0%}100%{offset-distance:100%}}
+.img-glow{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:70%;height:35%;background:radial-gradient(ellipse,rgba(31,185,230,0.18) 0%,transparent 70%);filter:blur(60px);pointer-events:none;animation:glowPulse 4s ease-in-out infinite;z-index:0}
+@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:.9}}
+.img-wrapper{position:relative;border-radius:16px;padding:2px;background:linear-gradient(135deg,rgba(255,170,64,0.6),rgba(156,64,255,0.6));box-shadow:0 0 0 1px rgba(255,255,255,0.05);overflow:hidden;z-index:1;animation:borderRotate 4s linear infinite}
+@keyframes borderRotate{0%{background:linear-gradient(0deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}25%{background:linear-gradient(90deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}50%{background:linear-gradient(180deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}75%{background:linear-gradient(270deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}100%{background:linear-gradient(360deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}}
+.border-beam{display:none}
 .img-inner{position:relative;border-radius:14px;overflow:hidden;background:#111}
 .ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .7s ease}
 .ss:first-child{position:relative}
