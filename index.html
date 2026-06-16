@@ -34,6 +34,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 6%;height:70px;dis
 .btn-outline{background:transparent;color:#1fb9e6;border:1.5px solid #1fb9e6}
 .btn-outline:hover{background:rgba(31,185,230,0.1)}
 
+
+/* SPARK BADGE */
+.spark-badge{position:relative;display:inline-grid;overflow:hidden;border-radius:999px;padding:6px 20px;background:transparent;border:none;cursor:default;margin-bottom:32px}
+.spark-ring{position:absolute;inset:0;overflow:hidden;border-radius:999px;-webkit-mask:linear-gradient(white,transparent 50%);mask:linear-gradient(white,transparent 50%)}
+.spark-ring::before{content:'';position:absolute;width:200%;aspect-ratio:1;top:0;left:50%;transform:translateX(-50%) rotate(-90deg);background:conic-gradient(from 0deg,transparent 0deg 340deg,white 360deg);animation:sparkSpin 3s linear infinite}
+@keyframes sparkSpin{to{transform:translateX(-50%) rotate(270deg)}}
+.spark-backdrop{position:absolute;inset:1px;border-radius:999px;background:#111827;transition:background .2s}
+.spark-glow{position:absolute;bottom:0;left:0;right:0;height:100%;background:linear-gradient(to top right,rgba(31,185,230,0.2),transparent);border-radius:999px}
+.spark-text{position:relative;z-index:1;font-size:13px;font-weight:600;color:rgba(255,255,255,0.9);display:flex;align-items:center;gap:6px}
+
 /* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 6% 80px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(31,185,230,0.1);border:1px solid rgba(31,185,230,0.3);color:#8de1ff;font-size:13px;font-weight:600;padding:6px 18px;border-radius:999px;margin-bottom:32px;animation:fadeUp .8s ease forwards}
@@ -72,8 +82,10 @@ section{position:relative;z-index:1;padding:100px 6%}
 
 /* CARDS GRID */
 .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
-.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:36px;transition:all .3s;cursor:default}
-.card:hover{background:rgba(31,185,230,0.06);border-color:rgba(31,185,230,0.25);transform:translateY(-4px)}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:36px;transition:all .4s;cursor:default;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(31,185,230,0.08),transparent 40%);opacity:0;transition:opacity .4s}
+.card:hover::before{opacity:1}
+.card:hover{background:rgba(255,255,255,0.07);border-color:rgba(31,185,230,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
 .card-icon{width:52px;height:52px;border-radius:12px;background:rgba(31,185,230,0.1);border:1px solid rgba(31,185,230,0.2);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
 .card h3{font-size:18px;font-weight:700;margin-bottom:10px}
 .card p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8}
@@ -199,7 +211,12 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 <!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
-  <div class="hero-badge">⚡ The GHL Agency Operating System</div>
+  <button class="spark-badge">
+  <span class="spark-ring"></span>
+  <span class="spark-backdrop"></span>
+  <span class="spark-glow"></span>
+  <span class="spark-text">⚡ The GHL Agency Operating System</span>
+</button>
   <h1>Scale Your HighLevel<br/>Agency <span>Without</span><br/>Burning Out</h1>
   <p>White-label support, done-for-you onboarding, a powerful theme builder, and premium snapshots — everything your GHL agency needs, in one place.</p>
   <div class="hero-actions">
@@ -236,7 +253,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 </div>
 
 <!-- FEATURES -->
-<section id="features">
+<section id="features" style="position:relative">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none"></div>
   <div class="text-center reveal">
     <span class="section-label">What We Do</span>
     <h2 class="section-title">Everything Your GHL Agency<br/>Needs to Scale</h2>
@@ -439,6 +457,18 @@ function switchSS(idx) {
 let ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000);
 ssTabs.forEach((tab,i) => tab.addEventListener('click', () => { clearInterval(ssTimer); switchSS(i); ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000); }));
 ssDots.forEach((dot,i) => dot.addEventListener('click', () => { clearInterval(ssTimer); switchSS(i); ssTimer = setInterval(() => switchSS((ssActive+1)%3), 3000); }));
+
+// MAGIC CARD mouse tracking
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', x + '%');
+    card.style.setProperty('--my', y + '%');
+  });
+});
+
 </script>
 </body>
 </html>
