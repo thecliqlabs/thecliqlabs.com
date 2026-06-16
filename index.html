@@ -134,6 +134,42 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+
+/* THEME PREVIEW */
+.theme-showcase{margin-top:60px}
+.theme-tabs{display:flex;gap:12px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.theme-tab{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:10px 24px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Poppins',sans-serif}
+.theme-tab.active{color:#fff;border-color:var(--tw-primary,#cc1a00);background:rgba(204,26,0,0.15)}
+.theme-window{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#1a1a1a;box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+.tw-bar{background:#2a2a2a;padding:10px 16px;display:flex;align-items:center;gap:8px}
+.tw-dot{width:12px;height:12px;border-radius:50%}
+.tw-url{margin-left:12px;background:#1a1a1a;border-radius:6px;padding:4px 16px;font-size:12px;color:rgba(255,255,255,0.3);flex:1;max-width:280px;text-align:center}
+.tw-body{display:flex;height:360px;transition:background .5s}
+.tw-sidebar{width:200px;flex-shrink:0;padding:20px 0;transition:background .5s;display:flex;flex-direction:column}
+.tw-logo{padding:0 20px 20px;font-size:16px;font-weight:800;color:#fff;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:12px}
+.tw-nav{display:flex;flex-direction:column;gap:2px;padding:0 8px}
+.tw-nav-item{padding:8px 12px;border-radius:8px;font-size:12px;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .3s}
+.tw-nav-item.active{color:#fff;font-weight:600}
+.tw-nav-icon{font-size:14px}
+.tw-main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.tw-header{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;transition:background .5s}
+.tw-header-title{font-size:15px;font-weight:700;color:#fff}
+.tw-header-actions{}
+.tw-btn{padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:background .5s}
+.tw-content{padding:16px;flex:1;overflow:hidden;background:#f5f5f5}
+.tw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.tw-stat-card{background:#fff;border-radius:10px;padding:14px;border:1px solid #e5e5e5}
+.tw-stat-num{font-size:18px;font-weight:800;color:#111;transition:color .5s}
+.tw-stat-label{font-size:11px;color:#999;margin-top:2px}
+.tw-chart-area{background:#fff;border-radius:10px;padding:14px;border:1px solid #e5e5e5}
+.tw-chart-title{font-size:12px;font-weight:700;color:#111;margin-bottom:12px}
+.tw-bars{display:flex;gap:8px;align-items:flex-end;height:80px}
+.tw-bar-wrap{flex:1;height:100%;display:flex;align-items:flex-end}
+.tw-bar-fill{width:100%;border-radius:4px 4px 0 0;transition:background .5s}
+.theme-indicator{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.ti-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all .3s}
+.ti-dot.active{width:24px;background:#1fb9e6}
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .nav-links{display:none}
@@ -304,6 +340,78 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
   <p style="text-align:center;margin-top:32px;font-size:14px;color:rgba(255,255,255,0.35)">Need custom 1-on-1 coaching and unlimited everything? <a href="#" style="color:#1fb9e6;font-weight:600">Talk to us about Platinum →</a></p>
 </section>
 
+
+<!-- THEME PREVIEW -->
+<section id="theme-preview" style="background:rgba(255,255,255,0.01)">
+  <div class="text-center reveal">
+    <span class="section-label">Theme Builder</span>
+    <h2 class="section-title">Transform Your GHL Platform<br/>in One Click</h2>
+    <p class="section-sub">Watch your entire HighLevel dashboard transform with professionally designed themes — live, in real time.</p>
+  </div>
+  <div class="theme-showcase reveal">
+    <div class="theme-tabs">
+      <button class="theme-tab active" data-theme="0">🍒 Dark Cherry</button>
+      <button class="theme-tab" data-theme="1">⚡ Obsidian</button>
+      <button class="theme-tab" data-theme="2">🔵 Columbia Blue</button>
+    </div>
+    <div class="theme-window">
+      <div class="tw-bar">
+        <div class="tw-dot" style="background:#ff5f57"></div>
+        <div class="tw-dot" style="background:#febc2e"></div>
+        <div class="tw-dot" style="background:#28c840"></div>
+        <div class="tw-url">app.youragency.com</div>
+      </div>
+      <div class="tw-body">
+        <div class="tw-sidebar" id="tw-sidebar">
+          <div class="tw-logo" id="tw-logo">YourBrand</div>
+          <div class="tw-nav">
+            <div class="tw-nav-item active" id="tw-nav-active">
+              <span class="tw-nav-icon">⊞</span> Dashboard
+            </div>
+            <div class="tw-nav-item"><span class="tw-nav-icon">💬</span> Conversations</div>
+            <div class="tw-nav-item"><span class="tw-nav-icon">👥</span> Contacts</div>
+            <div class="tw-nav-item"><span class="tw-nav-icon">📅</span> Calendars</div>
+            <div class="tw-nav-item"><span class="tw-nav-icon">💰</span> Opportunities</div>
+            <div class="tw-nav-item"><span class="tw-nav-icon">🚀</span> Marketing</div>
+            <div class="tw-nav-item"><span class="tw-nav-icon">⚙️</span> Settings</div>
+          </div>
+        </div>
+        <div class="tw-main">
+          <div class="tw-header" id="tw-header">
+            <div class="tw-header-title">Dashboard</div>
+            <div class="tw-header-actions">
+              <div class="tw-btn" id="tw-btn">+ New Contact</div>
+            </div>
+          </div>
+          <div class="tw-content">
+            <div class="tw-cards">
+              <div class="tw-stat-card"><div class="tw-stat-num" id="tw-stat1">1,284</div><div class="tw-stat-label">Total Contacts</div></div>
+              <div class="tw-stat-card"><div class="tw-stat-num" id="tw-stat2">48</div><div class="tw-stat-label">Open Deals</div></div>
+              <div class="tw-stat-card"><div class="tw-stat-num" id="tw-stat3">$24.8k</div><div class="tw-stat-label">Revenue</div></div>
+            </div>
+            <div class="tw-chart-area">
+              <div class="tw-chart-title">Revenue Overview</div>
+              <div class="tw-bars">
+                <div class="tw-bar-wrap"><div class="tw-bar-fill" id="b1" style="height:60%"></div></div>
+                <div class="tw-bar-wrap"><div class="tw-bar-fill" id="b2" style="height:80%"></div></div>
+                <div class="tw-bar-wrap"><div class="tw-bar-fill" id="b3" style="height:45%"></div></div>
+                <div class="tw-bar-wrap"><div class="tw-bar-fill" id="b4" style="height:90%"></div></div>
+                <div class="tw-bar-wrap"><div class="tw-bar-fill" id="b5" style="height:70%"></div></div>
+                <div class="tw-bar-wrap"><div class="tw-bar-fill" id="b6" style="height:55%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="theme-indicator">
+      <span class="ti-dot active" data-ti="0"></span>
+      <span class="ti-dot" data-ti="1"></span>
+      <span class="ti-dot" data-ti="2"></span>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section id="reviews" style="background:rgba(255,255,255,0.01)">
   <div class="text-center reveal">
@@ -461,6 +569,112 @@ const statsObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 const statsEl = document.querySelector('.stats');
 if (statsEl) statsObserver.observe(statsEl);
+
+// THEME SWITCHER
+const themes = [
+  {
+    name: 'Dark Cherry',
+    primary: '#cc1a00',
+    sidebarBg: 'linear-gradient(180deg,#111 0%,#0a0a0a 100%)',
+    headerBg: '#fff',
+    navActiveBg: '#2a2a2a',
+    barColor: '#cc1a00',
+    statColor: '#cc1a00',
+    btnBg: '#cc1a00',
+    btnColor: '#fff',
+    tabBorder: '#cc1a00',
+    tabBg: 'rgba(204,26,0,0.15)',
+  },
+  {
+    name: 'Obsidian',
+    primary: '#6366f1',
+    sidebarBg: 'linear-gradient(180deg,#0f0f18 0%,#0a0a12 100%)',
+    headerBg: 'linear-gradient(135deg,#6366f1 0%,#0f0f18 100%)',
+    navActiveBg: '#1a1a2e',
+    barColor: '#6366f1',
+    statColor: '#6366f1',
+    btnBg: '#6366f1',
+    btnColor: '#fff',
+    tabBorder: '#6366f1',
+    tabBg: 'rgba(99,102,241,0.15)',
+  },
+  {
+    name: 'Columbia Blue',
+    primary: '#1a73e8',
+    sidebarBg: 'linear-gradient(180deg,#1a73e8 0%,#0d47a1 100%)',
+    headerBg: '#fff',
+    navActiveBg: 'rgba(255,255,255,0.15)',
+    barColor: '#1a73e8',
+    statColor: '#1a73e8',
+    btnBg: '#1a73e8',
+    btnColor: '#fff',
+    tabBorder: '#1a73e8',
+    tabBg: 'rgba(26,115,232,0.15)',
+  }
+];
+
+let currentTheme = 0;
+
+function applyTheme(idx) {
+  const t = themes[idx];
+  const sidebar = document.getElementById('tw-sidebar');
+  const header = document.getElementById('tw-header');
+  const navActive = document.querySelector('.tw-nav-item.active');
+  const btn = document.getElementById('tw-btn');
+  const bars = document.querySelectorAll('.tw-bar-fill');
+  const stats = document.querySelectorAll('.tw-stat-num');
+  const tabs = document.querySelectorAll('.theme-tab');
+  const dots = document.querySelectorAll('.ti-dot');
+
+  if(sidebar) sidebar.style.background = t.sidebarBg;
+  if(header) header.style.background = t.headerBg;
+  if(navActive) navActive.style.background = t.navActiveBg;
+  if(btn) { btn.style.background = t.btnBg; btn.style.color = t.btnColor; }
+  bars.forEach(b => b.style.background = t.barColor);
+  stats.forEach(s => s.style.color = t.statColor);
+
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', i === idx);
+    tab.style.borderColor = i === idx ? t.primary : 'rgba(255,255,255,0.1)';
+    tab.style.background = i === idx ? t.tabBg : 'rgba(255,255,255,0.04)';
+    tab.style.color = i === idx ? '#fff' : 'rgba(255,255,255,0.5)';
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === idx);
+    dot.style.background = i === idx ? t.primary : 'rgba(255,255,255,0.2)';
+  });
+
+  currentTheme = idx;
+}
+
+// Auto cycle every 3 seconds
+applyTheme(0);
+let themeInterval = setInterval(() => {
+  applyTheme((currentTheme + 1) % themes.length);
+}, 3000);
+
+// Manual tab click
+document.querySelectorAll('.theme-tab').forEach((tab, i) => {
+  tab.addEventListener('click', () => {
+    clearInterval(themeInterval);
+    applyTheme(i);
+    themeInterval = setInterval(() => {
+      applyTheme((currentTheme + 1) % themes.length);
+    }, 3000);
+  });
+});
+
+document.querySelectorAll('.ti-dot').forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    clearInterval(themeInterval);
+    applyTheme(i);
+    themeInterval = setInterval(() => {
+      applyTheme((currentTheme + 1) % themes.length);
+    }, 3000);
+  });
+});
+
 </script>
 </body>
 </html>
