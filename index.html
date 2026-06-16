@@ -140,25 +140,46 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .theme-tab{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:10px 22px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:8px}
 .theme-tab.active{color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)}
 .tab-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
 .img-frame{position:relative;max-width:1200px;width:100%;margin:0 auto;padding:0 8px}
-.img-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:50%;background:conic-gradient(from 230deg at 51% 52%,rgb(36,0,255) 0deg,rgb(0,135,255) 67deg,rgb(108,39,157) 198deg,rgb(24,38,163) 251deg,rgb(54,103,196) 301deg,rgb(105,30,255) 360deg);filter:blur(80px);opacity:0;pointer-events:none;animation:imageGlow 4s ease-out 0.3s forwards;z-index:0}
+
+/* glow behind — conic gradient fading in */
+.img-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:75%;height:50%;background:conic-gradient(from 230deg at 51% 52%,rgb(36,0,255) 0deg,rgb(0,135,255) 67deg,rgb(108,39,157) 198deg,rgb(24,38,163) 251deg,rgb(54,103,196) 301deg,rgb(105,30,255) 360deg);filter:blur(80px);opacity:0;pointer-events:none;animation:imageGlow 4s ease-out 0.3s forwards;z-index:0}
 @keyframes imageGlow{0%{opacity:0}10%{opacity:0.4}100%{opacity:0.65}}
-.img-wrapper{position:relative;border-radius:20px;padding:2px;background:rgba(255,255,255,0.06);overflow:hidden;z-index:1}
-.border-beam-el{position:absolute;inset:0;border-radius:20px;border:1.5px solid transparent;pointer-events:none;z-index:10;
-  -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
-  -webkit-mask-clip:padding-box,border-box;
-  -webkit-mask-composite:destination-in;
+
+/* OUTER ring — always visible subtle static border */
+.img-outer-ring{position:relative;border-radius:22px;padding:1px;background:rgba(255,255,255,0.08);z-index:1}
+
+/* INNER beam wrapper — transparent border + traveling light */
+.img-wrapper{position:relative;border-radius:21px;border:3px solid transparent;
   mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
+  -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
   mask-clip:padding-box,border-box;
-  mask-composite:intersect}
-.border-beam-el::after{content:'';position:absolute;width:200px;aspect-ratio:1;background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);offset-path:rect(0 auto auto 0 round 20px);animation:beamMove 6s linear infinite;offset-anchor:90% 50%;offset-distance:0%}
+  -webkit-mask-clip:padding-box,border-box;
+  mask-composite:intersect;
+  -webkit-mask-composite:destination-in;
+  overflow:visible}
+
+/* The traveling light streak */
+.border-beam-el{position:absolute;inset:0;border-radius:21px;pointer-events:none;z-index:10}
+.border-beam-el::after{
+  content:'';
+  position:absolute;
+  aspect-ratio:1/1;
+  width:200px;
+  background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);
+  offset-path:rect(0 auto auto 0 round 21px);
+  offset-anchor:90% 50%;
+  offset-distance:0%;
+  animation:beamMove 6s linear infinite}
 @keyframes beamMove{0%{offset-distance:0%}100%{offset-distance:100%}}
-.img-inner{position:relative;border-radius:18px;overflow:hidden;background:#0a0a0a}
+
+.img-inner{position:relative;border-radius:19px;overflow:hidden;background:#0a0a0a}
 .ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .8s ease}
 .ss:first-child{position:relative}
 .ss.active{opacity:1;position:relative}
 .ss:not(.active){position:absolute}
-.img-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#02121d 0%,transparent 100%);pointer-events:none;z-index:5;border-radius:0 0 18px 18px}
+.img-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#02121d 0%,transparent 100%);pointer-events:none;z-index:5;border-radius:0 0 19px 19px}
 .theme-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
 .tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all .3s;display:inline-block}
 .tdot.active{width:28px;background:#1fb9e6}
@@ -383,6 +404,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 
   <div class="img-frame reveal">
     <div class="img-glow"></div>
+    <div class="img-outer-ring">
     <div class="img-wrapper">
       <div class="border-beam-el"></div>
       <div class="img-inner">
@@ -391,6 +413,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
         <img src="screenshots/theme-columbia-blue.png" class="ss" id="ss-2" alt="Columbia Blue Theme"/>
       </div>
       <div class="img-fade-bottom"></div>
+    </div>
     </div>
   </div>
 
