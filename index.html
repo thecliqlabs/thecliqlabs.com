@@ -151,30 +151,29 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .img-outer-ring{position:relative;border-radius:22px;padding:1px;background:rgba(255,255,255,0.08);z-index:1}
 
 /* INNER beam wrapper — transparent border + traveling light */
-.img-wrapper{position:relative;border-radius:21px;border:3px solid transparent;
+.img-wrapper{position:relative;border-radius:21px;overflow:hidden;background:#0a0a0a}
+
+/* traveling light overlay — sits on top of image, uses mask to show only on border */
+.border-beam-el{
+  position:absolute;inset:0;border-radius:21px;
+  border:3px solid transparent;
   mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
   -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
   mask-clip:padding-box,border-box;
   -webkit-mask-clip:padding-box,border-box;
   mask-composite:intersect;
   -webkit-mask-composite:destination-in;
-  overflow:visible}
-
-/* The traveling light streak */
-.border-beam-el{position:absolute;inset:0;border-radius:21px;pointer-events:none;z-index:10}
+  pointer-events:none;z-index:10}
 .border-beam-el::after{
-  content:'';
-  position:absolute;
-  aspect-ratio:1/1;
-  width:200px;
+  content:'';position:absolute;
+  aspect-ratio:1/1;width:200px;
   background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);
   offset-path:rect(0 auto auto 0 round 21px);
-  offset-anchor:90% 50%;
-  offset-distance:0%;
+  offset-anchor:90% 50%;offset-distance:0%;
   animation:beamMove 6s linear infinite}
 @keyframes beamMove{0%{offset-distance:0%}100%{offset-distance:100%}}
 
-.img-inner{position:relative;border-radius:19px;overflow:hidden;background:#0a0a0a}
+.img-inner{position:relative;border-radius:0;overflow:hidden;background:#0a0a0a}
 .ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .8s ease}
 .ss:first-child{position:relative}
 .ss.active{opacity:1;position:relative}
