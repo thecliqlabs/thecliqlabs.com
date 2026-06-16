@@ -141,17 +141,25 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
 .theme-tab.active{color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)}
 .tab-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .img-frame{position:relative;max-width:1000px;margin:0 auto;padding:0 16px}
-.img-glow{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:70%;height:35%;background:radial-gradient(ellipse,rgba(31,185,230,0.18) 0%,transparent 70%);filter:blur(60px);pointer-events:none;animation:glowPulse 4s ease-in-out infinite;z-index:0}
-@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:.9}}
-.img-wrapper{position:relative;border-radius:16px;padding:2px;background:linear-gradient(135deg,rgba(255,170,64,0.6),rgba(156,64,255,0.6));box-shadow:0 0 0 1px rgba(255,255,255,0.05);overflow:hidden;z-index:1;animation:borderRotate 4s linear infinite}
-@keyframes borderRotate{0%{background:linear-gradient(0deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}25%{background:linear-gradient(90deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}50%{background:linear-gradient(180deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}75%{background:linear-gradient(270deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}100%{background:linear-gradient(360deg,rgba(255,170,64,0.7),rgba(156,64,255,0.7))}}
-.border-beam{display:none}
+.img-glow{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:70%;height:35%;background:conic-gradient(from 230deg at 51% 52%,rgb(36,0,255) 0deg,rgb(0,135,255) 67deg,rgb(108,39,157) 198deg,rgb(24,38,163) 251deg,rgb(54,103,196) 301deg,rgb(105,30,255) 360deg);filter:blur(60px);opacity:0;pointer-events:none;animation:imageGlow 4s ease-out 0.3s forwards;z-index:0}
+@keyframes imageGlow{0%{opacity:0}10%{opacity:0.4}100%{opacity:0.6}}
+.img-wrapper{position:relative;border-radius:16px;padding:2px;background:rgba(255,255,255,0.06);box-shadow:0 0 0 1px rgba(255,255,255,0.08);overflow:visible;z-index:1}
+.border-beam-el{position:absolute;inset:0;border-radius:16px;border:2px solid transparent;pointer-events:none;z-index:10;
+  -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
+  -webkit-mask-clip:padding-box,border-box;
+  -webkit-mask-composite:destination-in;
+  mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
+  mask-clip:padding-box,border-box;
+  mask-composite:intersect;
+}
+.border-beam-el::after{content:'';position:absolute;aspect-ratio:1;width:160px;background:linear-gradient(to left,#ffaa40,#9c40ff,transparent);offset-path:rect(0 auto auto 0 round 16px);animation:beamMove 4s linear infinite;offset-anchor:90% 50%}
+@keyframes beamMove{100%{offset-distance:100%}}
 .img-inner{position:relative;border-radius:14px;overflow:hidden;background:#111}
 .ss{display:block;width:100%;height:auto;opacity:0;position:absolute;top:0;left:0;transition:opacity .7s ease}
 .ss:first-child{position:relative}
 .ss.active{opacity:1;position:relative}
 .ss:not(.active){position:absolute}
-.img-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#02121d 0%,transparent 100%);pointer-events:none;z-index:5;border-radius:0 0 14px 14px}
+.img-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,#02121d 0%,transparent 100%);pointer-events:none;z-index:5;border-radius:0 0 14px 14px}
 .theme-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
 .tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all .3s;display:inline-block}
 .tdot.active{width:28px;background:#1fb9e6}
@@ -377,7 +385,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);p
   <div class="img-frame reveal">
     <div class="img-glow"></div>
     <div class="img-wrapper">
-      <div class="border-beam"></div>
+      <div class="border-beam-el"></div>
       <div class="img-inner">
         <img src="screenshots/theme-dark-cherry.png" class="ss active" id="ss-0" alt="Dark Cherry Theme"/>
         <img src="screenshots/theme-obsidian.png" class="ss" id="ss-1" alt="Obsidian Theme"/>
