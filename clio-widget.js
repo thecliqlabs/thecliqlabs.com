@@ -2,55 +2,73 @@
   const style = document.createElement('style');
   style.textContent = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-    
-    #clio-bubble{position:fixed;bottom:24px;right:24px;z-index:99998;width:54px;height:54px;border-radius:50%;background:#1fb9e6;box-shadow:0 4px 20px rgba(31,185,230,0.45);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;border:none;outline:none}
+
+    #clio-bubble{position:fixed;bottom:24px;right:24px;z-index:99998;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#1fb9e6,#0a7fa3);box-shadow:0 4px 20px rgba(31,185,230,0.45);cursor:pointer;display:flex;align-items:center;justify-content:center;border:none;outline:none;transition:transform .2s,box-shadow .2s}
     #clio-bubble:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(31,185,230,0.55)}
-    #clio-bubble-icon{width:26px;height:26px}
-    #clio-pulse{position:absolute;top:1px;right:1px;width:13px;height:13px;border-radius:50%;background:#4ade80;border:2.5px solid #fff}
-    
-    #clio-window{position:fixed;bottom:90px;right:24px;z-index:99999;width:360px;max-width:calc(100vw - 32px);background:#fff;border-radius:20px;box-shadow:0 8px 48px rgba(0,0,0,0.18);display:none;flex-direction:column;overflow:hidden;font-family:'Poppins',sans-serif;max-height:580px}
+    #clio-notif{position:absolute;top:-2px;right:-2px;width:20px;height:20px;border-radius:50%;background:#ff4757;border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;font-family:sans-serif}
+
+    #clio-window{position:fixed;bottom:94px;right:24px;z-index:99999;width:360px;max-width:calc(100vw - 32px);background:#fff;border-radius:20px;box-shadow:0 12px 56px rgba(0,0,0,0.18);display:none;flex-direction:column;overflow:hidden;font-family:'Poppins',sans-serif;max-height:600px}
     #clio-window.open{display:flex}
-    
-    #clio-header{background:#1fb9e6;padding:14px 16px;display:flex;align-items:center;gap:10px}
-    #clio-avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+
+    #clio-header{background:linear-gradient(135deg,#1fb9e6,#0d8db3);padding:18px 18px 32px;position:relative;overflow:hidden}
+    #clio-header-wave{position:absolute;bottom:-1px;left:0;right:0;height:28px;background:#fff;clip-path:ellipse(55% 100% at 50% 100%)}
+    #clio-header-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    #clio-avatar{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:2px solid rgba(255,255,255,0.4)}
     #clio-info{flex:1}
-    #clio-name{font-size:14px;font-weight:700;color:#fff;font-family:'Poppins',sans-serif}
-    #clio-status{font-size:11px;color:rgba(255,255,255,0.85);display:flex;align-items:center;gap:5px;font-family:'Poppins',sans-serif}
-    #clio-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;flex-shrink:0}
-    #clio-close{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);font-size:22px;padding:0;line-height:1;transition:color .2s;font-family:sans-serif}
+    #clio-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.3px}
+    #clio-status{font-size:11px;color:rgba(255,255,255,0.85);display:flex;align-items:center;gap:4px;margin-top:2px}
+    #clio-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;flex-shrink:0}
+    #clio-close{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.8);font-size:22px;padding:0;line-height:1;transition:color .2s}
     #clio-close:hover{color:#fff}
-    
-    #clio-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;min-height:300px;max-height:380px;background:#f8f9fa}
+    #clio-header-sub{font-size:12px;color:rgba(255,255,255,0.8);padding-left:52px}
+
+    /* LEAD FORM */
+    #clio-form{padding:20px 16px 16px;background:#fff;display:flex;flex-direction:column;gap:10px}
+    #clio-form-title{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+    #clio-form-sub{font-size:12px;color:#888;margin-bottom:6px;line-height:1.6}
+    .clio-field{display:flex;flex-direction:column;gap:4px}
+    .clio-field label{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.5px}
+    .clio-field input{background:#f4f5f7;border:1.5px solid #eee;border-radius:10px;padding:9px 12px;font-size:13px;color:#222;font-family:'Poppins',sans-serif;outline:none;transition:border-color .2s}
+    .clio-field input:focus{border-color:#1fb9e6;background:#fff}
+    .clio-field input::placeholder{color:#bbb}
+    #clio-form-btn{background:linear-gradient(135deg,#1fb9e6,#0d8db3);color:#fff;border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;margin-top:4px}
+    #clio-form-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+    /* MESSAGES */
+    #clio-messages{flex:1;overflow-y:auto;padding:14px 14px 8px;display:flex;flex-direction:column;gap:10px;min-height:260px;max-height:360px;background:#f8f9fa}
     #clio-messages::-webkit-scrollbar{width:3px}
     #clio-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
-    
-    .clio-msg{max-width:85%;padding:10px 13px;font-size:13px;line-height:1.65;animation:clio-pop .18s ease;word-wrap:break-word;word-break:break-word;overflow-wrap:break-word}
+
+    .clio-msg{max-width:84%;padding:10px 13px;font-size:13px;line-height:1.7;animation:clio-pop .18s ease;word-wrap:break-word;word-break:break-word;overflow-wrap:break-word}
     @keyframes clio-pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-    .clio-msg.bot{background:#fff;color:#222;border-radius:4px 16px 16px 16px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,0.08);font-family:'Poppins',sans-serif}
-    .clio-msg.user{background:#1fb9e6;color:#fff;font-weight:600;border-radius:16px 16px 4px 16px;align-self:flex-end;font-family:'Poppins',sans-serif}
-    .clio-msg a{color:#1fb9e6;font-weight:600;text-decoration:none;word-break:break-all;display:inline-block;max-width:100%}
-    .clio-msg a:hover{text-decoration:underline}
-    .clio-msg.user a{color:#fff;text-decoration:underline}
-    .clio-msg ul{padding-left:16px;margin:6px 0;display:flex;flex-direction:column;gap:4px}
-    .clio-msg ul li{font-size:13px;line-height:1.6}
-    .clio-msg p{margin:0 0 6px}
+    .clio-msg.bot{background:#fff;color:#333;border-radius:4px 16px 16px 16px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
+    .clio-msg.user{background:linear-gradient(135deg,#1fb9e6,#0d8db3);color:#fff;font-weight:600;border-radius:16px 16px 4px 16px;align-self:flex-end}
+    .clio-msg a{color:#1fb9e6;font-weight:600;text-decoration:underline;word-break:break-all}
+    .clio-msg.user a{color:#fff}
+    .clio-msg strong{font-weight:700}
+    .clio-msg ul{padding-left:14px;margin:4px 0;display:flex;flex-direction:column;gap:3px}
+    .clio-msg p{margin:0 0 5px}
     .clio-msg p:last-child{margin:0}
-    .clio-msg strong{font-weight:700;color:#111}
-    
+
+    /* QUICK REPLIES */
+    .clio-quick-replies{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;align-self:flex-start;max-width:100%}
+    .clio-qr-btn{background:#fff;border:1.5px solid #1fb9e6;color:#1fb9e6;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;white-space:nowrap}
+    .clio-qr-btn:hover{background:#1fb9e6;color:#fff}
+
     .clio-typing{display:flex;gap:4px;align-items:center;padding:11px 14px;background:#fff;border-radius:4px 16px 16px 16px;align-self:flex-start;width:fit-content;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
     .clio-typing span{width:7px;height:7px;border-radius:50%;background:#ccc;animation:clio-dot 1.2s ease-in-out infinite}
     .clio-typing span:nth-child(2){animation-delay:.2s}
     .clio-typing span:nth-child(3){animation-delay:.4s}
     @keyframes clio-dot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-    
+
     #clio-input-wrap{padding:10px 12px;border-top:1px solid #eee;display:flex;gap:8px;align-items:flex-end;background:#fff}
     #clio-input{flex:1;background:#f4f5f7;border:1.5px solid #eee;border-radius:12px;padding:9px 13px;font-size:13px;color:#222;font-family:'Poppins',sans-serif;resize:none;outline:none;max-height:90px;min-height:38px;transition:border-color .2s;line-height:1.5}
-    #clio-input::placeholder{color:#aaa}
+    #clio-input::placeholder{color:#bbb}
     #clio-input:focus{border-color:#1fb9e6;background:#fff}
-    #clio-send{width:36px;height:36px;border-radius:10px;background:#1fb9e6;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
-    #clio-send:hover{background:#0aa3cf}
+    #clio-send{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#1fb9e6,#0d8db3);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;box-shadow:0 2px 8px rgba(31,185,230,0.35)}
+    #clio-send:hover{transform:scale(1.08);box-shadow:0 4px 12px rgba(31,185,230,0.45)}
     #clio-send svg{width:15px;height:15px;fill:#fff}
-    #clio-powered{text-align:center;font-size:10px;color:#bbb;padding:5px 0 8px;font-family:'Poppins',sans-serif;background:#fff}
+    #clio-powered{text-align:center;font-size:10px;color:#ccc;padding:5px 0 8px;background:#fff;font-family:'Poppins',sans-serif}
   `;
   document.head.appendChild(style);
 
@@ -58,13 +76,12 @@
   const bubble = document.createElement('button');
   bubble.id = 'clio-bubble';
   bubble.innerHTML = `
-    <div id="clio-pulse"></div>
-    <svg id="clio-bubble-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="16" r="16" fill="#1fb9e6"/>
-      <path d="M8 11.5C8 10.1193 9.11929 9 10.5 9H21.5C22.8807 9 24 10.1193 24 11.5V18.5C24 19.8807 22.8807 21 21.5 21H18L14 25V21H10.5C9.11929 21 8 19.8807 8 18.5V11.5Z" fill="white"/>
-      <circle cx="12" cy="15" r="1.2" fill="#1fb9e6"/>
-      <circle cx="16" cy="15" r="1.2" fill="#1fb9e6"/>
-      <circle cx="20" cy="15" r="1.2" fill="#1fb9e6"/>
+    <div id="clio-notif">1</div>
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <path d="M13 2C7.48 2 3 6.02 3 11c0 2.76 1.26 5.23 3.25 6.94L5 22l4.5-1.5C10.56 20.83 11.76 21 13 21c5.52 0 10-4.02 10-9S18.52 2 13 2z" fill="white"/>
+      <circle cx="9" cy="11" r="1.3" fill="#1fb9e6"/>
+      <circle cx="13" cy="11" r="1.3" fill="#1fb9e6"/>
+      <circle cx="17" cy="11" r="1.3" fill="#1fb9e6"/>
     </svg>
   `;
   document.body.appendChild(bubble);
@@ -74,49 +91,64 @@
   win.id = 'clio-window';
   win.innerHTML = `
     <div id="clio-header">
-      <div id="clio-avatar">🤖</div>
-      <div id="clio-info">
-        <div id="clio-name">Clio — CliqLabs AI</div>
-        <div id="clio-status">Online now</div>
+      <div id="clio-header-top">
+        <div id="clio-avatar">🤖</div>
+        <div id="clio-info">
+          <div id="clio-name">Clio — CliqLabs AI</div>
+          <div id="clio-status">Online now</div>
+        </div>
+        <button id="clio-close">×</button>
       </div>
-      <button id="clio-close">×</button>
+      <div id="clio-header-sub">We typically reply in seconds</div>
+      <div id="clio-header-wave"></div>
     </div>
-    <div id="clio-messages"></div>
-    <div id="clio-input-wrap">
-      <textarea id="clio-input" placeholder="Ask me anything..." rows="1"></textarea>
+
+    <!-- LEAD FORM -->
+    <div id="clio-form">
+      <div id="clio-form-title">👋 Welcome to CliqLabs!</div>
+      <div id="clio-form-sub">Tell us about yourself and Clio will help you find the right solution for your GHL agency.</div>
+      <div class="clio-field"><label>Full Name *</label><input type="text" id="clio-fname" placeholder="Your full name"/></div>
+      <div class="clio-field"><label>Email *</label><input type="email" id="clio-femail" placeholder="your@email.com"/></div>
+      <div class="clio-field"><label>Phone</label><input type="tel" id="clio-fphone" placeholder="+1 (555) 000-0000"/></div>
+      <div class="clio-field"><label>Agency Name</label><input type="text" id="clio-fagency" placeholder="Your agency name"/></div>
+      <button id="clio-form-btn">Start Chat with Clio →</button>
+    </div>
+
+    <!-- CHAT -->
+    <div id="clio-messages" style="display:none"></div>
+    <div id="clio-input-wrap" style="display:none">
+      <textarea id="clio-input" placeholder="Type a message..." rows="1"></textarea>
       <button id="clio-send">
         <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
     </div>
-    <div id="clio-powered">Powered by CliqLabs AI</div>
+    <div id="clio-powered" style="display:none">Powered by CliqLabs AI</div>
   `;
   document.body.appendChild(win);
 
   let messages = [];
   let isOpen = false;
   let isTyping = false;
-  let contactInfo = { name: null, email: null };
-  let collectingName = false;
-  let collectingEmail = false;
+  let leadInfo = {};
 
   const messagesEl = document.getElementById('clio-messages');
   const inputEl = document.getElementById('clio-input');
+  const formEl = document.getElementById('clio-form');
 
-  // Clean markdown from Claude responses
   function cleanMarkdown(text) {
     return text
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>') // bold
-      .replace(/\*([^*]+)\*/g, '$1') // italic — just remove
-      .replace(/#{1,3}\s/g, '') // headers
-      .replace(/`([^`]+)`/g, '$1') // inline code
-      .replace(/^[-•]\s(.+)$/gm, '<li>$1</li>') // bullet points
-      .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>') // wrap in ul
-      .replace(/\n\n/g, '</p><p>') // paragraphs
-      .replace(/\n/g, '<br/>') // line breaks
-      .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); // links
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/#{1,3}\s/g, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/^[-•]\s(.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>[^]*?<\/li>)/g, '<ul>$1</ul>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br/>')
+      .replace(/(https?:\/\/[^\s<"]+)/g, '<a href="$1" target="_blank" rel="noopener">Click here →</a>');
   }
 
-  function addMessage(text, role) {
+  function addMessage(text, role, quickReplies) {
     const div = document.createElement('div');
     div.className = `clio-msg ${role}`;
     if (role === 'bot') {
@@ -125,47 +157,44 @@
       div.textContent = text;
     }
     messagesEl.appendChild(div);
+
+    if (quickReplies && quickReplies.length) {
+      const qr = document.createElement('div');
+      qr.className = 'clio-quick-replies';
+      quickReplies.forEach(label => {
+        const btn = document.createElement('button');
+        btn.className = 'clio-qr-btn';
+        btn.textContent = label;
+        btn.addEventListener('click', () => {
+          qr.remove();
+          sendMessage(label);
+        });
+        qr.appendChild(btn);
+      });
+      messagesEl.appendChild(qr);
+    }
+
     messagesEl.scrollTop = messagesEl.scrollHeight;
-    return div;
   }
 
   function showTyping() {
     const div = document.createElement('div');
     div.className = 'clio-typing';
-    div.id = 'clio-typing-indicator';
+    div.id = 'clio-typing-ind';
     div.innerHTML = '<span></span><span></span><span></span>';
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
   function hideTyping() {
-    const t = document.getElementById('clio-typing-indicator');
+    const t = document.getElementById('clio-typing-ind');
     if (t) t.remove();
-  }
-
-  function extractEmail(text) {
-    const match = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-    return match ? match[0] : null;
   }
 
   async function sendMessage(userText) {
     if (!userText.trim() || isTyping) return;
-
     addMessage(userText, 'user');
     messages.push({ role: 'user', content: userText });
-
-    const email = extractEmail(userText);
-    if (email && !contactInfo.email) {
-      contactInfo.email = email;
-      collectingEmail = false;
-    }
-
-    if (collectingName && !contactInfo.name) {
-      contactInfo.name = userText.trim();
-      collectingName = false;
-      collectingEmail = true;
-    }
-
     isTyping = true;
     showTyping();
 
@@ -173,49 +202,68 @@
       const res = await fetch('/api/clio', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages,
-          contactInfo: (contactInfo.name && contactInfo.email) ? contactInfo : null
-        })
+        body: JSON.stringify({ messages, contactInfo: leadInfo })
       });
-
       const data = await res.json();
       hideTyping();
-
-      const reply = data.reply || "I'm having trouble right now. Please email us at thecliqlabs@gmail.com";
-      addMessage(reply, 'bot');
+      const reply = data.reply || "I'm having trouble right now. Please email thecliqlabs@gmail.com";
+      
+      // Detect quick reply suggestions
+      let qrs = [];
+      if (reply.includes('24/7 Support') || reply.includes('support')) qrs = ['Tell me about pricing', 'Book a Demo', 'I need support'];
+      else if (reply.includes('Theme Builder')) qrs = ['Monthly $147', 'Annual $1,497', 'See themes'];
+      else if (reply.includes('onboarding')) qrs = ['Pack of 4 - $397', 'Pack of 10 - $870', 'Pack of 25 - $1,925'];
+      
+      addMessage(reply, 'bot', qrs.length ? qrs : null);
       messages.push({ role: 'assistant', content: reply });
-
-      if (reply.toLowerCase().includes("your name") || reply.toLowerCase().includes("what's your name")) {
-        collectingName = true;
-      }
     } catch(e) {
       hideTyping();
       addMessage("Having a quick issue! Please email thecliqlabs@gmail.com 😊", 'bot');
     }
-
     isTyping = false;
   }
 
-  function openChat() {
-    isOpen = true;
-    win.classList.add('open');
-    if (messages.length === 0) {
-      setTimeout(() => {
-        showTyping();
-        setTimeout(() => {
-          hideTyping();
-          const greeting = "Hey! 👋 I'm Clio, CliqLabs AI agent. I'm here to help you scale your GoHighLevel agency. What brought you to CliqLabs today?";
-          addMessage(greeting, 'bot');
-          messages.push({ role: 'assistant', content: greeting });
-        }, 1000);
-      }, 200);
-    }
-  }
+  // Form submit
+  document.getElementById('clio-form-btn').addEventListener('click', () => {
+    const name = document.getElementById('clio-fname').value.trim();
+    const email = document.getElementById('clio-femail').value.trim();
+    const phone = document.getElementById('clio-fphone').value.trim();
+    const agency = document.getElementById('clio-fagency').value.trim();
 
+    if (!name || !email) {
+      document.getElementById('clio-fname').style.borderColor = name ? '#eee' : '#ff4757';
+      document.getElementById('clio-femail').style.borderColor = email ? '#eee' : '#ff4757';
+      return;
+    }
+
+    leadInfo = { name, email, phone, agency };
+
+    // Hide form, show chat
+    formEl.style.display = 'none';
+    messagesEl.style.display = 'flex';
+    document.getElementById('clio-input-wrap').style.display = 'flex';
+    document.getElementById('clio-powered').style.display = 'block';
+
+    // Remove notif badge
+    const notif = document.getElementById('clio-notif');
+    if (notif) notif.style.display = 'none';
+
+    // Greeting with their name
+    setTimeout(() => {
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        const greeting = `Hey ${name.split(' ')[0]}! 👋 Great to meet you${agency ? ` from ${agency}` : ''}. I'm Clio, CliqLabs AI agent. I'm here to help you scale your GoHighLevel agency. What's your biggest challenge right now?`;
+        addMessage(greeting, 'bot', ['24/7 Client Support', 'Client Onboarding', 'GHL Theme Builder', 'Just exploring']);
+        messages.push({ role: 'assistant', content: greeting });
+      }, 1000);
+    }, 200);
+  });
+
+  // Open/close
   bubble.addEventListener('click', () => {
-    if (!isOpen) { openChat(); } 
-    else { isOpen = false; win.classList.remove('open'); }
+    isOpen = !isOpen;
+    win.classList.toggle('open', isOpen);
   });
 
   document.getElementById('clio-close').addEventListener('click', (e) => {
@@ -242,6 +290,6 @@
     inputEl.style.height = Math.min(inputEl.scrollHeight, 90) + 'px';
   });
 
-  // Auto open after 45 seconds
-  setTimeout(() => { if (!isOpen) openChat(); }, 45000);
+  // Auto open after 40s
+  setTimeout(() => { if (!isOpen) { isOpen = true; win.classList.add('open'); } }, 40000);
 })();
