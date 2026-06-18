@@ -15,7 +15,7 @@ console.log('GHL Location:', GHL_LOCATION_ID ? 'loaded' : 'MISSING');
 console.log('GHL API Key:', GHL_API_KEY ? 'loaded' : 'MISSING');
 console.log('Anthropic Key:', ANTHROPIC_API_KEY ? 'loaded' : 'MISSING');
 
-const savedEmails = new Set();
+const contactMap = new Map(); // email -> contactId
 
 const SYSTEM_PROMPT = `You are Clio, a sales agent for CliqLabs. You talk like a real person, not a bot. Short sentences. Casual but professional. You close deals.
 
@@ -217,13 +217,26 @@ const server = http.createServer(async (req, res) => {
         const { messages, contactInfo } = JSON.parse(body);
 
         // Save contact to GHL on first message after form submit
-        if (contactInfo && contactInfo.email && contactInfo.name && !savedEmails.has(contactInfo.email)) {
-          savedEmails.add(contactInfo.email);
+        if (contactInfo && contactInfo.email && contactInfo.name) {
           const conversation = (messages || []).map(m => `${m.role === 'user' ? 'Visitor' : 'Clio'}: ${m.content}`).join('\n');
-          const ghlRes = await createGHLContact(contactInfo, conversation);
-          if (ghlRes && (ghlRes.contact || ghlRes.id)) {
-            const contactId = ghlRes.contact ? ghlRes.contact.id : ghlRes.id;
-            if (contactId) await addGHLNote(contactId, contactInfo, conversation);
+          let contactId = contactMap.get(contactInfo.email);
+          
+          if (!contactId) {
+            // First time - create contact
+            const ghlRes = await createGHLContact(contactInfo, conversation);
+            if (ghlRes && (ghlRes.contact || ghlRes.id)) {
+              contactId = ghlRes.contact ? ghlRes.contact.id : ghlRes.id;
+              if (contactId) contactMap.set(contactInfo.email, contactId);
+            }
+          }
+          
+          // Update note every 3 messages to keep GHL updated without spam
+          if (contactId && messages && messages.length % 3 === 0) {
+            await addGHLNote(contactId, contactInfo, conversation);
+          } else if (contactId && !contactMap.has(contactInfo.email + '_noted')) {
+            // Always add first note
+            contactMap.set(contactInfo.email + '_noted', true);
+            await addGHLNote(contactId, contactInfo, conversation);
           }
         }
 
