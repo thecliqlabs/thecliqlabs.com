@@ -614,5 +614,8 @@ const reveals=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08});
 reveals.forEach(r=>obs.observe(r));
 </script>
+
+<!-- Clio AI Sales Agent -->
+<script src="/clio-widget.js"></script>
 </body>
 </html>
