@@ -202,6 +202,76 @@ function addGHLNote(contactId, leadInfo, conversation) {
   });
 }
 
+
+function createGHLConversation(contactId) {
+  return new Promise((resolve) => {
+    const body = JSON.stringify({
+      locationId: GHL_LOCATION_ID,
+      contactId: contactId
+    });
+    const req = https.request({
+      hostname: 'services.leadconnectorhq.com',
+      path: '/conversations/',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Version': '2021-07-28',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    }, res => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          console.log('GHL Conversation:', JSON.stringify(parsed).substring(0, 200));
+          resolve(parsed);
+        } catch(e) { console.error('Conv error:', e.message); resolve(null); }
+      });
+    });
+    req.on('error', e => { console.error('Conv req error:', e.message); resolve(null); });
+    req.write(body);
+    req.end();
+  });
+}
+
+function sendGHLMessage(conversationId, text, type) {
+  return new Promise((resolve) => {
+    const body = JSON.stringify({
+      conversationId: conversationId,
+      locationId: GHL_LOCATION_ID,
+      message: text,
+      type: type || 'Custom',
+      direction: type === 'inbound' ? 'inbound' : 'outbound'
+    });
+    const req = https.request({
+      hostname: 'services.leadconnectorhq.com',
+      path: '/conversations/messages',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GHL_API_KEY}`,
+        'Version': '2021-07-28',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    }, res => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          console.log('GHL Message sent:', JSON.stringify(parsed).substring(0, 150));
+          resolve(parsed);
+        } catch(e) { console.error('Msg error:', e.message); resolve(null); }
+      });
+    });
+    req.on('error', e => { console.error('Msg req error:', e.message); resolve(null); });
+    req.write(body);
+    req.end();
+  });
+}
+
 const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
