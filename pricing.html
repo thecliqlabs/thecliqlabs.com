@@ -156,6 +156,76 @@ footer{background:#020d16;border-top:1px solid rgba(255,255,255,0.06);padding:36
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
 .reveal.visible{opacity:1;transform:none}
 .tc{text-align:center}
+
+/* DIAMOND PREMIUM */
+.plan-card.diamond{
+  background:linear-gradient(145deg,#02121d,#041e2e);
+  border:1.5px solid rgba(31,185,230,0.15);
+  position:relative;
+  overflow:hidden;
+  transform:scale(1.04);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(31,185,230,0.08);
+  z-index:2;
+}
+.plan-card.diamond::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#1fb9e6,#a78bfa,#1fb9e6,transparent);
+  animation:diamondShimmer 3s ease-in-out infinite;
+}
+@keyframes diamondShimmer{0%,100%{opacity:.6}50%{opacity:1}}
+.plan-card.diamond::after{
+  content:'';
+  position:absolute;
+  top:-120px;right:-120px;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(31,185,230,0.06),transparent 70%);
+  pointer-events:none;
+}
+.plan-card.diamond .plan-name{
+  background:linear-gradient(135deg,#1fb9e6,#a78bfa);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-size:13px;
+  letter-spacing:3px;
+}
+.plan-card.diamond .plan-price{color:#fff;font-size:64px}
+.plan-card.diamond .plan-price sup{color:#1fb9e6}
+.plan-card.diamond .plan-desc{color:rgba(255,255,255,0.55)}
+.plan-card.diamond .chk{color:#1fb9e6}
+.plan-card.diamond .plan-features li{color:rgba(255,255,255,0.75)}
+.plan-card.diamond .plan-features li strong{color:#fff}
+.plan-card.diamond .plan-cta{
+  background:linear-gradient(135deg,#1fb9e6,#0a7fa3);
+  color:#fff;
+  box-shadow:0 4px 20px rgba(31,185,230,0.35);
+  font-size:15px;
+  padding:16px;
+}
+.plan-card.diamond .plan-cta:hover{
+  background:linear-gradient(135deg,#2dcfff,#1fb9e6);
+  transform:translateY(-2px);
+  box-shadow:0 6px 28px rgba(31,185,230,0.45);
+}
+.plan-card.diamond .plan-note{color:rgba(255,255,255,0.25)}
+.diamond-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:linear-gradient(135deg,rgba(31,185,230,0.15),rgba(167,139,250,0.15));
+  border:1px solid rgba(31,185,230,0.3);
+  color:#1fb9e6;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:5px 14px;
+  border-radius:999px;
+  margin-bottom:16px;
+}
 </style>
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
