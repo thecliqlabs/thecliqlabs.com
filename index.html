@@ -33,7 +33,7 @@ a{text-decoration:none;color:inherit}
 img{max-width:100%;height:auto}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:transparent;backdrop-filter:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:center;padding:0;background:transparent;backdrop-filter:none}.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;padding:0 40px}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:900;letter-spacing:-.5px;flex-shrink:0}
 .nav-logo svg{animation:spin 12s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -388,6 +388,7 @@ footer{background:#020d16;border-top:1px solid rgba(255,255,255,0.06);padding:36
 
 <!-- NAV -->
 <nav>
+<div class="nav-inner">
   <a href="/" class="nav-logo">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="36" height="36">
       <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#4A90D9" stroke-width="2.5"/>
@@ -467,6 +468,7 @@ footer{background:#020d16;border-top:1px solid rgba(255,255,255,0.06);padding:36
     <a href="/pricing.html" class="btn-ghost">View Pricing</a>
     <a href="/book-a-call.html" class="btn-cta">Book a Demo →</a>
   </div>
+</div>
 </nav>
 
 <!-- HERO — DARK -->
