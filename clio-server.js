@@ -15,6 +15,8 @@ console.log('GHL Location:', GHL_LOCATION_ID ? 'loaded' : 'MISSING');
 console.log('GHL API Key:', GHL_API_KEY ? 'loaded' : 'MISSING');
 console.log('Anthropic Key:', ANTHROPIC_API_KEY ? 'loaded' : 'MISSING');
 
+const savedEmails = new Set();
+
 const SYSTEM_PROMPT = `You are Clio, a sales agent for CliqLabs. You talk like a real person, not a bot. Short sentences. Casual but professional. You close deals.
 
 WHO YOU ARE:
@@ -151,8 +153,14 @@ function createGHLContact(leadInfo, conversation) {
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
-          console.log('GHL Contact created:', JSON.stringify(parsed).substring(0, 300));
-          resolve(parsed);
+          // Handle duplicate — GHL returns existing contactId in meta
+          if (parsed.statusCode === 400 && parsed.meta && parsed.meta.contactId) {
+            console.log('Contact exists, using existing ID:', parsed.meta.contactId);
+            resolve({ contact: { id: parsed.meta.contactId } });
+          } else {
+            console.log('GHL Contact created:', JSON.stringify(parsed).substring(0, 200));
+            resolve(parsed);
+          }
         } catch(e) {
           console.error('GHL Contact error:', e.message, data.substring(0, 200));
           resolve(null);
@@ -209,7 +217,8 @@ const server = http.createServer(async (req, res) => {
         const { messages, contactInfo } = JSON.parse(body);
 
         // Save contact to GHL on first message after form submit
-        if (contactInfo && contactInfo.email && contactInfo.name && !contactInfo._saved) {
+        if (contactInfo && contactInfo.email && contactInfo.name && !savedEmails.has(contactInfo.email)) {
+          savedEmails.add(contactInfo.email);
           const conversation = (messages || []).map(m => `${m.role === 'user' ? 'Visitor' : 'Clio'}: ${m.content}`).join('\n');
           const ghlRes = await createGHLContact(contactInfo, conversation);
           if (ghlRes && (ghlRes.contact || ghlRes.id)) {
