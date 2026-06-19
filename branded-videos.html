@@ -48,6 +48,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .nav-logo svg{animation:spin 12s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 .nav-btns{display:flex;gap:8px}
+@media(max-width:640px){
+  nav{padding:0 4%;height:60px}
+  .nav-logo{font-size:17px;gap:6px}
+  .nav-logo svg{width:26px;height:26px}
+  .btn-ghost{display:none}
+  .btn-cta{font-size:12px;padding:8px 16px}
+}
 .btn-ghost{font-size:13px;font-weight:600;color:rgba(255,255,255,0.65);padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);transition:all .2s;text-decoration:none}
 .btn-cta{font-size:13px;font-weight:700;color:#02121d;padding:9px 22px;border-radius:999px;background:#1fb9e6;transition:all .2s;text-decoration:none}
 .btn-cta:hover{background:#2dcfff}
