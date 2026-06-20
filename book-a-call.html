@@ -578,8 +578,12 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 <!-- GA4 Conversion Tracking -->
 <script>
 (function(){
+  function hasConsent(){
+    return localStorage.getItem('cliq_cookie_consent') === 'accepted';
+  }
+
   function fireEvent(name, params){
-    if (typeof gtag === 'function') {
+    if (typeof gtag === 'function' && hasConsent()) {
       gtag('event', name, params || {});
     }
   }
@@ -589,7 +593,6 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     if (!link) return;
     var href = link.getAttribute('href') || '';
 
-    // Stripe checkout clicks
     if (href.indexOf('buy.stripe.com') !== -1) {
       var planName = link.textContent.trim().replace(/\s+/g,' ').substring(0, 60);
       fireEvent('begin_checkout', {
@@ -599,7 +602,6 @@ document.querySelectorAll('.faq-item').forEach(item=>{
       });
     }
 
-    // Book a demo / book-a-call clicks
     if (href.indexOf('book-a-call') !== -1) {
       fireEvent('generate_lead', {
         lead_type: 'demo_booking_click',
@@ -609,7 +611,6 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     }
   });
 
-  // Track Clio chat opened
   var clioObserver = new MutationObserver(function(){
     var clioWindow = document.getElementById('clio-window');
     if (clioWindow && clioWindow.classList.contains('open') && !clioWindow.dataset.tracked) {
@@ -617,12 +618,10 @@ document.querySelectorAll('.faq-item').forEach(item=>{
       fireEvent('engage_clio', { engagement_type: 'chat_opened' });
     }
   });
-  var bodyTarget = document.body;
-  if (bodyTarget) {
-    clioObserver.observe(bodyTarget, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+  if (document.body) {
+    clioObserver.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
   }
 
-  // Track Clio lead form submission
   document.addEventListener('click', function(e){
     if (e.target && e.target.id === 'clio-form-btn') {
       fireEvent('clio_lead_captured', { lead_source: 'clio_ai_chat' });
@@ -631,29 +630,47 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 })();
 </script>
 
-<!-- Cookie Consent Banner -->
+<!-- Cookie Consent Popup -->
 <style>
-#cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:99997;background:#02121d;border-top:1px solid rgba(31,185,230,0.25);padding:18px 24px;display:none;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:'Poppins',sans-serif;box-shadow:0 -4px 24px rgba(0,0,0,0.3)}
-#cookie-banner.show{display:flex}
-#cookie-text{flex:1;min-width:240px;font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6}
-#cookie-text a{color:#1fb9e6;text-decoration:underline}
-#cookie-btns{display:flex;gap:10px;flex-shrink:0}
-#cookie-accept,#cookie-decline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:10px 22px;border-radius:8px;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
-#cookie-accept{background:#1fb9e6;color:#02121d}
-#cookie-accept:hover{background:#2dcfff}
-#cookie-decline{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2)}
-#cookie-decline:hover{color:#fff;border-color:rgba(255,255,255,0.4)}
-@media(max-width:600px){#cookie-banner{padding:16px;flex-direction:column;align-items:flex-start}#cookie-btns{width:100%}#cookie-accept,#cookie-decline{flex:1}}
+#cookie-overlay{position:fixed;inset:0;z-index:99996;background:rgba(2,18,29,0.55);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center;padding:24px}
+#cookie-overlay.show{display:flex}
+@media(min-width:640px){#cookie-overlay{align-items:center}}
+
+#cookie-card{position:relative;max-width:460px;width:100%;background:linear-gradient(160deg,#0a1c2b,#02121d);border:1px solid rgba(31,185,230,0.25);border-radius:20px;padding:32px 30px 28px;box-shadow:0 24px 70px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.03);font-family:'Poppins',sans-serif;overflow:hidden;transform:translateY(24px) scale(.97);opacity:0;transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .42s ease}
+#cookie-overlay.show #cookie-card{transform:translateY(0) scale(1);opacity:1}
+
+#cookie-glow{position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:340px;height:200px;background:radial-gradient(ellipse,rgba(31,185,230,0.22),transparent 70%);pointer-events:none}
+
+#cookie-icon{width:46px;height:46px;border-radius:13px;background:rgba(31,185,230,0.1);border:1px solid rgba(31,185,230,0.25);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;position:relative}
+
+#cookie-card h3{position:relative;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.3px;margin-bottom:10px;line-height:1.3}
+#cookie-card p{position:relative;font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:24px}
+#cookie-card p a{color:#1fb9e6;text-decoration:none;font-weight:600}
+#cookie-card p a:hover{text-decoration:underline}
+
+#cookie-btns{position:relative;display:flex;gap:10px}
+#cookie-accept,#cookie-decline{flex:1;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:700;padding:13px 18px;border-radius:11px;cursor:pointer;border:none;transition:all .2s}
+#cookie-accept{background:#1fb9e6;color:#02121d;box-shadow:0 4px 20px rgba(31,185,230,0.3)}
+#cookie-accept:hover{background:#2dcfff;transform:translateY(-1px);box-shadow:0 6px 24px rgba(31,185,230,0.4)}
+#cookie-decline{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.12)}
+#cookie-decline:hover{background:rgba(255,255,255,0.09);color:#fff}
+
+@media(max-width:480px){#cookie-card{padding:26px 22px 22px}}
 </style>
-<div id="cookie-banner">
-  <div id="cookie-text">
-    We use cookies to understand how visitors use this site and improve your experience. By clicking Accept, you agree to our use of cookies. See our <a href="/privacy-policy.html">Privacy Policy</a> for details.
-  </div>
-  <div id="cookie-btns">
-    <button id="cookie-decline">Decline</button>
-    <button id="cookie-accept">Accept</button>
+
+<div id="cookie-overlay">
+  <div id="cookie-card">
+    <div id="cookie-glow"></div>
+    <div id="cookie-icon">🍪</div>
+    <h3>We use cookies</h3>
+    <p>To understand how you use CliqLabs and improve your experience, we use a small set of analytics cookies. No personal data is sold. See our <a href="/privacy-policy.html">Privacy Policy</a> for details.</p>
+    <div id="cookie-btns">
+      <button id="cookie-decline">Decline</button>
+      <button id="cookie-accept">Accept</button>
+    </div>
   </div>
 </div>
+
 <script>
 (function(){
   function getConsent(){ return localStorage.getItem('cliq_cookie_consent'); }
@@ -664,7 +681,6 @@ document.querySelectorAll('.faq-item').forEach(item=>{
       gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
     }
   }
-
   function denyAnalytics(){
     if (typeof gtag === 'function') {
       gtag('consent', 'update', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
@@ -672,10 +688,10 @@ document.querySelectorAll('.faq-item').forEach(item=>{
   }
 
   var consent = getConsent();
-  var banner = document.getElementById('cookie-banner');
+  var overlay = document.getElementById('cookie-overlay');
 
   if (!consent) {
-    banner.classList.add('show');
+    setTimeout(function(){ overlay.classList.add('show'); }, 600);
     denyAnalytics();
   } else if (consent === 'accepted') {
     loadAnalytics();
@@ -686,13 +702,20 @@ document.querySelectorAll('.faq-item').forEach(item=>{
   document.getElementById('cookie-accept').addEventListener('click', function(){
     setConsent('accepted');
     loadAnalytics();
-    banner.classList.remove('show');
+    overlay.classList.remove('show');
   });
 
   document.getElementById('cookie-decline').addEventListener('click', function(){
     setConsent('declined');
     denyAnalytics();
-    banner.classList.remove('show');
+    overlay.classList.remove('show');
+  });
+
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) {
+      // Treat backdrop click as implicit decline-for-now, ask again next visit
+      overlay.classList.remove('show');
+    }
   });
 })();
 </script>
