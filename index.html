@@ -1191,67 +1191,7 @@ dots.forEach(d=>d.addEventListener('click',()=>{clearInterval(t);sw(+d.dataset.i
 
 
 
-<script>
-(function(){
-  var notifications = [
-    {icon:'🎉', name:'Marcus T.', msg:'just joined the <strong>VIP Plan</strong>', time:'2 minutes ago', loc:'Texas, US'},
-    {icon:'🚀', name:'Sarah K.', msg:'just activated the <strong>Theme Builder</strong>', time:'5 minutes ago', loc:'Florida, US'},
-    {icon:'✅', name:'James W.', msg:'just joined the <strong>Core Plan</strong>', time:'8 minutes ago', loc:'New York, US'},
-    {icon:'🔥', name:'David R.', msg:'just upgraded to <strong>Diamond Plan</strong>', time:'12 minutes ago', loc:'California, US'},
-    {icon:'⚡', name:'Emily C.', msg:'just activated the <strong>Theme Builder</strong>', time:'3 minutes ago', loc:'London, UK'},
-    {icon:'🎨', name:'Ryan M.', msg:'just joined the <strong>VIP Plan</strong>', time:'7 minutes ago', loc:'Toronto, CA'},
-    {icon:'💎', name:'Lisa B.', msg:'just upgraded to <strong>Diamond Plan</strong>', time:'1 minute ago', loc:'Sydney, AU'},
-    {icon:'🏆', name:'Tom H.', msg:'just joined the <strong>Core Plan</strong>', time:'4 minutes ago', loc:'Chicago, US'},
-    {icon:'🚀', name:'Anna P.', msg:'just activated the <strong>Theme Builder</strong>', time:'6 minutes ago', loc:'Dubai, UAE'},
-    {icon:'✅', name:'Carlos M.', msg:'just joined the <strong>VIP Plan</strong>', time:'9 minutes ago', loc:'Miami, US'},
-  ];
 
-  var el = document.getElementById('cliq-fomo');
-  var iconEl = document.getElementById('fomoIcon');
-  var nameEl = document.getElementById('fomoName');
-  var msgEl = document.getElementById('fomoMsg');
-  var timeEl = document.getElementById('fomoTime');
-  var progressEl = document.getElementById('fomoProgress');
-  var idx = 0;
-  var DUR = 8000;
-
-  function showNext(){
-    var n = notifications[idx % notifications.length];
-    idx++;
-
-    // Update content
-    iconEl.textContent = n.icon;
-    nameEl.textContent = n.name;
-    msgEl.innerHTML = n.msg;
-    timeEl.innerHTML = n.time + ' &nbsp;·&nbsp; ' + n.loc;
-
-    // Reset progress bar
-    progressEl.style.animation = 'none';
-    progressEl.style.setProperty('--fomo-dur', DUR + 'ms');
-    progressEl.offsetHeight; // reflow
-    progressEl.style.animation = '';
-
-    // Show
-    el.classList.remove('hide');
-    el.classList.add('show');
-
-    // Hide after DUR
-    setTimeout(function(){
-      el.classList.add('hide');
-      el.classList.remove('show');
-    }, DUR);
-  }
-
-  // First show after 5 seconds
-  setTimeout(function(){
-    showNext();
-    // Then cycle every DUR + 3s gap
-    setInterval(function(){
-      showNext();
-    }, DUR + 3000);
-  }, 5000);
-})();
-</script>
 <div id="cliq-fomo"><div class="fomo-card"><button class="fomo-close" onclick="document.getElementById('cliq-fomo').classList.remove('show')">&times;</button><div class="fomo-icon" id="fomoIcon">🎉</div><div class="fomo-body"><div class="fomo-name" id="fomoName">Marcus T.</div><div class="fomo-msg" id="fomoMsg">just joined the VIP Plan</div><div class="fomo-time" id="fomoTime">2 minutes ago · Texas, US</div></div><div class="fomo-progress" id="fomoProgress"></div></div></div><script>
 (function(){
   var n=[    {icon:"🎉",name:"Marcus T.",msg:"just joined the <strong>VIP Plan</strong>",time:"2 minutes ago",loc:"Texas, US"},
