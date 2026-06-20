@@ -831,5 +831,61 @@ reveals.forEach(r=>obs.observe(r));
   draw();
 })();
 </script>
+<!-- GA4 Conversion Tracking -->
+<script>
+(function(){
+  function fireEvent(name, params){
+    if (typeof gtag === 'function') {
+      gtag('event', name, params || {});
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href') || '';
+
+    // Stripe checkout clicks
+    if (href.indexOf('buy.stripe.com') !== -1) {
+      var planName = link.textContent.trim().replace(/\s+/g,' ').substring(0, 60);
+      fireEvent('begin_checkout', {
+        plan_name: planName,
+        stripe_url: href,
+        page_location: window.location.href
+      });
+    }
+
+    // Book a demo / book-a-call clicks
+    if (href.indexOf('book-a-call') !== -1) {
+      fireEvent('generate_lead', {
+        lead_type: 'demo_booking_click',
+        link_text: link.textContent.trim().substring(0, 60),
+        page_location: window.location.href
+      });
+    }
+  });
+
+  // Track Clio chat opened
+  var clioObserver = new MutationObserver(function(){
+    var clioWindow = document.getElementById('clio-window');
+    if (clioWindow && clioWindow.classList.contains('open') && !clioWindow.dataset.tracked) {
+      clioWindow.dataset.tracked = 'true';
+      fireEvent('engage_clio', { engagement_type: 'chat_opened' });
+    }
+  });
+  var bodyTarget = document.body;
+  if (bodyTarget) {
+    clioObserver.observe(bodyTarget, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+  }
+
+  // Track Clio lead form submission
+  document.addEventListener('click', function(e){
+    if (e.target && e.target.id === 'clio-form-btn') {
+      fireEvent('clio_lead_captured', { lead_source: 'clio_ai_chat' });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
