@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Get Diamond, CliqLabs GoHighLevel Agency OS</title>
+<meta name="description" content="Unlimited 24/7 white-label support, done-for-you onboarding, theme builder, and full agency AI suite. Get the CliqLabs Diamond plan."/>
+<link rel="canonical" href="https://thecliqlabs.com/checkout-diamond"/>
+<link rel="icon" type="image/png" href="/favicon.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:#f7f9fa;color:#0a1c2b}
+a{text-decoration:none;color:inherit}
+
+/* TOP BAR */
+.topbar{background:#02121d;padding:16px 5%;display:flex;align-items:center;justify-content:space-between}
+.topbar-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff}
+.topbar-logo svg{animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.topbar-back{font-size:13px;font-weight:600;color:rgba(255,255,255,0.65);transition:color .2s}
+.topbar-back:hover{color:#1fb9e6}
+
+/* CHECKOUT GRID */
+.checkout-wrap{max-width:1080px;margin:0 auto;padding:48px 5% 24px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:32px;align-items:start}
+@media(max-width:860px){.checkout-wrap{grid-template-columns:1fr;padding:32px 5% 16px}}
+
+/* FORM CARD */
+.form-card{background:#fff;border-radius:18px;border:1px solid #e8edf0;padding:32px;box-shadow:0 4px 24px rgba(2,18,29,0.05)}
+.form-title{font-size:13px;font-weight:700;color:#1fb9e6;text-align:center;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.form-sub{font-size:20px;font-weight:700;text-align:center;color:#0a1c2b;margin-bottom:26px}
+
+.field-group{display:flex;flex-direction:column;gap:14px;margin-bottom:22px}
+.field{position:relative}
+.field input{width:100%;padding:14px 16px;border:1.5px solid #e2e8ec;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;color:#0a1c2b;outline:none;transition:border-color .2s}
+.field input:focus{border-color:#1fb9e6}
+.field input::placeholder{color:#9aa7af}
+
+.section-label{font-size:11px;font-weight:700;color:#7a8a93;text-transform:uppercase;letter-spacing:.8px;margin:24px 0 12px}
+
+.order-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:14px 0;border-bottom:1px solid #f0f3f5;font-size:14px}
+.order-row .item-name{font-weight:600;color:#0a1c2b}
+.order-row .item-sub{font-size:12px;color:#8a98a1;margin-top:2px}
+.order-row .item-price{font-weight:700;color:#0a1c2b;text-align:right}
+
+.order-total{display:flex;justify-content:space-between;align-items:center;padding:16px 0 4px;font-size:15px}
+.order-total .label{font-weight:700;color:#0a1c2b}
+.order-total .amount{font-weight:800;font-size:20px;color:#1fb9e6}
+
+#card-element{padding:14px 16px;border:1.5px solid #e2e8ec;border-radius:10px;background:#fff}
+#card-errors{color:#e54848;font-size:12.5px;margin-top:8px;min-height:16px}
+
+.secure-note{display:flex;align-items:center;gap:6px;font-size:12px;color:#5b9a6f;margin:16px 0 18px}
+.secure-note svg{flex-shrink:0}
+
+.pay-btn{width:100%;background:#1fb9e6;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;padding:16px;border:none;border-radius:12px;cursor:pointer;transition:all .2s;box-shadow:0 6px 20px rgba(31,185,230,0.3)}
+.pay-btn:hover{background:#0fa3d1}
+.pay-btn:disabled{opacity:.6;cursor:not-allowed}
+.fine-print{font-size:11.5px;color:#9aa7af;text-align:center;margin-top:14px;line-height:1.6}
+.fine-print a{color:#1fb9e6;font-weight:600}
+
+/* SIDE PANEL */
+.side-panel{position:sticky;top:32px}
+.side-badge{display:inline-block;background:rgba(31,185,230,0.1);color:#0a8fc4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+.side-panel h2{font-size:26px;font-weight:800;color:#0a1c2b;letter-spacing:-.5px;margin-bottom:14px}
+.side-panel p{font-size:14.5px;color:#5b6b78;line-height:1.75}
+
+/* VALUE STACK */
+.value-section{background:#02121d;padding:56px 5% 64px;margin-top:48px}
+.value-inner{max-width:760px;margin:0 auto}
+.value-inner h3{font-size:30px;font-weight:800;color:#fff;text-align:center;margin-bottom:36px;letter-spacing:-1px}
+.value-item{display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.value-check{width:22px;height:22px;border-radius:50%;background:rgba(31,185,230,0.15);border:1px solid rgba(31,185,230,0.4);color:#1fb9e6;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+.value-text{flex:1;font-size:14.5px;color:rgba(255,255,255,0.85);line-height:1.6}
+.value-worth{font-size:13px;font-weight:700;color:#1fb9e6;white-space:nowrap;flex-shrink:0}
+
+.value-total{text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1)}
+.value-total .total-label{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:6px}
+.value-total .total-was{font-size:18px;color:rgba(255,255,255,0.4);text-decoration:line-through;margin-bottom:4px}
+.value-total .total-now{font-size:42px;font-weight:900;color:#1fb9e6;letter-spacing:-1px}
+.value-total .total-now span{font-size:18px;font-weight:600;color:rgba(255,255,255,0.6)}
+
+.final-cta-btn{display:block;max-width:420px;margin:28px auto 0;background:#1fb9e6;color:#02121d;text-align:center;font-weight:800;font-size:15px;padding:17px;border-radius:12px;border:none;cursor:pointer;width:100%;transition:all .2s}
+.final-cta-btn:hover{background:#2dcfff}
+
+footer{background:#020d16;padding:28px 5%;text-align:center}
+footer p{font-size:12px;color:rgba(255,255,255,0.3)}
+footer a{color:rgba(255,255,255,0.5);margin:0 10px;font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/" class="topbar-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="26" height="26">
+      <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#4A90D9" stroke-width="2.5"/>
+      <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#2ECC71" stroke-width="2.5" transform="rotate(60 36 36)"/>
+      <ellipse cx="36" cy="36" rx="28" ry="11" fill="none" stroke="#F5C518" stroke-width="2.5" transform="rotate(120 36 36)"/>
+      <circle cx="36" cy="36" r="5.5" fill="#F5C518"/>
+    </svg>
+    CliqLabs
+  </a>
+  <a href="/pricing" class="topbar-back">Back to Pricing</a>
+</div>
+
+<div class="checkout-wrap">
+  <div class="form-card">
+    <div class="form-title">Let's Get You Started</div>
+    <div class="form-sub">CliqLabs Diamond Plan</div>
+
+    <div class="field-group">
+      <div class="field"><input type="text" id="cust-name" placeholder="Full Name"/></div>
+      <div class="field"><input type="email" id="cust-email" placeholder="Email Address"/></div>
+      <div class="field"><input type="tel" id="cust-phone" placeholder="Phone Number"/></div>
+    </div>
+
+    <div class="section-label">Order Summary</div>
+    <div class="order-row">
+      <div>
+        <div class="item-name">CliqLabs Diamond Subscription</div>
+        <div class="item-sub">Billed monthly, cancel anytime</div>
+      </div>
+      <div class="item-price">$997.00</div>
+    </div>
+    <div class="order-total">
+      <span class="label">Order Total</span>
+      <span class="amount">$997.00/mo</span>
+    </div>
+
+    <div class="section-label">Card Information</div>
+    <div id="card-element"></div>
+    <div id="card-errors"></div>
+
+    <div class="secure-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b9a6f" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Secure checkout, powered by Stripe
+    </div>
+
+    <button id="pay-btn" class="pay-btn">Complete Order, $997/mo</button>
+    <p class="fine-print">By purchasing you agree to our <a href="/terms">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>. No contracts, cancel anytime.</p>
+  </div>
+
+  <div class="side-panel">
+    <div class="side-badge">Diamond Plan</div>
+    <h2>Unlimited Support. Unlimited Scale.</h2>
+    <p>Our Diamond plan gives your agency unlimited 24/7 branded client support, done-for-you onboarding calls every month, and the full agency AI suite, everything you need to run a GoHighLevel agency without the backend headache.</p>
+  </div>
+</div>
+
+<section class="value-section">
+  <div class="value-inner">
+    <h3>Here's Everything You Get</h3>
+
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>24/7 Branded Support for UNLIMITED clients</strong>, no cap, no extra fees, live chat, email & Zoom under your agency name</div>
+      <div class="value-worth">Worth $6,000/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>5 DFY Client Onboarding Calls every month</strong>, fully handled tech setup and training for your clients</div>
+      <div class="value-worth">Worth $2,500/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>4 DFY A2P 10DLC Registrations monthly</strong>, brand and campaign registration handled for you</div>
+      <div class="value-worth">Worth $1,200/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>Conversation AI + Voice AI</strong> for your agency sub-account, full chat and voice automation</div>
+      <div class="value-worth">Worth $997/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>GHL Theme Builder</strong>, apply professional branded themes across every sub-account in one click</div>
+      <div class="value-worth">Worth $147/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>Dedicated Sending Domains Setup</strong>, configured for every client sub-account</div>
+      <div class="value-worth">Worth $497/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>Access to GHL University</strong>, ongoing training built for agency owners and teams</div>
+      <div class="value-worth">Worth $297/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>White Label Support Widget & Library</strong>, 1,000+ articles your clients can self-serve</div>
+      <div class="value-worth">Worth $397/mo</div>
+    </div>
+    <div class="value-item">
+      <div class="value-check">✓</div>
+      <div class="value-text"><strong>OG SaaS Snapshot, Demo Snapshot, Brandable Slide Deck & Demo Video</strong>, everything you need to sell and onboard</div>
+      <div class="value-worth">Worth $1,997</div>
+    </div>
+
+    <div class="value-total">
+      <div class="total-label">Total Monthly Value</div>
+      <div class="total-was">$14,032+</div>
+      <div class="total-now">$997<span>/month</span></div>
+      <button class="final-cta-btn" onclick="document.querySelector('.form-card').scrollIntoView({behavior:'smooth'})">I Want This Plan, $997/mo →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 CLIQ LABS BY CHICAGOLAND PROMOTIONS LTD</p>
+  <div>
+    <a href="/terms">Terms</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/refund-policy">Refund Policy</a>
+  </div>
+</footer>
+
+<script>
+const stripe = Stripe('pk_test_REPLACE_WITH_PUBLISHABLE_KEY');
+const elements = stripe.elements();
+const cardElement = elements.create('card', {
+  style: { base: { fontSize: '14px', fontFamily: 'Poppins, sans-serif', color: '#0a1c2b', '::placeholder': { color: '#9aa7af' } } }
+});
+cardElement.mount('#card-element');
+
+cardElement.on('change', (event) => {
+  document.getElementById('card-errors').textContent = event.error ? event.error.message : '';
+});
+
+const payBtn = document.getElementById('pay-btn');
+
+payBtn.addEventListener('click', async () => {
+  const name = document.getElementById('cust-name').value.trim();
+  const email = document.getElementById('cust-email').value.trim();
+  const phone = document.getElementById('cust-phone').value.trim();
+
+  if (!name || !email) {
+    document.getElementById('card-errors').textContent = 'Please enter your name and email.';
+    return;
+  }
+
+  payBtn.disabled = true;
+  payBtn.textContent = 'Processing...';
+
+  try {
+    const initRes = await fetch('/api/checkout/init', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: 'diamond', name, email, phone })
+    });
+    const initData = await initRes.json();
+
+    if (initData.error) {
+      document.getElementById('card-errors').textContent = initData.error;
+      payBtn.disabled = false;
+      payBtn.textContent = 'Complete Order, $997/mo';
+      return;
+    }
+
+    const { setupIntent, error } = await stripe.confirmCardSetup(initData.client_secret, {
+      payment_method: { card: cardElement, billing_details: { name, email, phone } }
+    });
+
+    if (error) {
+      document.getElementById('card-errors').textContent = error.message;
+      payBtn.disabled = false;
+      payBtn.textContent = 'Complete Order, $997/mo';
+      return;
+    }
+
+    const subRes = await fetch('/api/checkout/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        plan: 'diamond',
+        customer_id: initData.customer_id,
+        payment_method_id: setupIntent.payment_method
+      })
+    });
+    const subData = await subRes.json();
+
+    if (subData.error) {
+      document.getElementById('card-errors').textContent = subData.error;
+      payBtn.disabled = false;
+      payBtn.textContent = 'Complete Order, $997/mo';
+      return;
+    }
+
+    window.location.href = '/checkout-success?plan=diamond';
+
+  } catch (e) {
+    document.getElementById('card-errors').textContent = 'Something went wrong. Please try again or contact support.';
+    payBtn.disabled = false;
+    payBtn.textContent = 'Complete Order, $997/mo';
+  }
+});
+</script>
+</body>
+</html>
