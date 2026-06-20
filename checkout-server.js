@@ -16,7 +16,7 @@ console.log('Stripe Key:', STRIPE_SECRET_KEY ? 'loaded' : 'MISSING');
 // Stripe Price IDs from your Stripe Dashboard (Products > [Product] > Pricing).
 // The existing buy.stripe.com payment links are NOT the same as Price IDs.
 const PRICE_MAP = {
-  'diamond': process.env.STRIPE_PRICE_DIAMOND || 'price_1Thku32Ke4aqimc2oUtM6Zuy'
+  'diamond': process.env.STRIPE_PRICE_DIAMOND || 'price_1Thku42Ke4aqimc2aQHBORrt'
 };
 
 function stripeRequest(path, method, formData) {
