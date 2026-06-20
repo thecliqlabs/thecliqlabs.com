@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.thecliqlabs.com/sitemap.xml
+Sitemap: https://thecliqlabs.com/sitemap.xml
