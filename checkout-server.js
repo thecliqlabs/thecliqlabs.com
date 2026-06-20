@@ -231,18 +231,46 @@ const server = http.createServer(async (req, res) => {
       try {
         const event = JSON.parse(rawBody);
         console.log('[webhook] Verified event:', event.type);
+        const obj = event.data.object;
 
+        // Subscription products (Core / VIP / Diamond): first successful payment
         if (event.type === 'invoice.payment_succeeded' || event.type === 'customer.subscription.created') {
-          const obj = event.data.object;
           const metadata = obj.metadata || (obj.subscription_details && obj.subscription_details.metadata) || {};
           const email = metadata.customer_email;
           const name = metadata.customer_name;
           const plan = metadata.plan;
           if (email && plan) {
             await createGHLContact(name, email, '', plan);
-            console.log('[webhook] GHL contact created for verified payment:', email, plan);
+            console.log('[webhook] GHL contact created (subscription):', email, plan);
           }
         }
+
+        // One-time purchase products (Onboarding packs, Branded Videos, etc.)
+        if (event.type === 'payment_intent.succeeded') {
+          const metadata = obj.metadata || {};
+          const email = metadata.customer_email;
+          const name = metadata.customer_name;
+          const product = metadata.plan || metadata.product || 'one-time-purchase';
+          // Only handle here if this isn't already a subscription invoice payment
+          // (subscription PaymentIntents are also payment_intent.succeeded, but we
+          // already create the contact via invoice.payment_succeeded above, so skip
+          // duplicates by checking for an invoice reference on the intent).
+          if (email && !obj.invoice) {
+            await createGHLContact(name, email, '', product);
+            console.log('[webhook] GHL contact created (one-time purchase):', email, product);
+          }
+        }
+
+        // Subscription cancelled: tag the contact so GHL automations can react (e.g. churn flow)
+        if (event.type === 'customer.subscription.deleted') {
+          const metadata = obj.metadata || {};
+          const email = metadata.customer_email;
+          const plan = metadata.plan;
+          if (email) {
+            console.log('[webhook] Subscription cancelled:', email, plan, '(tag in GHL manually or extend createGHLContact to support tag-only updates)');
+          }
+        }
+
         res.writeHead(200);
         res.end('ok');
       } catch (e) {
