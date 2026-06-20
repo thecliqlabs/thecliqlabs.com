@@ -69,6 +69,12 @@
     #clio-send:hover{transform:scale(1.08);box-shadow:0 4px 12px rgba(31,185,230,0.45)}
     #clio-send svg{width:15px;height:15px;fill:#fff}
     #clio-powered{text-align:center;font-size:10px;color:#ccc;padding:5px 0 8px;background:#fff;font-family:'Poppins',sans-serif}
+
+    /* TEASER MESSAGE BUBBLE */
+    #clio-teaser{position:fixed;bottom:92px;right:24px;z-index:99997;max-width:260px;background:#fff;border-radius:16px 16px 4px 16px;padding:14px 16px;box-shadow:0 8px 28px rgba(0,0,0,0.16);font-family:'Poppins',sans-serif;font-size:13px;color:#1a1a1a;line-height:1.55;opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;transition:opacity .35s ease,transform .35s ease;cursor:pointer}
+    #clio-teaser.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    #clio-teaser-close{position:absolute;top:6px;right:8px;background:none;border:none;color:#bbb;font-size:14px;cursor:pointer;padding:2px;line-height:1}
+    #clio-teaser-close:hover{color:#777}
   `;
   document.head.appendChild(style);
 
@@ -85,6 +91,12 @@
     </svg>
   `;
   document.body.appendChild(bubble);
+
+  // Teaser message bubble
+  const teaser = document.createElement('div');
+  teaser.id = 'clio-teaser';
+  teaser.innerHTML = `<button id="clio-teaser-close">×</button><span id="clio-teaser-text"></span>`;
+  document.body.appendChild(teaser);
 
   // Window
   const win = document.createElement('div');
@@ -128,6 +140,9 @@
 
   let messages = [];
   let isOpen = false;
+  let teaserIndex = 0;
+  let teaserDismissed = false;
+  let teaserCycleTimer = null;
   let isTyping = false;
   let leadInfo = {};
 
@@ -264,6 +279,11 @@
   bubble.addEventListener('click', () => {
     isOpen = !isOpen;
     win.classList.toggle('open', isOpen);
+    if (isOpen) {
+      teaser.classList.remove('show');
+      teaserDismissed = true;
+      if (teaserCycleTimer) clearInterval(teaserCycleTimer);
+    }
   });
 
   document.getElementById('clio-close').addEventListener('click', (e) => {
@@ -290,6 +310,45 @@
     inputEl.style.height = Math.min(inputEl.scrollHeight, 90) + 'px';
   });
 
-  // Auto open after 40s
-  setTimeout(() => { if (!isOpen) { isOpen = true; win.classList.add('open'); } }, 40000);
+  // Rotating teaser messages (does NOT force-open the chat)
+  const teaserMessages = [
+    "Drowning in GHL support tickets? I can help. \ud83d\udc4b",
+    "Need 24/7 white-label support for your agency?",
+    "Curious what CliqLabs costs? Ask me anything.",
+    "Scaling your GHL agency? Let's talk.",
+    "Got a quick question about onboarding? I'm here.",
+    "Want your GHL dashboard fully branded? Ask Clio."
+  ];
+  function showTeaser(){
+    if (isOpen || teaserDismissed) return;
+    const textEl = document.getElementById('clio-teaser-text');
+    textEl.textContent = teaserMessages[teaserIndex % teaserMessages.length];
+    teaserIndex++;
+    teaser.classList.add('show');
+    setTimeout(() => { teaser.classList.remove('show'); }, 7000);
+  }
+
+  function startTeaserCycle(){
+    showTeaser();
+    teaserCycleTimer = setInterval(showTeaser, 25000);
+  }
+
+  // First teaser after 15s, then repeats every 25s until dismissed or chat opened
+  setTimeout(startTeaserCycle, 15000);
+
+  teaser.addEventListener('click', (e) => {
+    if (e.target.id === 'clio-teaser-close') return;
+    teaser.classList.remove('show');
+    if (!isOpen) {
+      isOpen = true;
+      win.classList.add('open');
+    }
+  });
+
+  document.getElementById('clio-teaser-close').addEventListener('click', (e) => {
+    e.stopPropagation();
+    teaserDismissed = true;
+    teaser.classList.remove('show');
+    if (teaserCycleTimer) clearInterval(teaserCycleTimer);
+  });
 })();
