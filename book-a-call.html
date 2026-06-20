@@ -632,28 +632,28 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 
 <!-- Cookie Consent Popup -->
 <style>
-#cookie-overlay{position:fixed;inset:0;z-index:99996;background:rgba(2,18,29,0.55);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center;padding:24px}
+#cookie-overlay{position:fixed;inset:0;z-index:99996;background:rgba(2,18,29,0.5);backdrop-filter:blur(5px);display:none;align-items:flex-end;justify-content:center;padding:24px}
 #cookie-overlay.show{display:flex}
 @media(min-width:640px){#cookie-overlay{align-items:center}}
 
-#cookie-card{position:relative;max-width:460px;width:100%;background:linear-gradient(160deg,#0a1c2b,#02121d);border:1px solid rgba(31,185,230,0.25);border-radius:20px;padding:32px 30px 28px;box-shadow:0 24px 70px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.03);font-family:'Poppins',sans-serif;overflow:hidden;transform:translateY(24px) scale(.97);opacity:0;transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .42s ease}
+#cookie-card{position:relative;max-width:460px;width:100%;background:#ffffff;border:1px solid rgba(31,185,230,0.18);border-radius:20px;padding:32px 30px 28px;box-shadow:0 24px 70px rgba(2,18,29,0.35),0 0 0 1px rgba(2,18,29,0.03);font-family:'Poppins',sans-serif;overflow:hidden;transform:translateY(24px) scale(.97);opacity:0;transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .42s ease}
 #cookie-overlay.show #cookie-card{transform:translateY(0) scale(1);opacity:1}
 
-#cookie-glow{position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:340px;height:200px;background:radial-gradient(ellipse,rgba(31,185,230,0.22),transparent 70%);pointer-events:none}
+#cookie-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:380px;height:220px;background:radial-gradient(ellipse,rgba(31,185,230,0.35),transparent 70%);pointer-events:none}
 
-#cookie-icon{width:46px;height:46px;border-radius:13px;background:rgba(31,185,230,0.1);border:1px solid rgba(31,185,230,0.25);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;position:relative}
+#cookie-icon{position:relative;width:46px;height:46px;border-radius:13px;background:rgba(31,185,230,0.1);border:1px solid rgba(31,185,230,0.22);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;box-shadow:0 4px 16px rgba(31,185,230,0.15)}
 
-#cookie-card h3{position:relative;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.3px;margin-bottom:10px;line-height:1.3}
-#cookie-card p{position:relative;font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:24px}
-#cookie-card p a{color:#1fb9e6;text-decoration:none;font-weight:600}
+#cookie-card h3{position:relative;font-size:18px;font-weight:700;color:#0a1c2b;letter-spacing:-.3px;margin-bottom:10px;line-height:1.3}
+#cookie-card p{position:relative;font-size:13.5px;color:#5b6b78;line-height:1.7;margin-bottom:24px}
+#cookie-card p a{color:#0a8fc4;text-decoration:none;font-weight:600}
 #cookie-card p a:hover{text-decoration:underline}
 
 #cookie-btns{position:relative;display:flex;gap:10px}
 #cookie-accept,#cookie-decline{flex:1;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:700;padding:13px 18px;border-radius:11px;cursor:pointer;border:none;transition:all .2s}
-#cookie-accept{background:#1fb9e6;color:#02121d;box-shadow:0 4px 20px rgba(31,185,230,0.3)}
-#cookie-accept:hover{background:#2dcfff;transform:translateY(-1px);box-shadow:0 6px 24px rgba(31,185,230,0.4)}
-#cookie-decline{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.12)}
-#cookie-decline:hover{background:rgba(255,255,255,0.09);color:#fff}
+#cookie-accept{background:#1fb9e6;color:#ffffff;box-shadow:0 6px 20px rgba(31,185,230,0.32)}
+#cookie-accept:hover{background:#0fa3d1;transform:translateY(-1px);box-shadow:0 8px 26px rgba(31,185,230,0.42)}
+#cookie-decline{background:#f4f7f9;color:#5b6b78;border:1px solid #e4ebef}
+#cookie-decline:hover{background:#eaf0f3;color:#0a1c2b;border-color:#d6e0e5}
 
 @media(max-width:480px){#cookie-card{padding:26px 22px 22px}}
 </style>
@@ -713,7 +713,6 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 
   overlay.addEventListener('click', function(e){
     if (e.target === overlay) {
-      // Treat backdrop click as implicit decline-for-now, ask again next visit
       overlay.classList.remove('show');
     }
   });
