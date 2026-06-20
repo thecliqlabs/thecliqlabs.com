@@ -22,6 +22,7 @@ const PRICE_MAP = {
 function stripeRequest(path, method, formData) {
   return new Promise((resolve, reject) => {
     const body = formData ? querystring.stringify(formData) : '';
+    console.log('[Stripe Request]', method, path);
     const req = https.request({
       hostname: 'api.stripe.com',
       path: path,
@@ -35,15 +36,20 @@ function stripeRequest(path, method, formData) {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
+        console.log('[Stripe Response]', res.statusCode, data.substring(0, 500));
         try {
           const parsed = JSON.parse(data);
           resolve(parsed);
         } catch (e) {
+          console.error('[Stripe Parse Error]', e.message, 'Raw data:', data.substring(0, 300));
           reject(e);
         }
       });
     });
-    req.on('error', reject);
+    req.on('error', e => {
+      console.error('[Stripe Request Error]', e.message);
+      reject(e);
+    });
     if (body) req.write(body);
     req.end();
   });
@@ -96,27 +102,36 @@ const server = http.createServer(async (req, res) => {
     req.on('data', c => body += c);
     req.on('end', async () => {
       try {
+        console.log('[checkout/init] body received:', body.substring(0, 200));
         const { plan, name, email, phone } = JSON.parse(body);
         const priceId = PRICE_MAP[plan];
+        console.log('[checkout/init] plan:', plan, 'priceId:', priceId);
         if (!priceId) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'Unknown plan' }));
           return;
         }
         const customer = await getOrCreateCustomer(email, name, phone);
+        console.log('[checkout/init] customer result:', JSON.stringify(customer).substring(0, 300));
         if (!customer.id) {
           res.writeHead(500, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'Could not create customer', detail: customer }));
           return;
         }
         const setupIntent = await createSetupIntent(customer.id);
+        console.log('[checkout/init] setupIntent result:', JSON.stringify(setupIntent).substring(0, 300));
+        if (!setupIntent.client_secret) {
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Could not create setup intent', detail: setupIntent }));
+          return;
+        }
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
           client_secret: setupIntent.client_secret,
           customer_id: customer.id
         }));
       } catch (e) {
-        console.error('checkout/init error:', e.message);
+        console.error('[checkout/init] EXCEPTION:', e.message, e.stack);
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: e.message }));
       }
@@ -131,13 +146,15 @@ const server = http.createServer(async (req, res) => {
     req.on('data', c => body += c);
     req.on('end', async () => {
       try {
+        console.log('[checkout/subscribe] body received:', body.substring(0, 300));
         const { plan, customer_id, payment_method_id } = JSON.parse(body);
         const priceId = PRICE_MAP[plan];
         const sub = await createSubscription(customer_id, priceId, payment_method_id);
+        console.log('[checkout/subscribe] subscription result:', JSON.stringify(sub).substring(0, 400));
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ subscription: sub }));
       } catch (e) {
-        console.error('checkout/subscribe error:', e.message);
+        console.error('[checkout/subscribe] EXCEPTION:', e.message, e.stack);
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: e.message }));
       }
