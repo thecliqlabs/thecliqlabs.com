@@ -14,80 +14,82 @@
 <script src="https://js.stripe.com/v3/"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',sans-serif;background:#f7f9fa;color:#0a1c2b}
+body{font-family:'Poppins',sans-serif;background:#f4f7f9;color:#0a1c2b}
 a{text-decoration:none;color:inherit}
 
-/* TOP BAR */
-.topbar{background:#02121d;padding:16px 5%;display:flex;align-items:center;justify-content:space-between}
-.topbar-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff}
+.topbar{background:#02121d;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.topbar::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:160px;background:radial-gradient(ellipse,rgba(31,185,230,0.18),transparent 70%);pointer-events:none}
+.topbar-logo{position:relative;display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff}
 .topbar-logo svg{animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.topbar-back{font-size:13px;font-weight:600;color:rgba(255,255,255,0.65);transition:color .2s}
+.topbar-back{position:relative;font-size:13px;font-weight:600;color:rgba(255,255,255,0.65);transition:color .2s;display:flex;align-items:center;gap:6px}
 .topbar-back:hover{color:#1fb9e6}
 
-/* CHECKOUT GRID */
-.checkout-wrap{max-width:1080px;margin:0 auto;padding:48px 5% 24px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:32px;align-items:start}
+.checkout-wrap{max-width:1100px;margin:0 auto;padding:52px 5% 24px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:36px;align-items:start}
 @media(max-width:860px){.checkout-wrap{grid-template-columns:1fr;padding:32px 5% 16px}}
 
-/* FORM CARD */
-.form-card{background:#fff;border-radius:18px;border:1px solid #e8edf0;padding:32px;box-shadow:0 4px 24px rgba(2,18,29,0.05)}
-.form-title{font-size:13px;font-weight:700;color:#1fb9e6;text-align:center;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.form-sub{font-size:20px;font-weight:700;text-align:center;color:#0a1c2b;margin-bottom:26px}
+.form-card{background:#fff;border-radius:20px;border:1px solid #e8edf0;padding:36px;box-shadow:0 8px 32px rgba(2,18,29,0.06)}
+.form-eyebrow{font-size:12px;font-weight:700;color:#1fb9e6;text-align:center;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
+.form-title{font-size:22px;font-weight:800;text-align:center;color:#0a1c2b;margin-bottom:28px;letter-spacing:-.4px}
 
-.field-group{display:flex;flex-direction:column;gap:14px;margin-bottom:22px}
-.field{position:relative}
-.field input{width:100%;padding:14px 16px;border:1.5px solid #e2e8ec;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;color:#0a1c2b;outline:none;transition:border-color .2s}
-.field input:focus{border-color:#1fb9e6}
+.field-group{display:flex;flex-direction:column;gap:14px;margin-bottom:8px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.field-row{grid-template-columns:1fr}}
+.field input{width:100%;padding:14px 16px;border:1.5px solid #e2e8ec;border-radius:11px;font-size:14px;font-family:'Poppins',sans-serif;color:#0a1c2b;outline:none;transition:border-color .2s,box-shadow .2s}
+.field input:focus{border-color:#1fb9e6;box-shadow:0 0 0 3px rgba(31,185,230,0.1)}
 .field input::placeholder{color:#9aa7af}
 
-.section-label{font-size:11px;font-weight:700;color:#7a8a93;text-transform:uppercase;letter-spacing:.8px;margin:24px 0 12px}
+.section-label{font-size:11px;font-weight:700;color:#7a8a93;text-transform:uppercase;letter-spacing:.8px;margin:26px 0 14px}
 
-.order-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:14px 0;border-bottom:1px solid #f0f3f5;font-size:14px}
-.order-row .item-name{font-weight:600;color:#0a1c2b}
+.summary-card{background:#f8fafb;border-radius:14px;padding:18px 20px;margin-bottom:4px}
+.order-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid #e8edf0;font-size:14px}
+.order-row .item-name{font-weight:700;color:#0a1c2b}
 .order-row .item-sub{font-size:12px;color:#8a98a1;margin-top:2px}
-.order-row .item-price{font-weight:700;color:#0a1c2b;text-align:right}
+.order-row .item-price{font-weight:700;color:#0a1c2b;text-align:right;white-space:nowrap}
+.order-total{display:flex;justify-content:space-between;align-items:center}
+.order-total .label{font-weight:700;color:#0a1c2b;font-size:14px}
+.order-total .amount{font-weight:800;font-size:22px;color:#1fb9e6}
 
-.order-total{display:flex;justify-content:space-between;align-items:center;padding:16px 0 4px;font-size:15px}
-.order-total .label{font-weight:700;color:#0a1c2b}
-.order-total .amount{font-weight:800;font-size:20px;color:#1fb9e6}
+#payment-element{margin-bottom:8px}
+#card-errors{color:#e54848;font-size:12.5px;margin:10px 0 4px;min-height:16px}
 
-#card-element{padding:14px 16px;border:1.5px solid #e2e8ec;border-radius:10px;background:#fff}
-#card-errors{color:#e54848;font-size:12.5px;margin-top:8px;min-height:16px}
-
-.secure-note{display:flex;align-items:center;gap:6px;font-size:12px;color:#5b9a6f;margin:16px 0 18px}
+.secure-note{display:flex;align-items:center;gap:7px;font-size:12px;color:#5b9a6f;margin:18px 0 20px;font-weight:500}
 .secure-note svg{flex-shrink:0}
 
-.pay-btn{width:100%;background:#1fb9e6;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;padding:16px;border:none;border-radius:12px;cursor:pointer;transition:all .2s;box-shadow:0 6px 20px rgba(31,185,230,0.3)}
-.pay-btn:hover{background:#0fa3d1}
-.pay-btn:disabled{opacity:.6;cursor:not-allowed}
-.fine-print{font-size:11.5px;color:#9aa7af;text-align:center;margin-top:14px;line-height:1.6}
+.pay-btn{width:100%;background:#1fb9e6;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;padding:17px;border:none;border-radius:13px;cursor:pointer;transition:all .2s;box-shadow:0 8px 24px rgba(31,185,230,0.32)}
+.pay-btn:hover{background:#0fa3d1;transform:translateY(-1px);box-shadow:0 10px 28px rgba(31,185,230,0.4)}
+.pay-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.fine-print{font-size:11.5px;color:#9aa7af;text-align:center;margin-top:16px;line-height:1.65}
 .fine-print a{color:#1fb9e6;font-weight:600}
 
-/* SIDE PANEL */
-.side-panel{position:sticky;top:32px}
-.side-badge{display:inline-block;background:rgba(31,185,230,0.1);color:#0a8fc4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:6px 14px;border-radius:999px;margin-bottom:16px}
-.side-panel h2{font-size:26px;font-weight:800;color:#0a1c2b;letter-spacing:-.5px;margin-bottom:14px}
-.side-panel p{font-size:14.5px;color:#5b6b78;line-height:1.75}
+.side-panel{position:sticky;top:32px;background:linear-gradient(160deg,#0a1c2b,#02121d);border-radius:20px;padding:34px 30px;color:#fff;overflow:hidden;position:relative}
+.side-panel::before{content:'';position:absolute;top:-100px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(31,185,230,0.18),transparent 70%);pointer-events:none}
+.side-badge{position:relative;display:inline-block;background:rgba(31,185,230,0.14);color:#7ddff5;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:6px 14px;border-radius:999px;margin-bottom:18px;border:1px solid rgba(31,185,230,0.3)}
+.side-panel h2{position:relative;font-size:27px;font-weight:800;letter-spacing:-.7px;margin-bottom:16px;line-height:1.2}
+.side-panel p{position:relative;font-size:14.5px;color:rgba(255,255,255,0.62);line-height:1.8;margin-bottom:24px}
+.side-features{position:relative;display:flex;flex-direction:column;gap:13px}
+.side-feature{display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,0.85)}
+.side-feature .dot{width:6px;height:6px;border-radius:50%;background:#1fb9e6;flex-shrink:0}
 
-/* VALUE STACK */
-.value-section{background:#02121d;padding:56px 5% 64px;margin-top:48px}
-.value-inner{max-width:760px;margin:0 auto}
-.value-inner h3{font-size:30px;font-weight:800;color:#fff;text-align:center;margin-bottom:36px;letter-spacing:-1px}
-.value-item{display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
-.value-check{width:22px;height:22px;border-radius:50%;background:rgba(31,185,230,0.15);border:1px solid rgba(31,185,230,0.4);color:#1fb9e6;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
-.value-text{flex:1;font-size:14.5px;color:rgba(255,255,255,0.85);line-height:1.6}
-.value-worth{font-size:13px;font-weight:700;color:#1fb9e6;white-space:nowrap;flex-shrink:0}
+.value-section{background:#02121d;padding:60px 5% 70px;margin-top:56px}
+.value-inner{max-width:780px;margin:0 auto}
+.value-eyebrow{font-size:12px;font-weight:700;color:#1fb9e6;text-align:center;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px}
+.value-inner h3{font-size:32px;font-weight:800;color:#fff;text-align:center;margin-bottom:42px;letter-spacing:-1px}
+.value-item{display:flex;align-items:flex-start;gap:16px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.value-check{width:24px;height:24px;border-radius:50%;background:rgba(31,185,230,0.14);border:1px solid rgba(31,185,230,0.4);color:#1fb9e6;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px}
+.value-text{flex:1;font-size:14.5px;color:rgba(255,255,255,0.86);line-height:1.65}
+.value-worth{font-size:13px;font-weight:700;color:#1fb9e6;white-space:nowrap;flex-shrink:0;margin-top:2px}
 
-.value-total{text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1)}
-.value-total .total-label{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:6px}
-.value-total .total-was{font-size:18px;color:rgba(255,255,255,0.4);text-decoration:line-through;margin-bottom:4px}
-.value-total .total-now{font-size:42px;font-weight:900;color:#1fb9e6;letter-spacing:-1px}
+.value-total{text-align:center;margin-top:44px;padding-top:36px;border-top:1px solid rgba(255,255,255,0.1)}
+.value-total .total-label{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:8px}
+.value-total .total-was{font-size:19px;color:rgba(255,255,255,0.4);text-decoration:line-through;margin-bottom:6px}
+.value-total .total-now{font-size:46px;font-weight:900;color:#1fb9e6;letter-spacing:-1.5px}
 .value-total .total-now span{font-size:18px;font-weight:600;color:rgba(255,255,255,0.6)}
 
-.final-cta-btn{display:block;max-width:420px;margin:28px auto 0;background:#1fb9e6;color:#02121d;text-align:center;font-weight:800;font-size:15px;padding:17px;border-radius:12px;border:none;cursor:pointer;width:100%;transition:all .2s}
-.final-cta-btn:hover{background:#2dcfff}
+.final-cta-btn{display:block;max-width:440px;margin:30px auto 0;background:#1fb9e6;color:#02121d;text-align:center;font-weight:800;font-size:15px;padding:18px;border-radius:13px;border:none;cursor:pointer;width:100%;transition:all .2s;box-shadow:0 8px 28px rgba(31,185,230,0.3)}
+.final-cta-btn:hover{background:#2dcfff;transform:translateY(-1px)}
 
-footer{background:#020d16;padding:28px 5%;text-align:center}
+footer{background:#020d16;padding:30px 5%;text-align:center}
 footer p{font-size:12px;color:rgba(255,255,255,0.3)}
 footer a{color:rgba(255,255,255,0.5);margin:0 10px;font-size:12px}
 </style>
@@ -104,35 +106,39 @@ footer a{color:rgba(255,255,255,0.5);margin:0 10px;font-size:12px}
     </svg>
     CliqLabs
   </a>
-  <a href="/pricing" class="topbar-back">Back to Pricing</a>
+  <a href="/pricing" class="topbar-back">← Back to Pricing</a>
 </div>
 
 <div class="checkout-wrap">
   <div class="form-card">
-    <div class="form-title">Let's Get You Started</div>
-    <div class="form-sub">CliqLabs Diamond Plan</div>
+    <div class="form-eyebrow">Let's Get You Started</div>
+    <div class="form-title">CliqLabs Diamond Plan</div>
 
     <div class="field-group">
       <div class="field"><input type="text" id="cust-name" placeholder="Full Name"/></div>
-      <div class="field"><input type="email" id="cust-email" placeholder="Email Address"/></div>
-      <div class="field"><input type="tel" id="cust-phone" placeholder="Phone Number"/></div>
+      <div class="field-row">
+        <div class="field"><input type="email" id="cust-email" placeholder="Email Address"/></div>
+        <div class="field"><input type="tel" id="cust-phone" placeholder="Phone Number"/></div>
+      </div>
     </div>
 
     <div class="section-label">Order Summary</div>
-    <div class="order-row">
-      <div>
-        <div class="item-name">CliqLabs Diamond Subscription</div>
-        <div class="item-sub">Billed monthly, cancel anytime</div>
+    <div class="summary-card">
+      <div class="order-row">
+        <div>
+          <div class="item-name">CliqLabs Diamond Subscription</div>
+          <div class="item-sub">Billed monthly, cancel anytime</div>
+        </div>
+        <div class="item-price">$997.00</div>
       </div>
-      <div class="item-price">$997.00</div>
-    </div>
-    <div class="order-total">
-      <span class="label">Order Total</span>
-      <span class="amount">$997.00/mo</span>
+      <div class="order-total">
+        <span class="label">Order Total</span>
+        <span class="amount">$997.00/mo</span>
+      </div>
     </div>
 
-    <div class="section-label">Card Information</div>
-    <div id="card-element"></div>
+    <div class="section-label">Payment</div>
+    <div id="payment-element"></div>
     <div id="card-errors"></div>
 
     <div class="secure-note">
@@ -147,12 +153,20 @@ footer a{color:rgba(255,255,255,0.5);margin:0 10px;font-size:12px}
   <div class="side-panel">
     <div class="side-badge">Diamond Plan</div>
     <h2>Unlimited Support. Unlimited Scale.</h2>
-    <p>Our Diamond plan gives your agency unlimited 24/7 branded client support, done-for-you onboarding calls every month, and the full agency AI suite, everything you need to run a GoHighLevel agency without the backend headache.</p>
+    <p>Everything you need to run a GoHighLevel agency without the backend headache.</p>
+    <div class="side-features">
+      <div class="side-feature"><span class="dot"></span>24/7 support for unlimited clients</div>
+      <div class="side-feature"><span class="dot"></span>5 done-for-you onboarding calls monthly</div>
+      <div class="side-feature"><span class="dot"></span>Conversation AI + Voice AI included</div>
+      <div class="side-feature"><span class="dot"></span>Full GHL theme builder access</div>
+      <div class="side-feature"><span class="dot"></span>No contracts, cancel anytime</div>
+    </div>
   </div>
 </div>
 
 <section class="value-section">
   <div class="value-inner">
+    <div class="value-eyebrow">What's Included</div>
     <h3>Here's Everything You Get</h3>
 
     <div class="value-item">
@@ -221,17 +235,42 @@ footer a{color:rgba(255,255,255,0.5);margin:0 10px;font-size:12px}
 
 <script>
 const stripe = Stripe('pk_test_51SRglj2Ke4aqimc27Cthu023eUEF54onv66SgAYQn9ZGIRo5MW0vxKK1NexU1d6T6eV7q8TIkB8FzqezCE9NRf1I00hrKAsRPX');
-const elements = stripe.elements();
-const cardElement = elements.create('card', {
-  style: { base: { fontSize: '14px', fontFamily: 'Poppins, sans-serif', color: '#0a1c2b', '::placeholder': { color: '#9aa7af' } } }
-});
-cardElement.mount('#card-element');
+let elements;
+let clientSecret;
 
-cardElement.on('change', (event) => {
-  document.getElementById('card-errors').textContent = event.error ? event.error.message : '';
-});
+async function initCheckout() {
+  const res = await fetch('/api/checkout/init', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ plan: 'diamond', name: '', email: 'pending@pending.com', phone: '' })
+  });
+  const data = await res.json();
+  if (data.error) {
+    document.getElementById('card-errors').textContent = data.error;
+    return;
+  }
+  clientSecret = data.client_secret;
+  subscriptionId = data.subscription_id;
+  elements = stripe.elements({
+    clientSecret,
+    appearance: {
+      theme: 'stripe',
+      variables: {
+        colorPrimary: '#1fb9e6',
+        fontFamily: 'Poppins, sans-serif',
+        borderRadius: '11px'
+      }
+    }
+  });
+  const paymentElement = elements.create('payment');
+  paymentElement.mount('#payment-element');
+}
+
+initCheckout();
 
 const payBtn = document.getElementById('pay-btn');
+
+let subscriptionId;
 
 payBtn.addEventListener('click', async () => {
   const name = document.getElementById('cust-name').value.trim();
@@ -246,54 +285,29 @@ payBtn.addEventListener('click', async () => {
   payBtn.disabled = true;
   payBtn.textContent = 'Processing...';
 
+  // Save the visitor's real details to the customer record before confirming payment
   try {
-    const initRes = await fetch('/api/checkout/init', {
+    await fetch('/api/checkout/update-customer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan: 'diamond', name, email, phone })
+      body: JSON.stringify({ subscription_id: subscriptionId, name, email, phone })
     });
-    const initData = await initRes.json();
-
-    if (initData.error) {
-      document.getElementById('card-errors').textContent = initData.error;
-      payBtn.disabled = false;
-      payBtn.textContent = 'Complete Order, $997/mo';
-      return;
-    }
-
-    const { setupIntent, error } = await stripe.confirmCardSetup(initData.client_secret, {
-      payment_method: { card: cardElement, billing_details: { name, email, phone } }
-    });
-
-    if (error) {
-      document.getElementById('card-errors').textContent = error.message;
-      payBtn.disabled = false;
-      payBtn.textContent = 'Complete Order, $997/mo';
-      return;
-    }
-
-    const subRes = await fetch('/api/checkout/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        plan: 'diamond',
-        customer_id: initData.customer_id,
-        payment_method_id: setupIntent.payment_method
-      })
-    });
-    const subData = await subRes.json();
-
-    if (subData.error) {
-      document.getElementById('card-errors').textContent = subData.error;
-      payBtn.disabled = false;
-      payBtn.textContent = 'Complete Order, $997/mo';
-      return;
-    }
-
-    window.location.href = '/checkout-success?plan=diamond';
-
   } catch (e) {
-    document.getElementById('card-errors').textContent = 'Something went wrong. Please try again or contact support.';
+    console.error('Could not update customer details:', e);
+  }
+
+  const { error } = await stripe.confirmPayment({
+    elements,
+    confirmParams: {
+      return_url: `https://thecliqlabs.com/checkout-success?plan=diamond`,
+      payment_method_data: {
+        billing_details: { name, email, phone }
+      }
+    }
+  });
+
+  if (error) {
+    document.getElementById('card-errors').textContent = error.message;
     payBtn.disabled = false;
     payBtn.textContent = 'Complete Order, $997/mo';
   }
