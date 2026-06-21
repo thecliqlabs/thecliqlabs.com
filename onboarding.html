@@ -642,12 +642,8 @@ reveals.forEach(r=>obs.observe(r));
 <!-- GA4 Conversion Tracking -->
 <script>
 (function(){
-  function hasConsent(){
-    return localStorage.getItem('cliq_cookie_consent') === 'accepted';
-  }
-
   function fireEvent(name, params){
-    if (typeof gtag === 'function' && hasConsent()) {
+    if (typeof gtag === 'function') {
       gtag('event', name, params || {});
     }
   }
