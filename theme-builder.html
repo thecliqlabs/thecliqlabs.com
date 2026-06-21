@@ -254,8 +254,6 @@ footer{background:#020d16;border-top:1px solid rgba(255,255,255,0.06);padding:36
 @keyframes fomoLive{0%,100%{opacity:1}50%{opacity:.3}}
 .fomo-close{position:absolute;top:8px;right:10px;font-size:14px;color:#ccc;cursor:pointer;line-height:1;font-family:sans-serif;background:none;border:none;padding:0}
 .fomo-close:hover{color:#999}
-.fomo-progress{position:absolute;bottom:0;left:0;height:3px;background:#1fb9e6;border-radius:0 0 0 14px;width:100%;transform-origin:left;animation:fomoBar var(--fomo-dur,8s) linear forwards}
-@keyframes fomoBar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 </style></head>
 <body>
 
@@ -645,7 +643,7 @@ toggle.addEventListener('click',()=>{
   }
 });
 </script>
-<div id="cliq-fomo"><div class="fomo-card"><button class="fomo-close" onclick="document.getElementById('cliq-fomo').classList.remove('show')">&times;</button><div class="fomo-icon" id="fomoIcon">🎉</div><div class="fomo-body"><div class="fomo-name" id="fomoName">Marcus T.</div><div class="fomo-msg" id="fomoMsg">just joined the VIP Plan</div><div class="fomo-time" id="fomoTime">2 minutes ago · Texas, US</div></div><div class="fomo-progress" id="fomoProgress"></div></div></div><script>
+<div id="cliq-fomo"><div class="fomo-card"><button class="fomo-close" onclick="document.getElementById('cliq-fomo').classList.remove('show')">&times;</button><div class="fomo-icon" id="fomoIcon">🎉</div><div class="fomo-body"><div class="fomo-name" id="fomoName">Marcus T.</div><div class="fomo-msg" id="fomoMsg">just joined the VIP Plan</div><div class="fomo-time" id="fomoTime">2 minutes ago · Texas, US</div></div></div></div><script>
 (function(){
   var n=[    {icon:"🎉",name:"Marcus T.",msg:"just joined the <strong>VIP Plan</strong>",time:"2 minutes ago",loc:"Texas, US"},
     {icon:"🚀",name:"Sarah K.",msg:"just joined the <strong>VIP Plan</strong>",time:"5 minutes ago",loc:"Florida, US"},
@@ -848,7 +846,7 @@ toggle.addEventListener('click',()=>{
     {icon:"🔥",name:"Silvanus I.",msg:"just joined the <strong>Core Plan</strong>",time:"28 minutes ago",loc:"Sarajevo, BA"},
     {icon:"⚡",name:"Theodolite J.",msg:"just upgraded to <strong>Diamond Plan</strong>",time:"31 minutes ago",loc:"Skopje, MK"}];
   for(var i=n.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=n[i];n[i]=n[j];n[j]=t;}
-  var el=document.getElementById('cliq-fomo'),D=8000,idx=0;
+  var el=document.getElementById('cliq-fomo'),D=30000,idx=0;
   function show(){
     if(idx>=n.length)return;
     var x=n[idx];idx++;
@@ -856,13 +854,10 @@ toggle.addEventListener('click',()=>{
     document.getElementById('fomoName').textContent=x.name;
     document.getElementById('fomoMsg').innerHTML=x.msg;
     document.getElementById('fomoTime').innerHTML=x.time+' &nbsp;&middot;&nbsp; '+x.loc;
-    var p=document.getElementById('fomoProgress');
-    p.style.animation='none';p.style.setProperty('--fomo-dur',D+'ms');
-    p.offsetHeight;p.style.animation='';
     el.classList.remove('hide');el.classList.add('show');
     setTimeout(function(){el.classList.add('hide');el.classList.remove('show');},D);
   }
-  setTimeout(function(){show();setInterval(show,D+5000);},5000);
+  setTimeout(function(){show();setInterval(show,D+30000);},30000);
 })();
 </script>
 
@@ -871,12 +866,8 @@ toggle.addEventListener('click',()=>{
 <!-- GA4 Conversion Tracking -->
 <script>
 (function(){
-  function hasConsent(){
-    return localStorage.getItem('cliq_cookie_consent') === 'accepted';
-  }
-
   function fireEvent(name, params){
-    if (typeof gtag === 'function' && hasConsent()) {
+    if (typeof gtag === 'function') {
       gtag('event', name, params || {});
     }
   }
