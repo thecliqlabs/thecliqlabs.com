@@ -38,29 +38,29 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Poppins',sans-serif;background:#02121d;color:#fff;overflow-x:hidden;min-height:100vh}
+body{background:#fff;font-family:'Poppins',sans-serif;background:#f8fbff;color:#fff;overflow-x:hidden;min-height:100vh}
 a{text-decoration:none;color:inherit}
 img{max-width:100%}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(2,10,20,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08)}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:900;letter-spacing:-.5px}
 .nav-logo svg{animation:spin 12s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
-.btn-back{font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);transition:all .2s}
+.btn-back{font-size:13px;font-weight:600;color:rgba(0,0,0,0.6);padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);transition:all .2s}
 .btn-back:hover{color:#fff;border-color:rgba(255,255,255,0.25)}
 .btn-cta{font-size:13px;font-weight:700;color:#02121d;padding:9px 22px;border-radius:999px;background:#1fb9e6;box-shadow:0 0 20px rgba(31,185,230,0.3);transition:all .2s}
 .btn-cta:hover{background:#2dcfff;transform:translateY(-1px)}
 
 /* HERO BANNER */
-.hero-banner{background:linear-gradient(135deg,#02121d 0%,#041e2e 100%);padding:100px 5% 40px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06)}
+.hero-banner{background:linear-gradient(135deg,#f0f7ff 0%,#e8f4fd 100%);padding:100px 5% 40px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06)}
 .hero-banner::before{content:'';position:absolute;width:700px;height:350px;border-radius:50%;background:radial-gradient(ellipse,rgba(31,185,230,0.1),transparent 70%);top:0;left:50%;transform:translateX(-50%);pointer-events:none}
 .step-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(31,185,230,0.08);border:1px solid rgba(31,185,230,0.22);color:#7ddff5;font-size:11px;font-weight:700;padding:5px 16px;border-radius:999px;margin-bottom:16px;letter-spacing:.8px;text-transform:uppercase;position:relative}
 .step-dot{width:6px;height:6px;border-radius:50%;background:#1fb9e6;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 .hero-banner h1{font-size:clamp(26px,4vw,48px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:12px;position:relative}
 .hero-banner h1 span{color:#1fb9e6}
-.hero-banner p{font-size:15px;color:rgba(255,255,255,0.5);max-width:520px;margin:0 auto;line-height:1.75;position:relative}
+.hero-banner p{font-size:15px;color:rgba(0,0,0,0.5);max-width:520px;margin:0 auto;line-height:1.75;position:relative}
 
 /* TRUST ROW */
 .trust-row{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:20px 5%;background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.05)}
@@ -105,7 +105,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .review{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;transition:border-color .2s}
 .review:hover{border-color:rgba(31,185,230,0.2)}
 .stars{color:#f5b800;font-size:11px;letter-spacing:2px;margin-bottom:10px}
-.review q{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8;display:block;margin-bottom:14px;quotes:none}
+.review q{font-size:13px;color:rgba(0,0,0,0.6);line-height:1.8;display:block;margin-bottom:14px;quotes:none}
 .reviewer{display:flex;align-items:center;gap:10px}
 .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1fb9e6,#0a5f7a);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;color:#fff;flex-shrink:0}
 .reviewer-name{font-size:13px;font-weight:700}
@@ -121,15 +121,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .faq-section{background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,0.06);padding:64px 5%}
 .faq-inner{max-width:700px;margin:0 auto}
 .faq-title{font-size:clamp(22px,3vw,34px);font-weight:900;letter-spacing:-1px;text-align:center;margin-bottom:36px}
-.faq-item{border-bottom:1px solid rgba(255,255,255,0.07);padding:18px 0}
+.faq-item{border-bottom:1px solid rgba(0,0,0,0.08);padding:18px 0}
 .faq-q{font-size:14px;font-weight:700;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .faq-q::after{content:'+';font-size:22px;color:#1fb9e6;flex-shrink:0;transition:transform .3s;font-weight:400}
 .faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;max-height:0;overflow:hidden;transition:max-height .35s,padding .35s}
+.faq-a{font-size:13px;color:rgba(0,0,0,0.5);line-height:1.85;max-height:0;overflow:hidden;transition:max-height .35s,padding .35s}
 .faq-item.open .faq-a{max-height:200px;padding-top:12px}
 
 /* FOOTER */
-footer{background:#020d16;border-top:1px solid rgba(255,255,255,0.06);padding:32px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer{background:#ffffff;border-top:1px solid rgba(255,255,255,0.06);padding:32px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .footer-logo{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:800}
 .footer-logo svg{animation:spin 12s linear infinite}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap}
