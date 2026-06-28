@@ -696,7 +696,7 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
   <div class="section-inner reveal">
     <span class="section-label">Visual Proof</span>
     <h2 class="section-title">What GoHighLevel Looks Like After CliqLabs</h2>
-    <p class="section-sub">Themes switch automatically every 2 seconds — this is what your clients see when they log in.</p>
+    <div style="margin-bottom:32px"></div>
     <div class="img-frame reveal">
       <div class="img-glow"></div>
       <div class="img-ring">
@@ -1687,6 +1687,40 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 </style>
 </head>
 <body>
+
+
+<script>
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>item.classList.toggle('open'));
+});
+
+// REVEAL - show all immediately
+window.addEventListener('load',function(){
+  document.querySelectorAll('.reveal').forEach(r=>r.classList.add('visible'));
+});
+document.querySelectorAll('.reveal').forEach(r=>r.classList.add('visible'));
+
+// SHOWCASE AUTO-SWITCH
+const ssImgs=document.querySelectorAll('.ss');
+const dots=document.querySelectorAll('.tdot');
+let ssActive=0;
+function sw(i){
+  ssImgs.forEach((img,idx)=>img.classList.toggle('active',idx===i));
+  dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+  ssActive=i;
+}
+dots.forEach((d,i)=>d.addEventListener('click',()=>sw(i)));
+if(ssImgs.length>0) setInterval(()=>sw((ssActive+1)%ssImgs.length),2000);
+
+// LIVE DEMO THEME SWITCHER
+function setTheme(theme){
+  const preview=document.getElementById('demoPreview');
+  if(preview) preview.className='demo-preview theme-'+theme;
+  document.querySelectorAll('.demo-tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
 
 </body>
 </html>
