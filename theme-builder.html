@@ -455,6 +455,22 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 .reveal{opacity:1;transform:none}
 .reveal.visible{opacity:1;transform:none}
 
+
+/* SHOWCASE CARD (from homepage) */
+.img-frame{position:relative;max-width:900px;margin:0 auto}
+.img-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:80%;height:60%;background:conic-gradient(from 200deg at 50% 50%,rgba(31,185,230,0.2),rgba(139,92,246,0.15),transparent 60%);filter:blur(70px);pointer-events:none;z-index:0}
+.img-ring{position:relative;z-index:1;border-radius:16px;padding:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(0,0,0,0.1)}
+.beam-overlay{position:absolute;inset:0;border-radius:16px;border:2px solid transparent;mask:linear-gradient(transparent,transparent),linear-gradient(white,white);-webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);mask-clip:padding-box,border-box;-webkit-mask-clip:padding-box,border-box;mask-composite:intersect;-webkit-mask-composite:destination-in;pointer-events:none;z-index:10}
+.beam-overlay::after{content:'';position:absolute;width:200px;aspect-ratio:1;background:linear-gradient(to left,#1fb9e6,#8b5cf6,transparent);offset-path:rect(0 auto auto 0 round 16px);offset-anchor:90% 50%;offset-distance:0%;animation:beam 8s linear infinite}
+@keyframes beam{to{offset-distance:100%}}
+.img-inner{border-radius:10px;overflow:hidden;background:#0a0a0a;line-height:0;position:relative;min-height:300px;display:flex;align-items:center;justify-content:center}
+.ss{display:none;width:100%}
+.ss.active{display:block}
+.img-fade{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#f8fbff,transparent);pointer-events:none;z-index:2}
+.theme-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.tdot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,0.15);cursor:pointer;transition:all .3s}
+.tdot.active{width:28px;background:#1fb9e6;border-radius:999px}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .what-is-grid,.tech-grid{grid-template-columns:1fr}
@@ -679,29 +695,26 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 <section class="before-after">
   <div class="section-inner reveal">
     <span class="section-label">Visual Proof</span>
-    <h2 class="section-title">What GoHighLevel Looks Like Before and After CliqLabs</h2>
-    <p class="section-sub">Select a theme to see the transformation.</p>
-    <div class="ba-tabs">
-      <div class="ba-tab active" onclick="showBA('neon-lime')">Neon Lime</div>
-      <div class="ba-tab" onclick="showBA('columbia-blue')">Columbia Blue</div>
-      <div class="ba-tab" onclick="showBA('dark-cherry')">Dark Cherry</div>
-      <div class="ba-tab" onclick="showBA('obsidian')">Obsidian</div>
+    <h2 class="section-title">What GoHighLevel Looks Like After CliqLabs</h2>
+    <p class="section-sub">Themes switch automatically every 2 seconds — this is what your clients see when they log in.</p>
+    <div class="img-frame reveal">
+      <div class="img-glow"></div>
+      <div class="img-ring">
+        <div class="beam-overlay"></div>
+        <div class="img-inner">
+          <img src="/screenshots/theme-dark-cherry.png" class="ss active" alt="GoHighLevel white label theme builder - Dark Cherry theme by CliqLabs"/>
+          <img src="/screenshots/theme-obsidian.png" class="ss" alt="GoHighLevel GHL theme builder - Obsidian theme by CliqLabs"/>
+          <img src="/screenshots/theme-columbia-blue.png" class="ss" alt="GoHighLevel GHL theme builder - Columbia Blue theme by CliqLabs"/>
+          <img src="/assets/theme-neon-lime.png" class="ss" alt="GoHighLevel GHL theme builder - Neon Lime theme by CliqLabs"/>
+          <div class="img-fade"></div>
+        </div>
+      </div>
     </div>
-    <div id="ba-neon-lime" class="ba-preview active">
-      <img src="/assets/theme-neon-lime.png" alt="GoHighLevel dashboard with Neon Lime theme applied by CliqLabs HighLevel Theme Builder" loading="lazy" style="width:100%;border-radius:12px"/>
-      <div class="ba-labels"><span class="ba-label after">After: Neon Lime — Bold, High-Energy</span></div>
-    </div>
-    <div id="ba-columbia-blue" class="ba-preview">
-      <img src="/assets/theme-columbia-blue.png" alt="GoHighLevel dashboard with Columbia Blue theme applied by CliqLabs HighLevel Theme Builder" loading="lazy" style="width:100%;border-radius:12px"/>
-      <div class="ba-labels"><span class="ba-label after">After: Columbia Blue — Clean, Corporate</span></div>
-    </div>
-    <div id="ba-dark-cherry" class="ba-preview">
-      <img src="/assets/theme-builder-panel.png" alt="GoHighLevel dashboard with Dark Cherry theme applied by CliqLabs HighLevel Theme Builder" loading="lazy" style="width:100%;border-radius:12px"/>
-      <div class="ba-labels"><span class="ba-label after">After: Dark Cherry — Bold, Professional</span></div>
-    </div>
-    <div id="ba-obsidian" class="ba-preview">
-      <img src="/assets/theme-builder-panel.png" alt="GoHighLevel dashboard with Obsidian theme applied by CliqLabs HighLevel Theme Builder" loading="lazy" style="width:100%;border-radius:12px"/>
-      <div class="ba-labels"><span class="ba-label after">After: Obsidian — Sleek, Premium Dark</span></div>
+    <div class="theme-dots">
+      <div class="tdot active" data-i="0"></div>
+      <div class="tdot" data-i="1"></div>
+      <div class="tdot" data-i="2"></div>
+      <div class="tdot" data-i="3"></div>
     </div>
     <div style="text-align:center;margin-top:32px">
       <a href="https://buy.stripe.com/aFafZa3mZeeX8Qaazx1ck0a" target="_blank" class="cta-btn">Get Theme Builder →</a>
@@ -1640,6 +1653,22 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 /* REVEAL */
 .reveal{opacity:1;transform:none}
 .reveal.visible{opacity:1;transform:none}
+
+
+/* SHOWCASE CARD (from homepage) */
+.img-frame{position:relative;max-width:900px;margin:0 auto}
+.img-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:80%;height:60%;background:conic-gradient(from 200deg at 50% 50%,rgba(31,185,230,0.2),rgba(139,92,246,0.15),transparent 60%);filter:blur(70px);pointer-events:none;z-index:0}
+.img-ring{position:relative;z-index:1;border-radius:16px;padding:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(0,0,0,0.1)}
+.beam-overlay{position:absolute;inset:0;border-radius:16px;border:2px solid transparent;mask:linear-gradient(transparent,transparent),linear-gradient(white,white);-webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);mask-clip:padding-box,border-box;-webkit-mask-clip:padding-box,border-box;mask-composite:intersect;-webkit-mask-composite:destination-in;pointer-events:none;z-index:10}
+.beam-overlay::after{content:'';position:absolute;width:200px;aspect-ratio:1;background:linear-gradient(to left,#1fb9e6,#8b5cf6,transparent);offset-path:rect(0 auto auto 0 round 16px);offset-anchor:90% 50%;offset-distance:0%;animation:beam 8s linear infinite}
+@keyframes beam{to{offset-distance:100%}}
+.img-inner{border-radius:10px;overflow:hidden;background:#0a0a0a;line-height:0;position:relative;min-height:300px;display:flex;align-items:center;justify-content:center}
+.ss{display:none;width:100%}
+.ss.active{display:block}
+.img-fade{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#f8fbff,transparent);pointer-events:none;z-index:2}
+.theme-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.tdot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,0.15);cursor:pointer;transition:all .3s}
+.tdot.active{width:28px;background:#1fb9e6;border-radius:999px}
 
 /* RESPONSIVE */
 @media(max-width:900px){
