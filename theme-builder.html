@@ -1202,5 +1202,35 @@ gtag('config','G-S2MQVC7VEZ');
 <script src="/clio-widget.js"></script>
 
 
+
+<script>
+// SHOWCASE AUTO-SWITCH
+(function(){
+  var ssImgs=document.querySelectorAll('.ss');
+  var dots=document.querySelectorAll('.tdot');
+  var ssActive=0;
+  function sw(i){
+    ssImgs.forEach(function(img,idx){img.classList.toggle('active',idx===i);});
+    dots.forEach(function(d,idx){d.classList.toggle('active',idx===i);});
+    ssActive=i;
+  }
+  dots.forEach(function(d,i){d.addEventListener('click',function(){sw(i);});});
+  if(ssImgs.length>0) setInterval(function(){sw((ssActive+1)%ssImgs.length);},2000);
+  // FAQ
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.querySelector('.faq-q').addEventListener('click',function(){item.classList.toggle('open');});
+  });
+  // Live demo
+  window.setTheme=function(theme){
+    var preview=document.getElementById('demoPreview');
+    if(preview) preview.className='demo-preview theme-'+theme;
+    document.querySelectorAll('.demo-tab').forEach(function(t){t.classList.remove('active');});
+    event.target.classList.add('active');
+  };
+  // Reveal
+  document.querySelectorAll('.reveal').forEach(function(r){r.classList.add('visible');});
+})();
+</script>
+
 </body>
 </html>
