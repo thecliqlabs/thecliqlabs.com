@@ -490,6 +490,67 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 </head>
 <body>
 
+<!-- FOMO WIDGET -->
+<style>
+#cliq-fomo{position:fixed;bottom:24px;left:24px;z-index:9999;max-width:320px;width:calc(100vw - 48px);transform:translateY(120px);opacity:0;transition:transform .5s cubic-bezier(.175,.885,.32,1.275),opacity .5s ease;pointer-events:none}
+#cliq-fomo.show{transform:translateY(0);opacity:1;pointer-events:all}
+#cliq-fomo.hide{transform:translateY(120px);opacity:0}
+.fomo-card{background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.1);border-left:4px solid #1fb9e6;position:relative;cursor:pointer}
+.fomo-icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1fb9e6,#0a7fa3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.fomo-body{flex:1;min-width:0}
+.fomo-name{font-size:13px;font-weight:800;color:#111;font-family:Poppins,sans-serif;margin-bottom:2px}
+.fomo-msg{font-size:12px;color:#555;font-family:Poppins,sans-serif;line-height:1.4}
+.fomo-time{font-size:10px;color:#aaa;font-family:Poppins,sans-serif;margin-top:3px;display:flex;align-items:center;gap:4px}
+.fomo-time::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;animation:fomoLive 1.5s ease-in-out infinite}
+@keyframes fomoLive{0%,100%{opacity:1}50%{opacity:.3}}
+</style>
+<div id="cliq-fomo">
+  <div class="fomo-card">
+    <div class="fomo-icon" id="fomoIcon">🎨</div>
+    <div class="fomo-body">
+      <div class="fomo-name" id="fomoName"></div>
+      <div class="fomo-msg" id="fomoMsg"></div>
+      <div class="fomo-time" id="fomoTime"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  // Only Theme Builder notifications, only USA & UK locations
+  var n=[
+    {icon:"🎨",name:"Marcus T.",msg:"just activated the <strong>HighLevel Theme Builder</strong>",time:"2 minutes ago",loc:"Houston, US"},
+    {icon:"🎨",name:"Sarah K.",msg:"just got the <strong>HighLevel Theme Builder</strong>",time:"5 minutes ago",loc:"London, UK"},
+    {icon:"🎨",name:"Ryan M.",msg:"just activated the <strong>HighLevel Theme Builder</strong>",time:"7 minutes ago",loc:"New York, US"},
+    {icon:"🎨",name:"Tom H.",msg:"just got the <strong>Theme Builder</strong> for his agency",time:"4 minutes ago",loc:"Chicago, US"},
+    {icon:"🎨",name:"Rachel S.",msg:"just activated the <strong>HighLevel Theme Builder</strong>",time:"3 minutes ago",loc:"Seattle, US"},
+    {icon:"🎨",name:"James W.",msg:"just branded his GHL with the <strong>Theme Builder</strong>",time:"6 minutes ago",loc:"Manchester, UK"},
+    {icon:"🎨",name:"Olivia M.",msg:"just activated the <strong>HighLevel Theme Builder</strong>",time:"3 minutes ago",loc:"Dallas, US"},
+    {icon:"🎨",name:"Liam C.",msg:"just got the <strong>Theme Builder</strong> for 12 sub-accounts",time:"8 minutes ago",loc:"Atlanta, US"},
+    {icon:"🎨",name:"Ava H.",msg:"just activated the <strong>HighLevel Theme Builder</strong>",time:"4 minutes ago",loc:"Los Angeles, US"},
+    {icon:"🎨",name:"Mason G.",msg:"just branded his agency with the <strong>Theme Builder</strong>",time:"7 minutes ago",loc:"Austin, US"},
+    {icon:"🎨",name:"Ethan D.",msg:"just got the <strong>HighLevel Theme Builder</strong>",time:"9 minutes ago",loc:"Denver, US"},
+    {icon:"🎨",name:"Luke J.",msg:"just activated the <strong>Theme Builder</strong>",time:"6 minutes ago",loc:"Birmingham, UK"},
+    {icon:"🎨",name:"Natalie F.",msg:"just branded her GHL with the <strong>Theme Builder</strong>",time:"5 minutes ago",loc:"Phoenix, US"},
+    {icon:"🎨",name:"Connor B.",msg:"just got the <strong>HighLevel Theme Builder</strong>",time:"11 minutes ago",loc:"London, UK"},
+    {icon:"🎨",name:"Zoe W.",msg:"just activated the <strong>Theme Builder</strong>",time:"8 minutes ago",loc:"Manchester, UK"}
+  ];
+  for(var i=n.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=n[i];n[i]=n[j];n[j]=t;}
+  var el=document.getElementById('cliq-fomo'),D=9000,idx=0;
+  function show(){
+    if(idx>=n.length)return;
+    var x=n[idx];idx++;
+    document.getElementById('fomoIcon').textContent=x.icon;
+    document.getElementById('fomoName').textContent=x.name;
+    document.getElementById('fomoMsg').innerHTML=x.msg;
+    document.getElementById('fomoTime').textContent=x.time+' · '+x.loc;
+    el.classList.remove('hide');el.classList.add('show');
+    setTimeout(function(){el.classList.remove('show');el.classList.add('hide');},4500);
+  }
+  setTimeout(function(){show();setInterval(show,D);},3000);
+})();
+</script>
+
+
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
