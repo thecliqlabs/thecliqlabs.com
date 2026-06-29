@@ -378,10 +378,11 @@ section{padding:80px 0}
 .tech-section .section-title{color:#fff}
 .tech-section .section-sub{color:rgba(255,255,255,0.6)}
 .tech-section .section-label{color:#1fb9e6}
-.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;align-items:start}
-.tech-items{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.tech-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px}
-.tech-item h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px}
+.tech-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px}
+.tech-items{display:grid;grid-template-columns:1fr 1fr;gap:14px;grid-column:1/-1}
+.tech-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px 24px;display:flex;align-items:flex-start;gap:16px}
+.tech-item h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;white-space:nowrap}
+.tech-item-num{font-size:28px;font-weight:900;color:#1fb9e6;flex-shrink:0;min-width:36px;line-height:1}
 .tech-item p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65}
 .tech-code-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px}
 .tech-code-block h3{font-size:14px;font-weight:700;color:#1fb9e6;margin-bottom:16px}
@@ -847,21 +848,18 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
     <p class="section-sub">Built for transparency. Here is exactly how CliqLabs integrates with GoHighLevel.</p>
     <div class="tech-grid">
       <div class="tech-items">
-        <div class="tech-item">
-          <h3>One Script Tag — No Plugin Required</h3>
-          <p>CliqLabs loads via a single lightweight script tag added to GoHighLevel's Custom Code field. No browser extension, no HighLevel app install, no third-party plugin dependencies.</p>
+        <div class="tech-item"><div class="tech-item-num">01</div><div><h3>One Script Tag — No Plugin Required</h3>
+          <p>CliqLabs loads via a single lightweight script tag added to GoHighLevel's Custom Code field. No browser extension, no HighLevel app install, no third-party plugin dependencies.</p></div>
         </div>
-        <div class="tech-item">
-          <h3>CSS Injection — Non-Destructive</h3>
-          <p>CliqLabs injects CSS overrides after GoHighLevel's own styles load. This means HighLevel's core functionality is never touched. If you ever remove CliqLabs, your account returns to default HighLevel styling instantly.</p>
+        <div class="tech-item"><div class="tech-item-num">02</div><div><h3>CSS Injection — Non-Destructive</h3>
+          <p>CliqLabs injects CSS overrides after GoHighLevel's own styles load. This means HighLevel's core functionality is never touched. If you ever remove CliqLabs, your account returns to default HighLevel styling instantly.</p></div>
         </div>
-        <div class="tech-item">
-          <h3>Automatic Updates — No Reinstall</h3>
-          <p>When HighLevel updates their interface, our team pushes theme compatibility updates through the CDN. Your themes stay functional without any action from you.</p>
+        <div class="tech-item"><div class="tech-item-num">03</div><div><h3>Automatic Updates — No Reinstall</h3>
+          <p>When HighLevel updates their interface, our team pushes theme compatibility updates through the CDN. Your themes stay functional without any action from you.</p></div>
         </div>
         <div class="tech-item">
           <h3>Lightweight & Async</h3>
-          <p>The CliqLabs script loads asynchronously and is served from a global CDN. It has no measurable impact on GoHighLevel's page load performance.</p>
+          <p>The CliqLabs script loads asynchronously and is served from a global CDN. It has no measurable impact on GoHighLevel's page load performance.</p></div>
         </div>
       </div>
       <div>
