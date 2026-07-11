@@ -204,10 +204,14 @@ img {
     var(--black-color) 80px,
     var(--black-color) 120px
   );
-  opacity: .55;
-  mask-image: radial-gradient(ellipse 55% 65% at 50% 42%, black 0%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 55% 65% at 50% 42%, black 0%, transparent 75%);
-  filter: blur(14px);
+  opacity: .6;
+  mask-image:
+    radial-gradient(ellipse 26% 60% at 30% 42%, black 0%, transparent 78%),
+    radial-gradient(ellipse 26% 60% at 70% 42%, black 0%, transparent 78%);
+  -webkit-mask-image:
+    radial-gradient(ellipse 26% 60% at 30% 42%, black 0%, transparent 78%),
+    radial-gradient(ellipse 26% 60% at 70% 42%, black 0%, transparent 78%);
+  filter: blur(8px);
 }
 
 .home__bg {
