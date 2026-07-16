@@ -63,7 +63,7 @@ a{text-decoration:none;color:inherit}
 .cs-lock-icon{font-size:48px;margin-bottom:16px;display:block}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08)}
+nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:999;width:min(640px,92%);padding:10px 12px 10px 24px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:999px;box-shadow:0 10px 34px -12px rgba(0,0,0,0.22)}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:900;letter-spacing:-.5px}
 .nav-logo svg{animation:spin 12s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -80,11 +80,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .btn-cta:hover{background:#2dcfff}
 
 /* PAGE CONTENT (blurred behind overlay) */
-.hero{padding:120px 5% 70px;text-align:center;position:relative;overflow:hidden}
+.hero{padding:130px 5% 80px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#6c3de6 0%,#1fb9e6 60%,#2dcfff 100%)}
 .hero::before{content:'';position:absolute;width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(31,185,230,0.1),transparent 70%);top:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
-.hero h1{font-size:clamp(32px,5vw,64px);font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:18px;position:relative;z-index:1}
-.hero h1 span{color:#1fb9e6}
-.hero p{font-size:17px;color:rgba(0,0,0,0.48);max-width:580px;margin:0 auto 36px;line-height:1.85;position:relative;z-index:1}
+.hero h1{font-size:clamp(32px,5vw,64px);font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:18px;position:relative;z-index:1;color:#fff}
+.hero h1 span{color:#ffe066}
+.hero p{font-size:17px;color:rgba(255,255,255,0.85);max-width:580px;margin:0 auto 36px;line-height:1.85;position:relative;z-index:1}
 
 /* VIDEO GRID */
 .videos-section{padding:60px 5%;background:#f9f9f9}
