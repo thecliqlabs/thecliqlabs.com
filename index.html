@@ -353,10 +353,14 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 .tb-promo .section-sub{color:rgba(255,255,255,0.85);margin-left:auto;margin-right:auto}
 .tb-promo .section-label{color:#ffe066}
 
-.why-list{max-width:800px;margin:32px auto 0;display:grid;gap:1px;background:rgba(0,0,0,0.07);border-radius:14px;overflow:hidden}
-.why-list-row{background:#fff;padding:18px 24px;display:flex;gap:16px;align-items:baseline}
-.why-list-row b{font-size:14px;flex-shrink:0;width:120px}
-.why-list-row span{font-size:14px;color:rgba(0,0,0,0.6)}
+.why-list{max-width:720px;margin:36px auto 0;display:grid;gap:1px;background:rgba(0,0,0,0.06);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(10,10,20,0.35)}
+.why-list-row{background:#fff;padding:22px 26px;display:flex;gap:18px;align-items:flex-start}
+.why-list-row .wl-icon{width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,0.06);color:rgba(0,0,0,0.4);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin-top:1px}
+.why-list-row .wl-text b{display:block;font-size:15px;font-weight:700;color:#0a0a0a;margin-bottom:4px}
+.why-list-row .wl-text span{font-size:13.5px;color:rgba(0,0,0,0.55);line-height:1.55;display:block}
+.why-list-row.wl-highlight{background:linear-gradient(135deg,rgba(31,185,230,0.08),rgba(108,61,230,0.06))}
+.why-list-row.wl-highlight .wl-icon{background:linear-gradient(135deg,#6c3de6,#1fb9e6);color:#fff}
+.why-list-row.wl-highlight .wl-text b{color:#0a0a0a}
 
 /* ---------- DECORATIVE BACKGROUNDS ---------- */
 .deco-host{position:relative;overflow:hidden}
@@ -635,9 +639,22 @@ gtag('config','G-S2MQVC7VEZ');
     <span class="section-label">Why CliqLabs</span>
     <h2 class="section-title">Not Just Another Support Desk.</h2>
     <div class="why-list">
-      <div class="why-list-row"><b>A support desk</b><span>answers questions.</span></div>
-      <div class="why-list-row"><b>A freelancer</b><span>builds isolated tasks.</span></div>
-      <div class="why-list-row"><b>A VA</b><span>follows instructions.</span></div>
+      <div class="why-list-row">
+        <div class="wl-icon">✕</div>
+        <div class="wl-text"><b>A support desk</b><span>Answers questions when something breaks, then waits for the next ticket. No ownership of the bigger picture.</span></div>
+      </div>
+      <div class="why-list-row">
+        <div class="wl-icon">✕</div>
+        <div class="wl-text"><b>A freelancer</b><span>Builds isolated tasks well, but doesn't stick around to see how they fit into your whole backend system.</span></div>
+      </div>
+      <div class="why-list-row">
+        <div class="wl-icon">✕</div>
+        <div class="wl-text"><b>A VA</b><span>Follows instructions accurately, but won't tell you when the instructions themselves are the problem.</span></div>
+      </div>
+      <div class="why-list-row wl-highlight">
+        <div class="wl-icon">✓</div>
+        <div class="wl-text"><b>CliqLabs</b><span>Owns the whole backend system — setup, automation, support, and optimization — as one accountable team.</span></div>
+      </div>
     </div>
     <p class="section-sub" style="margin:28px auto 0;text-align:center;max-width:700px">CliqLabs helps agencies handle the backend system behind the business — setup, automation, onboarding, support, funnels, pipelines, AI agents, custom branding, troubleshooting, and ongoing optimization. We do not just help with one task. We help make the backend easier to operate as your agency grows.</p>
   </div>
