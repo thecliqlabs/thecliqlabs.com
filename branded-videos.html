@@ -134,9 +134,9 @@ footer{background:#ffffff;border-top:1px solid rgba(0,0,0,0.06);padding:36px 5%;
 .footer-logo{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:800}
 .footer-logo svg{animation:spin 12s linear infinite}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap}
-.footer-links a{font-size:12px;color:rgba(255,255,255,0.28);transition:color .2s}
+.footer-links a{font-size:12px;color:rgba(0,0,0,0.55);transition:color .2s}
 .footer-links a:hover{color:#1fb9e6}
-.footer-copy{font-size:11px;color:rgba(255,255,255,0.18)}
+.footer-copy{font-size:11px;color:rgba(0,0,0,0.45)}
 @media(max-width:560px){footer{flex-direction:column;text-align:center;align-items:flex-start}.footer-links{justify-content:center}}
 </style>
 </head>
@@ -363,7 +363,7 @@ function handleNotify(){
     alert('Please enter a valid email address.');
     return;
   }
-  document.querySelector('.cs-notify-form').innerHTML = '<p style="color:#4ade80;font-weight:700;font-size:14px">✅ You\'re on the list! We\'ll notify you at launch.</p>';
+  document.querySelector('.cs-notify-form').innerHTML = '<p style="color:#1fb9e6;font-weight:700;font-size:14px">✅ You\'re on the list! We\'ll notify you at launch.</p>';
 }
 </script>
 <!-- GA4 Conversion Tracking -->
