@@ -388,6 +388,16 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 .deco-pipeline svg{width:100%;height:100%}
 
 @media(max-width:820px){ .deco-bubble{display:none} }
+
+.hero-visual{max-width:760px;margin:48px auto 0;position:relative;z-index:2}
+.hero-visual .demo-preview{height:280px;box-shadow:0 30px 70px -20px rgba(0,0,0,0.35)}
+.hero-visual-label{text-align:center;font-size:11px;color:rgba(255,255,255,0.6);margin-top:14px;letter-spacing:0.02em}
+@media(max-width:700px){ .hero-visual .demo-preview{height:auto;flex-direction:column} .hero-visual .demo-sidebar{width:100%} }
+
+.who-checklist{display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;max-width:820px;margin:40px auto 0}
+.who-item{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500;color:#0a0a0a;padding:14px 0;border-bottom:1px solid rgba(0,0,0,0.07)}
+.who-check{width:22px;height:22px;border-radius:50%;background:#1fb9e6;color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+@media(max-width:700px){ .who-checklist{grid-template-columns:1fr} }
 </style>
 
 <!-- GA4 -->
@@ -427,6 +437,36 @@ gtag('config','G-S2MQVC7VEZ');
     <div class="hero-cta">
       <a href="/book-a-call" class="cta-btn">Book a Call →</a>
     </div>
+    <div class="hero-trust">
+      <span>100% GoHighLevel-Focused</span>
+      <span>One Team, Not a Ticket Queue</span>
+      <span>Setup, Automation &amp; Support Together</span>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="demo-preview theme-columbia-blue">
+      <div class="demo-sidebar">
+        <div class="demo-sidebar-logo"><span>Your Agency</span></div>
+        <div class="demo-sidebar-item active"><span class="si"></span>Dashboard</div>
+        <div class="demo-sidebar-item"><span class="si"></span>Workflows</div>
+        <div class="demo-sidebar-item"><span class="si"></span>Pipelines</div>
+        <div class="demo-sidebar-item"><span class="si"></span>Automations</div>
+        <div class="demo-sidebar-item"><span class="si"></span>Support</div>
+      </div>
+      <div class="demo-main">
+        <div class="demo-topbar">
+          <div class="demo-topbar-title">Agency Backend Overview</div>
+          <div class="demo-topbar-btn" style="background:#0066cc;color:#fff">Live</div>
+        </div>
+        <div class="demo-cards">
+          <div class="demo-card"><div class="demo-card-num" style="color:#0066cc">24</div><div class="demo-card-label">Automations Live</div></div>
+          <div class="demo-card"><div class="demo-card-num" style="color:#0066cc">3</div><div class="demo-card-label">Support Queue</div></div>
+          <div class="demo-card"><div class="demo-card-num" style="color:#0066cc">7</div><div class="demo-card-label">Onboarding</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual-label">Illustrative preview — not a live account</div>
   </div>
 </section>
 
@@ -449,6 +489,9 @@ gtag('config','G-S2MQVC7VEZ');
       <div class="compat-pill"><span class="compat-check">✓</span>Churn &amp; retention systems</div>
       <div class="compat-pill"><span class="compat-check">✓</span>Agency setup</div>
       <div class="compat-pill"><span class="compat-check">✓</span>GHL cleanup</div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="/book-a-call" class="cta-btn cta-btn-dark">See If We're a Fit →</a>
     </div>
   </div>
 </section>
@@ -547,6 +590,9 @@ gtag('config','G-S2MQVC7VEZ');
         <p>Broken workflows, calendar issues, automation errors, tracking problems, funnel bugs, pipeline issues, and backend friction — fixed.</p>
       </div>
     </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="/book-a-call" class="cta-btn">Talk to Our Team →</a>
+    </div>
   </div>
 </section>
 
@@ -581,15 +627,15 @@ gtag('config','G-S2MQVC7VEZ');
     <span class="section-label">Who This Is For</span>
     <h2 class="section-title">Built for Agencies Ready to Stop Carrying the Backend Alone.</h2>
     <p class="section-sub">CliqLabs is built for agencies that use GoHighLevel and need stronger backend support as they grow.</p>
-    <div class="built-cards">
-      <div class="built-card"><h3>🏢 Agencies Selling GoHighLevel Services</h3></div>
-      <div class="built-card"><h3>📦 SaaS Agencies Using HighLevel</h3></div>
-      <div class="built-card"><h3>📈 Agencies With Growing Support Volume</h3></div>
-      <div class="built-card"><h3>🤝 Teams Tired of Managing Freelancers</h3></div>
-      <div class="built-card"><h3>🤖 Agencies That Need AI Done Properly</h3></div>
-      <div class="built-card"><h3>⚙️ Operators Who Want Systems That Scale</h3></div>
-      <div class="built-card"><h3>🔖 Agencies That Need White-Label Support</h3></div>
-      <div class="built-card"><h3>🧭 Teams That Want Cleaner Onboarding</h3></div>
+    <div class="who-checklist">
+      <div class="who-item"><span class="who-check">✓</span>Agencies selling GoHighLevel services</div>
+      <div class="who-item"><span class="who-check">✓</span>SaaS agencies using HighLevel</div>
+      <div class="who-item"><span class="who-check">✓</span>Agencies with growing support volume</div>
+      <div class="who-item"><span class="who-check">✓</span>Teams tired of managing freelancers</div>
+      <div class="who-item"><span class="who-check">✓</span>Agencies that need AI done properly</div>
+      <div class="who-item"><span class="who-check">✓</span>Operators who want systems that scale</div>
+      <div class="who-item"><span class="who-check">✓</span>Agencies that need white-label support</div>
+      <div class="who-item"><span class="who-check">✓</span>Teams that want cleaner onboarding</div>
     </div>
   </div>
 </section>
@@ -602,7 +648,7 @@ gtag('config','G-S2MQVC7VEZ');
     <h2 class="section-title">Make GoHighLevel Look Like Your Agency.</h2>
     <p class="section-sub">Most agencies sell a branded experience, but their HighLevel dashboard still looks generic. CliqLabs Theme Builder helps agencies customize the GoHighLevel interface with branded themes, colors, sidebar styles, buttons, login screens, and dashboard elements.</p>
     <div style="margin-top:32px">
-      <a href="/book-a-call" class="cta-btn cta-btn-dark">Book a Call →</a>
+      <a href="/book-a-call" class="cta-btn cta-btn-dark">Ask About Theme Builder →</a>
     </div>
   </div>
 </section>
@@ -692,27 +738,27 @@ gtag('config','G-S2MQVC7VEZ');
       </div>
       <div class="faq-item">
         <div class="faq-q">Can CliqLabs help with GoHighLevel setup?</div>
-        <div class="faq-a">Yes. CliqLabs helps agencies set up and clean up GoHighLevel accounts, including pipelines, calendars, forms, funnels, custom fields, tags, triggers, workflows, and core backend settings.</div>
+        <div class="faq-a">Yes — full account setup and cleanup, from pipelines and calendars to triggers and workflows. See the full breakdown above.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Do you build GoHighLevel automations?</div>
-        <div class="faq-a">Yes. We build and fix GoHighLevel automations for lead follow-up, appointment reminders, missed call text back, onboarding, pipeline movement, internal notifications, AI agents, and client communication.</div>
+        <div class="faq-a">Yes, from lead follow-up to missed call text-back and AI-driven follow-up. Details are in the Services section above.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Can you help with workflow fixes?</div>
-        <div class="faq-a">Yes. We troubleshoot broken workflows, trigger issues, automation logic, duplicate actions, missed steps, broken notifications, and backend problems that stop systems from running properly.</div>
+        <div class="faq-a">Yes. We troubleshoot broken triggers, duplicate actions, and automation logic that's stopped working properly.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Do you provide white-label GoHighLevel support?</div>
-        <div class="faq-a">Yes. CliqLabs can help support your clients under your agency brand, so your clients get help without your team handling every request directly.</div>
+        <div class="faq-a">Yes — support under your agency brand, so your clients get help without knowing it's us.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Can you help with funnels and pipelines?</div>
-        <div class="faq-a">Yes. We help create and fix funnels, forms, surveys, calendars, checkout flows, pipeline stages, opportunity tracking, CRM structure, and lead routing.</div>
+        <div class="faq-a">Yes — funnels, forms, checkout flows, and pipeline structure, built or fixed.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Do you work with GoHighLevel SaaS agencies?</div>
-        <div class="faq-a">Yes. CliqLabs works with agencies using GoHighLevel, including SaaS agencies, white-label agencies, automation agencies, and service providers that need stronger backend systems.</div>
+        <div class="faq-a">Yes, including SaaS resellers, white-label agencies, and automation agencies.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What makes CliqLabs different from a freelancer or VA?</div>
@@ -728,7 +774,7 @@ gtag('config','G-S2MQVC7VEZ');
     <h2>Ready to Hand Off Your GoHighLevel Backend?</h2>
     <p>Book a call and show us where your agency is getting stuck. We'll help you identify the bottleneck and show how CliqLabs can support the backend behind your growth.</p>
     <div class="final-cta-btns">
-      <a href="/book-a-call" class="cta-btn">Book a Call →</a>
+      <a href="/book-a-call" class="cta-btn">Get Started →</a>
     </div>
   </div>
 </section>
