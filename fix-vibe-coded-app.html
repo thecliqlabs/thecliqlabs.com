@@ -337,6 +337,35 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 .included-item h3{font-size:15px;font-weight:700;margin-bottom:8px}
 .included-item p{font-size:13px;color:rgba(0,0,0,0.55);line-height:1.6}
 @media(max-width:820px){.included-grid{grid-template-columns:1fr}}
+
+/* ============ PRICING CARDS (new, distinct from homepage template) ============ */
+.pricing-wrap{max-width:1100px;margin:0 auto}
+.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;align-items:start}
+.price-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:20px;padding:32px 28px;position:relative;transition:transform .25s ease,box-shadow .25s ease}
+.price-card.popular{border:2px solid #1fb9e6;transform:scale(1.04);box-shadow:0 20px 50px -20px rgba(31,185,230,0.35)}
+.price-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#6c3de6,#1fb9e6);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
+.price-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.price-card .price-tag{font-size:36px;font-weight:900;letter-spacing:-1px;margin:14px 0 4px}
+.price-card .price-tag span{font-size:14px;font-weight:600;color:rgba(0,0,0,0.4)}
+.price-card .price-desc{font-size:12.5px;color:rgba(0,0,0,0.5);margin-bottom:22px;min-height:32px}
+.price-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.price-card ul li{font-size:13px;color:rgba(0,0,0,0.65);padding-left:22px;position:relative}
+.price-card ul li::before{content:'✓';position:absolute;left:0;color:#1fb9e6;font-weight:800}
+.price-card .price-cta{display:block;text-align:center;background:#0a0a0a;color:#fff;padding:13px;border-radius:12px;font-size:13.5px;font-weight:700;text-decoration:none}
+.price-card.popular .price-cta{background:linear-gradient(135deg,#6c3de6,#1fb9e6)}
+@media(max-width:900px){.pricing-cards{grid-template-columns:1fr}.price-card.popular{transform:none}}
+
+/* ============ NUMBERED PHASE TIMELINE (new) ============ */
+.phase-section{background:#0a0a0a;padding:80px 5%}
+.phase-wrap{max-width:1100px;margin:0 auto}
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;position:relative}
+.phase-item{padding:0 20px 0 0;position:relative;border-left:1px solid rgba(255,255,255,0.12);padding-left:24px}
+.phase-item:first-child{border-left:none;padding-left:0}
+.phase-num{font-size:13px;font-weight:800;color:#1fb9e6;letter-spacing:.1em;margin-bottom:12px}
+.phase-item h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:10px}
+.phase-item p{font-size:12.5px;color:rgba(255,255,255,0.55);line-height:1.65}
+@media(max-width:820px){.phase-grid{grid-template-columns:1fr;gap:28px}.phase-item{border-left:none;border-top:1px solid rgba(255,255,255,0.12);padding-left:0;padding-top:20px}.phase-item:first-child{border-top:none;padding-top:0}}
+
 </style>
 </head>
 <body>
@@ -378,27 +407,82 @@ gtag('config','G-S2MQVC7VEZ');
 </section>
 
 
-<section class="features-section">
-  <div class="section-inner reveal">
-    <span class="section-label">The Process</span>
-    <h2 class="section-title">From Prototype to Production</h2>
-    <div class="included-grid">
-      <div class="included-item">
-        <div class="ic">🔍</div>
-        <h3>Audit</h3>
-        <p>We map security holes, architecture flaws, and performance bottlenecks in your existing build.</p>
+<section class="phase-section">
+  <div class="phase-wrap reveal">
+    <div style="text-align:center;max-width:600px;margin:0 auto">
+      <span class="section-label" style="color:#1fb9e6">The Process</span>
+      <h2 class="section-title" style="color:#fff">From Prototype to Production</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.55)">A structured process, not a guessing game.</p>
+    </div>
+    <div class="phase-grid">
+      <div class="phase-item">
+        <div class="phase-num">01 / AUDIT</div>
+        <h3>We Map the Damage</h3>
+        <p>Every security hole, architecture flaw, and performance bottleneck, documented clearly.</p>
       </div>
-      <div class="included-item">
-        <div class="ic">🔒</div>
-        <h3>Fortify</h3>
-        <p>Security hardening, input validation, and the fixes that matter before real users touch your app.</p>
+      <div class="phase-item">
+        <div class="phase-num">02 / FORTIFY</div>
+        <h3>We Close Every Hole</h3>
+        <p>Security hardening, input validation, and the fixes that matter before real users touch it.</p>
       </div>
-      <div class="included-item">
-        <div class="ic">🚀</div>
-        <h3>Ship</h3>
+      <div class="phase-item">
+        <div class="phase-num">03 / SCALE</div>
+        <h3>We Handle Real Traffic</h3>
+        <p>Performance and reliability work so it holds up under actual usage, not just a demo.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-num">04 / SHIP</div>
+        <h3>We Hand Off a Product</h3>
         <p>A handoff you can actually trust in production, not just on your laptop.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="sec2" style="padding:80px 5%;background:#f8fbff">
+  <div class="pricing-wrap reveal">
+    <div style="text-align:center;max-width:600px;margin:0 auto">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Pick Your Recovery Plan</h2>
+      <p class="section-sub">Starting reference pricing below — CliqLabs' final rates to be confirmed before this page goes live.</p>
+    </div>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <h3>Code Audit</h3>
+        <div class="price-tag">$250</div>
+        <div class="price-desc">Know what's broken before spending more.</div>
+        <ul>
+          <li>Full report in 48 hours</li>
+          <li>Security + architecture review</li>
+          <li>Clear remediation roadmap</li>
+        </ul>
+        <a href="/book-a-call" class="price-cta">Get My Audit</a>
+      </div>
+      <div class="price-card popular">
+        <div class="price-badge">Most Popular</div>
+        <h3>Production Conversion</h3>
+        <div class="price-tag">$1,500<span>+</span></div>
+        <div class="price-desc">Full vibe-to-production conversion.</div>
+        <ul>
+          <li>Security &amp; architecture fixes</li>
+          <li>Performance optimization</li>
+          <li>Full monitoring setup</li>
+        </ul>
+        <a href="/book-a-call" class="price-cta">Book a Call</a>
+      </div>
+      <div class="price-card">
+        <h3>Embedded Engineer</h3>
+        <div class="price-tag">$900<span>/mo</span></div>
+        <div class="price-desc">Dedicated full-time engineer.</div>
+        <ul>
+          <li>Works in your timezone</li>
+          <li>Pause or cancel anytime</li>
+          <li>Ongoing support</li>
+        </ul>
+        <a href="/book-a-call" class="price-cta">Book a Call</a>
+      </div>
+    </div>
+    <div class="tbd-note" style="margin-top:32px">⚠️ Pricing shown is a starting reference point, not yet confirmed as CliqLabs' final rates. Update before this page is publicly linked.</div>
   </div>
 </section>
 
