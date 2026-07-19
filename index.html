@@ -413,6 +413,15 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 @media(max-width:820px){.step-circles{grid-template-columns:1fr 1fr;gap:32px}}
 @media(max-width:600px){.step-circles{grid-template-columns:1fr}}
 
+
+.logo-marquee-wrap{background:#fff;padding:36px 5%;border-bottom:1px solid rgba(0,0,0,0.06);overflow:hidden}
+.logo-marquee-label{text-align:center;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,0.35);margin-bottom:22px}
+.logo-marquee-track{display:flex;align-items:center;width:max-content;animation:logoScroll 26s linear infinite;gap:80px}
+.logo-marquee-track:hover{animation-play-state:paused}
+.logo-marquee-track img{height:38px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.55;transition:filter .25s ease,opacity .25s ease}
+.logo-marquee-track img:hover{filter:grayscale(0%);opacity:1}
+@keyframes logoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
 </style>
 <style>
 
@@ -510,6 +519,19 @@ gtag('config','G-S2MQVC7VEZ');
     </div>
   </div>
 </section>
+
+<!-- LOGO SLIDER -->
+<div class="logo-marquee-wrap">
+  <div class="logo-marquee-label">Trusted By Real Businesses</div>
+  <div class="logo-marquee-track">
+    <img src="/assets/logos/merchology.png" alt="Merchology">
+    <img src="/assets/logos/subaru.png" alt="Subaru">
+    <img src="/assets/logos/rosatis.png" alt="Rosati's">
+    <img src="/assets/logos/merchology.png" alt="Merchology">
+    <img src="/assets/logos/subaru.png" alt="Subaru">
+    <img src="/assets/logos/rosatis.png" alt="Rosati's">
+  </div>
+</div>
 
 <!-- RECOGNITION / PROOF (logos + specific unverified numbers intentionally omitted, see note) -->
 <section class="sec2" style="padding:70px 5%">
