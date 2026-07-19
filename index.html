@@ -349,14 +349,17 @@ footer{background:#f4f5f7;border-top:1px solid rgba(0,0,0,0.08);padding:28px 5%;
 <style>
 
 /* ============ COLORED ICON CARD GRID (Bottlenecks / Services) ============ */
-.icon-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
-.icon-card{border-radius:16px;padding:26px;background:#fff;border:1px solid rgba(0,0,0,0.06)}
-.icon-card .icc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px}
-.icon-card h3{font-size:15.5px;font-weight:700;margin-bottom:8px;color:#0a0a0a}
-.icon-card p{font-size:13px;color:rgba(0,0,0,0.55);line-height:1.6}
-.icc-red{background:#fdeceb}.icc-orange{background:#fdf1e3}.icc-yellow{background:#fdf8e3}.icc-blue{background:#e8f2fd}
-.icc-purple{background:#f1eafd}.icc-green{background:#e8f8ef}.icc-pink{background:#fde8f2}.icc-cyan{background:#e3f8fd}
-@media(max-width:900px){.icon-card-grid{grid-template-columns:1fr 1fr}}
+.icon-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.icon-card{border-radius:14px;padding:24px;background:#fff;border:1px solid rgba(0,0,0,0.07);box-shadow:0 2px 10px rgba(0,0,0,0.03)}
+.icon-card .icc-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px}
+.icon-card h3{font-size:14.5px;font-weight:700;margin-bottom:8px;color:#0a0a0a;line-height:1.3}
+.icon-card p{font-size:12.5px;color:rgba(0,0,0,0.5);line-height:1.6;margin-bottom:12px}
+.icon-card .icc-bullets{list-style:none;display:flex;flex-direction:column;gap:5px}
+.icon-card .icc-bullets li{font-size:11.5px;color:rgba(0,0,0,0.55);padding-left:16px;position:relative}
+.icon-card .icc-bullets li::before{content:'✓';position:absolute;left:0;color:#1fb9e6;font-weight:800;font-size:10px}
+.icc-red{color:#e0396a}.icc-orange{color:#f5920a}.icc-yellow{color:#e0b400}.icc-blue{color:#2b8ce6}
+.icc-purple{color:#8b3fe8}.icc-green{color:#1fa15c}.icc-pink{color:#e0397e}.icc-cyan{color:#12aec4}
+@media(max-width:1100px){.icon-card-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.icon-card-grid{grid-template-columns:1fr}}
 
 /* ============ SPLIT WITH CHECKLIST + SIDE CARDS ============ */
@@ -456,12 +459,12 @@ gtag('config','G-S2MQVC7VEZ');
     <h2 class="section-title">Where Is Your GoHighLevel Agency Getting Stuck?</h2>
     <p class="section-sub">Every agency reaches a point where the backend starts slowing down the front end. CliqLabs identifies the real bottleneck, fixes the systems behind it and gives your team more capacity to grow.</p>
     <div class="icon-card-grid">
-      <div class="icon-card"><div class="icc-icon icc-red">👥</div><h3>Client Onboarding</h3><p>Every new client creates hours of manual setup, configuration, training and follow-up.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-orange">🎧</div><h3>Support Volume</h3><p>Technical questions interrupt your team and pull attention away from sales and client strategy.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-yellow">⚡</div><h3>Workflows &amp; Automation</h3><p>Triggers conflict, contacts enter the wrong sequences and automations stop producing the expected result.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-blue">📄</div><h3>Funnels &amp; Pipelines</h3><p>Pages need updates, forms require testing and opportunity stages no longer match how your agency sells.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-purple">🎨</div><h3>White-Label Branding</h3><p>You are selling your own platform, but the experience still looks and feels like standard GoHighLevel.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-cyan">🤖</div><h3>AI &amp; Integrations</h3><p>You know AI can improve delivery, but connecting the tools, prompts, logic and workflows requires specialist execution.</p></div>
+      <div class="icon-card"><div class="icc-icon icc-red">👥</div><h3>Client Onboarding</h3><p>Every new client creates hours of manual setup, configuration, training and follow-up.</p><ul class="icc-bullets"><li>Account configuration</li><li>Client training calls</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-orange">🎧</div><h3>Support Volume</h3><p>Technical questions interrupt your team and pull attention away from sales and client strategy.</p><ul class="icc-bullets"><li>Ticket triage</li><li>Response time pressure</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-yellow">⚡</div><h3>Workflows &amp; Automation</h3><p>Triggers conflict, contacts enter the wrong sequences and automations stop producing the expected result.</p><ul class="icc-bullets"><li>Trigger conflicts</li><li>Broken sequences</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-blue">📄</div><h3>Funnels &amp; Pipelines</h3><p>Pages need updates, forms require testing and opportunity stages no longer match how your agency sells.</p><ul class="icc-bullets"><li>Outdated page copy</li><li>Misaligned stages</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-purple">🎨</div><h3>White-Label Branding</h3><p>You are selling your own platform, but the experience still looks and feels like standard GoHighLevel.</p><ul class="icc-bullets"><li>Generic dashboard</li><li>Inconsistent identity</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-cyan">🤖</div><h3>AI &amp; Integrations</h3><p>You know AI can improve delivery, but connecting the tools, prompts, logic and workflows requires specialist execution.</p><ul class="icc-bullets"><li>Prompt design</li><li>Workflow wiring</li></ul></div>
     </div>
     <div style="text-align:center;margin-top:40px">
       <a href="/book-a-call" class="cta-btn">Show Us Your Bottleneck →</a>
@@ -492,17 +495,17 @@ gtag('config','G-S2MQVC7VEZ');
     <h2 class="section-title">Complete GoHighLevel Agency Services Under One Roof</h2>
     <p class="section-sub">Use CliqLabs for a specific project, ongoing technical support or a fully managed backend partnership.</p>
     <div class="icon-card-grid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="icon-card"><div class="icc-icon icc-blue">⚙️</div><h3>GoHighLevel Setup &amp; Cleanup</h3><p>Agency settings, sub-accounts, custom values, fields, tags, calendars, forms, domains, phone systems and permissions.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-yellow">⚡</div><h3>Workflow Fixes &amp; GHL Automation</h3><p>Lead nurture, missed-call text-back, appointment reminders, pipeline movement, review requests and reactivation.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-purple">📄</div><h3>Funnels, Websites &amp; Pipelines</h3><p>Landing pages, forms, surveys, calendars, checkout flows and opportunity systems structured for conversion.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-green">🚀</div><h3>Done-For-You Client Onboarding</h3><p>Account setup, integrations, platform walkthroughs, moving clients from signup to launch under your brand.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-pink">🎧</div><h3>24/7 White-Label Support</h3><p>Live chat, email, ticket and video support under your agency name, backed by a branded knowledge base.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-cyan">🎨</div><h3>Theme Builder &amp; Custom Branding</h3><p>Professional themes, colors, sidebar styles, buttons, icons and login-page branding — no manual CSS.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-orange">🤖</div><h3>AI Agents &amp; Smart Follow-Up</h3><p>Voice and conversation agents that qualify leads, answer questions, book appointments and escalate to a human.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-red">🔗</div><h3>Integrations, APIs &amp; n8n Workflows</h3><p>Native integrations, webhooks, APIs, Zapier, Make or n8n — data mapping, triggers, routing and error logic.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-blue">📱</div><h3>A2P 10DLC Setup &amp; Compliance</h3><p>Business profiles, campaign use cases, opt-in language, messaging samples and rejected-submission diagnosis.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-purple">📦</div><h3>Snapshots &amp; Reusable Systems</h3><p>Structured snapshots organizing workflows, funnels, pipelines and onboarding assets for faster future launches.</p></div>
-      <div class="icon-card"><div class="icc-icon icc-green">🎬</div><h3>Branded Demo &amp; Explainer Videos</h3><p>Professionally branded demo videos, feature walkthroughs, advertisements and explainer content.</p></div>
+      <div class="icon-card"><div class="icc-icon icc-blue">⚙️</div><h3>GoHighLevel Setup &amp; Cleanup</h3><p>Agency settings, sub-accounts, custom values, fields, tags, calendars, forms, domains, phone systems and permissions.</p><ul class="icc-bullets"><li>Sub-account structure</li><li>Core configuration</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-yellow">⚡</div><h3>Workflow Fixes &amp; GHL Automation</h3><p>Lead nurture, missed-call text-back, appointment reminders, pipeline movement, review requests and reactivation.</p><ul class="icc-bullets"><li>Trigger debugging</li><li>Logic cleanup</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-purple">📄</div><h3>Funnels, Websites &amp; Pipelines</h3><p>Landing pages, forms, surveys, calendars, checkout flows and opportunity systems structured for conversion.</p><ul class="icc-bullets"><li>Conversion tracking</li><li>Mobile optimization</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-green">🚀</div><h3>Done-For-You Client Onboarding</h3><p>Account setup, integrations, platform walkthroughs, moving clients from signup to launch under your brand.</p><ul class="icc-bullets"><li>Branded walkthroughs</li><li>Launch checklists</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-pink">🎧</div><h3>24/7 White-Label Support</h3><p>Live chat, email, ticket and video support under your agency name, backed by a branded knowledge base.</p><ul class="icc-bullets"><li>Live chat &amp; ticketing</li><li>Escalation process</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-cyan">🎨</div><h3>Theme Builder &amp; Custom Branding</h3><p>Professional themes, colors, sidebar styles, buttons, icons and login-page branding — no manual CSS.</p><ul class="icc-bullets"><li>No-code theming</li><li>Login page branding</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-orange">🤖</div><h3>AI Agents &amp; Smart Follow-Up</h3><p>Voice and conversation agents that qualify leads, answer questions, book appointments and escalate to a human.</p><ul class="icc-bullets"><li>Lead qualification logic</li><li>Human handoff rules</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-red">🔗</div><h3>Integrations, APIs &amp; n8n Workflows</h3><p>Native integrations, webhooks, APIs, Zapier, Make or n8n — data mapping, triggers, routing and error logic.</p><ul class="icc-bullets"><li>Custom API hooks</li><li>Data mapping</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-blue">📱</div><h3>A2P 10DLC Setup &amp; Compliance</h3><p>Business profiles, campaign use cases, opt-in language, messaging samples and rejected-submission diagnosis.</p><ul class="icc-bullets"><li>Brand registration</li><li>Campaign approval</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-purple">📦</div><h3>Snapshots &amp; Reusable Systems</h3><p>Structured snapshots organizing workflows, funnels, pipelines and onboarding assets for faster future launches.</p><ul class="icc-bullets"><li>Reusable templates</li><li>Faster launches</li></ul></div>
+      <div class="icon-card"><div class="icc-icon icc-green">🎬</div><h3>Branded Demo &amp; Explainer Videos</h3><p>Professionally branded demo videos, feature walkthroughs, advertisements and explainer content.</p><ul class="icc-bullets"><li>Feature walkthroughs</li><li>Agency-branded assets</li></ul></div>
     </div>
     <div style="text-align:center;margin-top:40px">
       <a href="/book-a-call" class="cta-btn">Talk to a GoHighLevel Specialist →</a>
