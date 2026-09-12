@@ -195,6 +195,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:10px 5%;display:flex
 .btn-ghost:hover{color:#0a0a0a;border-color:rgba(0,0,0,0.3)}
 .btn-cta{font-size:13px;font-weight:700;background:#d62828;color:#fff;padding:9px 20px;border-radius:999px;transition:all .2s}
 .btn-cta:hover{background:#ffe066;color:#0a0a0a}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:13.5px;font-weight:600;color:rgba(0,0,0,0.62);transition:color .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:#0a0a0a}
+.nav-toggle{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px}
+.nav-toggle span{width:20px;height:2px;background:#0a0a0a;display:block}
+.nav-mobile-panel{display:none;position:fixed;top:64px;right:5%;z-index:998;width:min(280px,90%);background:#fff;border-radius:16px;box-shadow:0 10px 34px -12px rgba(0,0,0,0.22);padding:10px;flex-direction:column}
+.nav-mobile-panel.open{display:flex}
+.nav-mobile-panel a{padding:13px 16px;font-size:14.5px;font-weight:600;color:#0a0a0a;border-radius:12px}
+.nav-mobile-panel a:hover{background:#f4f7fb}
+@media(max-width:900px){.nav-links{display:none}.nav-toggle{display:flex}}
 
 /* BUTTONS */
 .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:999px;font-weight:700;font-size:16px;background:#d62828;color:#fff;transition:all .22s;cursor:pointer;border:none;font-family:'Poppins',sans-serif}
@@ -580,11 +590,26 @@ gtag('config','G-S2MQVC7VEZ');
   <a href="/" class="nav-logo">
     <img src="/assets/logo-light.png" alt="CliqLabs" height="48" style="height:48px;width:auto;display:block">
   </a>
+  <div class="nav-links">
+    <a href="/services">Services</a>
+    <a href="/theme-builder" class="active">Theme Builder</a>
+    <a href="/ai-expert">AI Expert</a>
+    <a href="/blog">Blog</a>
+  </div>
   <div class="nav-btns">
-    <a href="/" class="btn-ghost">← Back to Home</a>
     <a href="https://go.thecliqlabs.com/highlevel-theme-customization" target="_blank" class="btn-cta">Get Theme Builder →</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('navMobile').classList.toggle('open');this.setAttribute('aria-expanded',document.getElementById('navMobile').classList.contains('open'))">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="nav-mobile-panel" id="navMobile">
+  <a href="/services">Services</a>
+  <a href="/theme-builder">Theme Builder</a>
+  <a href="/ai-expert">AI Expert</a>
+  <a href="/blog">Blog</a>
+  <a href="/book-a-call">Book a Call →</a>
+</div>
 
 <!-- SECTION 1: HERO -->
 <section class="hero">
@@ -1187,7 +1212,7 @@ gtag('config','G-S2MQVC7VEZ');
   </div>
   <div class="footer-links">
     <a href="/">Home</a>
-    <a href="/pricing">Pricing</a>
+    <a href="/services">Services</a>
     <a href="/theme-builder">Theme Builder</a>
     <a href="/onboarding">Onboarding</a>
     <a href="/book-a-call">Book a Demo</a>
