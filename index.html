@@ -41,13 +41,23 @@ a{text-decoration:none;color:inherit}
 img{max-width:100%}
 
 /* NAV */
-nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:999;width:min(560px,92%);padding:10px 12px 10px 24px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:999px;box-shadow:0 10px 34px -12px rgba(0,0,0,0.22)}
+nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:999;width:min(780px,94%);padding:10px 10px 10px 24px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:999px;box-shadow:0 10px 34px -12px rgba(0,0,0,0.22)}
 .nav-logo{display:flex;align-items:center;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13.5px;font-weight:600;color:rgba(0,0,0,0.62);transition:color .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:#0a0a0a}
 .nav-btns{display:flex;align-items:center;gap:12px}
 .btn-ghost{font-size:13px;font-weight:500;color:rgba(0,0,0,0.6);padding:8px 18px;border-radius:999px;border:1px solid rgba(0,0,0,0.15);background:transparent;transition:all .2s}
 .btn-ghost:hover{color:#0a0a0a;border-color:rgba(0,0,0,0.3)}
-.btn-cta{font-size:13px;font-weight:700;background:#d62828;color:#fff;padding:9px 20px;border-radius:999px;transition:all .2s}
+.btn-cta{font-size:13px;font-weight:700;background:#d62828;color:#fff;padding:9px 20px;border-radius:999px;transition:all .2s;flex-shrink:0}
 .btn-cta:hover{background:#ffe066;color:#0a0a0a}
+.nav-toggle{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px}
+.nav-toggle span{width:20px;height:2px;background:#0a0a0a;display:block}
+.nav-mobile-panel{display:none;position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:998;width:min(340px,90%);background:#fff;border-radius:20px;box-shadow:0 10px 34px -12px rgba(0,0,0,0.22);padding:10px;flex-direction:column}
+.nav-mobile-panel.open{display:flex}
+.nav-mobile-panel a{padding:13px 16px;font-size:14.5px;font-weight:600;color:#0a0a0a;border-radius:12px}
+.nav-mobile-panel a:hover{background:#f4f7fb}
+@media(max-width:820px){.nav-links{display:none}.nav-toggle{display:flex}nav{width:min(300px,92%);justify-content:space-between}}
 
 /* BUTTONS */
 .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:999px;font-weight:700;font-size:16px;background:#d62828;color:#fff;transition:all .22s;cursor:pointer;border:none;font-family:'Poppins',sans-serif}
@@ -507,8 +517,26 @@ gtag('config','G-S2MQVC7VEZ');
   <a href="/" class="nav-logo">
     <img src="/assets/logo-light.png" alt="CliqLabs" height="32" style="height:32px;width:auto;display:block">
   </a>
-  <a href="/book-a-call" class="btn-cta">Book a Call →</a>
+  <div class="nav-links">
+    <a href="/services" class="active">Services</a>
+    <a href="/theme-builder">Theme Builder</a>
+    <a href="/ai-expert">AI Expert</a>
+    <a href="/blog">Blog</a>
+  </div>
+  <div class="nav-btns">
+    <a href="/book-a-call" class="btn-cta">Book a Call →</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="document.getElementById('navMobile').classList.toggle('open');this.setAttribute('aria-expanded',document.getElementById('navMobile').classList.contains('open'))">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+<div class="nav-mobile-panel" id="navMobile">
+  <a href="/services">Services</a>
+  <a href="/theme-builder">Theme Builder</a>
+  <a href="/ai-expert">AI Expert</a>
+  <a href="/blog">Blog</a>
+  <a href="/book-a-call">Book a Call →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero deco-host">
@@ -805,81 +833,14 @@ gtag('config','G-S2MQVC7VEZ');
   </div>
 </section>
 
-<!-- WAYS TO WORK (pricing cards, same structure as pay-as-you-go/hire-a-team pages) -->
+<!-- SERVICES TEASER (packages live on /services) -->
 <section class="sec2" style="padding:80px 5%;background:#f8fbff">
-  <div class="pricing-wrap reveal">
-    <div style="text-align:center;max-width:640px;margin:0 auto">
-      <span class="section-label">Support That Matches Your Stage</span>
-      <h2 class="section-title">Choose the Level of GoHighLevel Support You Need</h2>
-      <p class="section-sub">Flexible options. No unnecessary hiring. No collection of disconnected vendors.</p>
-    </div>
-    <div class="pricing-cards">
-      <div class="price-card">
-        <h3>One-Time Projects</h3>
-        <div class="price-tag">$150<span>/10hr</span></div>
-        <div class="price-desc">Defined setup, workflow, funnel, or technical fix.</div>
-        <ul>
-          <li>10 hour block, use across any service</li>
-          <li>No contract required</li>
-          <li>Clear scope before work starts</li>
-        </ul>
-        <a href="/pay-as-you-go" class="price-cta">Request a Project Quote</a>
-      </div>
-      <div class="price-card popular">
-        <div class="price-badge">Most Popular</div>
-        <h3>Ongoing Expert Services</h3>
-        <div class="price-tag">$900<span>/mo</span></div>
-        <div class="price-desc">Consistent capacity for builds and delivery.</div>
-        <ul>
-          <li>160 hours/month, dedicated expert</li>
-          <li>Works in your timezone</li>
-          <li>Integrates into your workflow</li>
-        </ul>
-        <a href="/hire-a-team" class="price-cta">Hire a GHL Expert</a>
-      </div>
-      <div class="price-card">
-        <h3>Managed White-Label Backend</h3>
-        <div class="price-tag">$1,250<span>/mo</span></div>
-        <div class="price-desc">Full backend, onboarding and support under your brand.</div>
-        <ul>
-          <li>Full GHL backend coverage</li>
-          <li>Dedicated point of contact</li>
-          <li>Scales as you grow</li>
-        </ul>
-        <a href="/hire-a-team" class="price-cta">Build Your Backend Team</a>
-      </div>
-    </div>
-    <div class="tbd-note" style="margin-top:32px">⚠️ Pricing shown matches the reference structure already used on /pay-as-you-go and /hire-a-team — confirm these as CliqLabs' final, real rates before this goes live.</div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="sec2" style="padding:80px 5%">
-  <div class="section-inner reveal">
-    <div style="text-align:center">
-      <span class="section-label">Proof From the Backend</span>
-      <h2 class="section-title">See What Agencies Achieve With the Right GHL Support</h2>
-      <p class="section-sub">The strongest proof is not a list of completed tasks. It is what happens when an agency can onboard clients faster, resolve technical problems consistently, and grow without every new account creating more chaos.</p>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Before working with CliqLabs, we were spending too much time fixing workflows, updating funnels, and answering technical questions from clients. Having one team handle the GoHighLevel backend made our agency feel much more organized and easier to manage."</p>
-        <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sarah Mitchell</div><div class="testi-role">Founder, Elevate Growth Agency</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"CliqLabs helped us clean up our pipelines, rebuild automations, and create a smoother onboarding process for new clients. Instead of juggling freelancers for every small fix, we now have a team that understands how the whole backend connects."</p>
-        <div class="testi-author"><div class="testi-avatar">J</div><div><div class="testi-name">Jason Carter</div><div class="testi-role">Agency Owner, NorthStar Digital</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"We needed support with workflows, forms, funnels, AI follow-up, and client onboarding inside GoHighLevel. CliqLabs helped us bring everything together so our systems felt less scattered and more scalable."</p>
-        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Amanda Brooks</div><div class="testi-role">Operations Director, ClearPath Marketing</div></div></div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px">
-      <a href="/book-a-call" class="cta-btn cta-btn-dark">View Client Results →</a>
+  <div class="section-inner reveal" style="text-align:center">
+    <span class="section-label">Support That Matches Your Stage</span>
+    <h2 class="section-title">Three Ways to Work With CliqLabs</h2>
+    <p class="section-sub">From a single fix to a fully managed white-label backend team — see the packages and pick what fits.</p>
+    <div style="margin-top:32px">
+      <a href="/services" class="cta-btn">See Packages &amp; Pricing →</a>
     </div>
   </div>
 </section>
@@ -922,6 +883,16 @@ gtag('config','G-S2MQVC7VEZ');
 <footer>
   <div class="footer-logo">
     <img src="/assets/logo-light.png" alt="CliqLabs" height="36" style="height:36px;width:auto;display:block">
+  </div>
+  <div class="footer-links">
+    <a href="/services">Services</a>
+    <a href="/theme-builder">Theme Builder</a>
+    <a href="/ai-expert">AI Expert</a>
+    <a href="/blog">Blog</a>
+    <a href="/book-a-call">Book a Call</a>
+    <a href="/privacy-policy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/refund-policy">Refunds</a>
   </div>
   <div class="footer-copy">© 2026 CLIQ LABS BY CHICAGOLAND PROMOTIONS LTD</div>
 </footer>
